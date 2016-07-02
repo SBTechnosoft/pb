@@ -12,7 +12,7 @@
 						<!-- END BEGIN STYLE CUSTOMIZER -->    
 						<!-- BEGIN PAGE TITLE & BREADCRUMB-->
 						<h3 class="page-title">
-							Welcome to MyLooka <small>Always Connected</small>
+							Welcome to Prabandhak <small>Always Connected</small>
 						</h3>
 						<ul class="breadcrumb">
 							<li>
@@ -22,11 +22,11 @@
 							</li>
 							<li><a href="#">Dashboard</a></li>
 							<li class="pull-right no-text-shadow">
-								<div id="dashboard-report-range" class="dashboard-date-range tooltips no-tooltip-on-touch-device responsive" data-tablet="" data-desktop="tooltips" data-placement="top" data-original-title="Change dashboard date range">
+								<!--div id="dashboard-report-range" class="dashboard-date-range tooltips no-tooltip-on-touch-device responsive" data-tablet="" data-desktop="tooltips" data-placement="top" data-original-title="Change dashboard date range">
 									<i class="icon-calendar"></i>
 									<span></span>
 									<i class="icon-angle-down"></i>
-								</div>
+								</div-->
 							</li>
 						</ul>
 						<!-- END PAGE TITLE & BREADCRUMB-->
@@ -147,7 +147,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="span6">
+						<!--div class="span6">
 							<div class="portlet box blue">
 								<div class="portlet-title">
 									<div class="caption"><i class="icon-calendar"></i>Server Stats</div>
@@ -183,12 +183,12 @@
 									</div>
 								</div>
 							</div>
-						</div>
+						</div-->
 					</div>
 					<div class="clearfix"></div>
-					<div class="row-fluid">
+					<!--div class="row-fluid">
 						<div class="span6">
-							<!-- BEGIN REGIONAL STATS PORTLET-->
+							
 							<div class="portlet box grey">
 							<div class="portlet-title">
 								<div class="caption"><i class="icon-user"></i>To Do List </div>
@@ -268,10 +268,10 @@
 								</table>
 							</div>
 						</div>
-							<!-- END REGIONAL STATS PORTLET-->
+							
 						</div>
 						<div class="span6">
-							<!-- BEGIN PORTLET-->
+							
 							<div class="portlet paddingless">
 								<div class="portlet-title line">
 									<div class="caption"><i class="icon-bell"></i>Feeds</div>
@@ -283,7 +283,7 @@
 									</div>
 								</div>
 								<div class="portlet-body">
-									<!--BEGIN TABS-->
+									
 									<div class="tabbable tabbable-custom">
 										<ul class="nav nav-tabs">
 											<li class=""><a href="#tab_1_1" data-toggle="tab">Company News </a></li>
@@ -840,16 +840,18 @@
 											</div>
 										</div>
 									</div>
-									<!--END TABS-->
+									
 								</div>
 							</div>
-							<!-- END PORTLET-->
+							
 						</div>
-					</div>
+					</div-->
+					
+					
 					<div class="clearfix"></div>
-					<div class="row-fluid">
+					<!--div class="row-fluid">
 						<div class="span6">
-							<!-- BEGIN PORTLET-->
+							
 							<div class="portlet box blue calendar">
 								<div class="portlet-title">
 									<div class="caption"><i class="icon-calendar"></i>Calendar</div>
@@ -859,10 +861,10 @@
 									</div>
 								</div>
 							</div>
-							<!-- END PORTLET-->
+							
 						</div>
 						<div class="span6">
-							<!-- BEGIN PORTLET-->
+							
 							<div class="portlet">
 								<div class="portlet-title line">
 									<div class="caption"><i class="icon-comments"></i>Messages </div>
@@ -978,9 +980,9 @@
 									</div>
 								</div>
 							</div>
-							<!-- END PORTLET-->
+							
 						</div>
-					</div>
+					</div-->
 				</div>
 			</div>
 			<!-- END PAGE CONTAINER-->    
