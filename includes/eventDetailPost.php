@@ -32,6 +32,11 @@
 		}
 	}
 	
+	  if(isset($_POST['btnUpdate']))
+		{		
+			$date = date('Y-m-d H:i:s');
+			updEventDetail($conn,$_POST['eid'],$_POST['txteventnm'],$_POST['txteventds'],$_POST['txtclnm'],$_POST['txtclcmp'],$_POST['txtclemail'],$_POST['txtworkmob'],$_POST['txthmmob'],$_POST['txtmob'],$date);
+		}
 	if(isset($_POST['delete']))
 	{		
 		$date = date('Y-m-d H:i:s');

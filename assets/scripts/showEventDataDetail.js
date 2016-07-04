@@ -1,3 +1,129 @@
+//edit functionality on order detail
+
+	$('#editdetail').click(function(){
+		
+		//alert("working");
+		//var eid    =   $('#eid').val();
+		
+		
+		$('#txteventnm').removeAttr('readonly');
+		$('#txteventds').removeAttr('readonly');
+		
+		$('#txtclnm').removeAttr('readonly');
+		$('#txtclcmp').removeAttr('readonly');
+		$('#txtclemail').removeAttr('readonly');
+		$('#txtworkmob').removeAttr('readonly');
+		$('#txthmmob').removeAttr('readonly');
+		$('#txtmob').removeAttr('readonly');
+		
+		// $('#txtjobdata1').removeAttr('readonly');
+		// $('#txtjobdata2').removeAttr('readonly');
+		
+		$("#showeditbtn").fadeIn();
+		
+	});
+
+	//on cancel button fade out and add attribute read only onfields
+	$('#btncancel').click(function(){
+		
+		$('#txteventnm').attr('readonly','txteventnm');
+		$('#txteventds').attr('readonly','txteventds');
+		
+		$('#txtclnm').attr('readonly','txtclnm');
+		$('#txtclcmp').attr('readonly','txtclcmp');
+		$('#txtclemail').attr('readonly','txtclemail');
+		$('#txtworkmob').attr('readonly','txtworkmob');
+		$('#txthmmob').attr('readonly','txthmmob');
+		$('#txtmob').attr('readonly','txtmob');
+		
+		// $('#txtjobdata1').attr('readonly','txtjobdata1');
+		// $('#txtjobdata2').attr('readonly','txtjobdata2');
+		
+		$("#showeditbtn").fadeOut();	
+	});
+	
+	//on btnupdate click it will update the data
+	
+	$('#btnupdate').click(function(){
+		
+		var eid    =  $('#eid').val();		
+		var txteventnm    =  $('#txteventnm').val();
+		var txteventds    =  $('#txteventds').val();
+		var txtclnm    =  $('#txtclnm').val();
+		var txtclcmp    =  $('#txtclcmp').val();
+		var txtclemail    =  $('#txtclemail').val();
+		var txtworkmob    =  $('#txtworkmob').val();
+		
+		var txthmmob    =  $('#txthmmob').val();
+		var txtmob    =  $('#txtmob').val();
+		//var txtjobdata1    =  $('#txtjobdata1').val();
+		//var txtjobdata2    =  $('#txtjobdata2').val();
+		
+		$.ajax({
+				url : 'includes/eventDetailPost.php',
+				type : 'POST',
+				async : false,
+				data : {
+					'btnUpdate'  : 1,
+					
+					'eid' 	: eid,	
+					'txteventnm' 	: txteventnm,
+					'txteventds' 	: txteventds,
+					'txtclnm' 	: txtclnm,
+					'txtclcmp' 	: txtclcmp,
+					'txtclemail' 	: txtclemail,
+					'txtworkmob' 	: txtworkmob,
+					
+					'txthmmob' 	: txthmmob,
+					'txtmob' 	: txtmob,
+					//'txtjobdata1' 	: txtjobdata1,
+					//'txtjobdata2' 	: txtjobdata2,
+					
+				},
+				success : function(v)
+				{
+					// $('#txtevent_vend_id').val(va.event_vendor_id);
+					// $('#txtvend_evnt_id').val(va.event_id);					
+					// showeventpaidtrn();
+					
+					$('#txteventnm').attr('readonly','txteventnm');
+					$('#txteventds').attr('readonly','txteventds');
+					
+					$('#txtclnm').attr('readonly','txtclnm');
+					$('#txtclcmp').attr('readonly','txtclcmp');
+					$('#txtclemail').attr('readonly','txtclemail');
+					$('#txtworkmob').attr('readonly','txtworkmob');
+					$('#txthmmob').attr('readonly','txthmmob');
+					$('#txtmob').attr('readonly','txtmob');
+					
+					//$('#txtjobdata1').attr('readonly','txtjobdata1');
+					//$('#txtjobdata2').attr('readonly','txtjobdata2');
+					
+					$("#showeditbtn").fadeOut();
+					
+					//window.location.reload();
+					
+				}
+				
+			});	
+		
+		
+		
+	});	
+	
+	
+//end
+
+
+
+
+
+
+
+
+
+
+
 //showing vendor detail 1.event_vendor_id and event_id on add click
 	$('body').delegate('.vendaddp','click',function(){			
 			

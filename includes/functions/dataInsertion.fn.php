@@ -252,6 +252,25 @@ function insPermission($conn,$stf_id,$json)
 			//echo 1;
 			exit;
 		}
+		
+function updEventDetail($conn,$eid,$txteventnm,$txteventds,$txtclnm,$txtclcmp,$txtclemail,$txtworkmob,$txthmmob,$txtmob,$date)
+		{
+			
+			$sqlupdEventDetail = "UPDATE `event_mst` set `event_name` = '".$txteventnm."',
+													`event_ds` = '".$txteventds."',
+													`client_name` = '".$txtclnm."',
+													`client_cmp` = '".$txtclcmp."',
+													`client_email` = '".$txtclemail."',
+													`client_work_mob` = '".$txtworkmob."',
+													`client_home_mob` = '".$txthmmob."',
+													`client_mob` = '".$txtmob."',													
+													`updated_at` = '".$date."',
+													`updated_by` = '".$_SESSION['USER_ID']."'	where `event_id` = '".$eid."'	";
+			$resultArray = $conn->insertQuery($sqlupdEventDetail);
+			echo 0;
+			exit;
+		}
+		
 function insertMassPayTrn($conn,$json,$cur_date,$pay_mode,$bk_nm,$chk_no,$mass_amt)
 		{
 			$sqlinsMassPayTrn = "INSERT INTO `event_vend_mass_pay_trn` (`event_vend_json_id`,`payment_date`,`payment_mode`,`bank_name`,`cheque_no`,`paid_amt`) 

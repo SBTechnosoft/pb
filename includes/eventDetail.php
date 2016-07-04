@@ -153,7 +153,11 @@
 						<div class="span8 detail_content">
                         <div class="search-forms search-default">
 						<form class="form-search" >
-							<h4>Event Detail </h4>
+							<h4>Event Detail 
+                        	 <a id="editdetail" style = "float:right; cursor:pointer;">
+								<i class="fa fa-pencil-square-o" ></i>
+								</a>
+                             </h4>
 							<hr />
 							<!-- invoice button-- >
 							
@@ -252,7 +256,16 @@
                                             <input type="text" id="txtstatus" name="txtstatus" class="small-box" readonly />
                                         </td>
                                     </tr>
+									</br>
                                 </div>
+                                   <tr id="showeditbtn" style="display:none;" >
+										<td class="names">
+											<a id = "btnupdate" class="btn blue"> Save </a>
+										</td>
+										<td>
+                                            <a id = "btncancel" class="btn blue"> Cancel</a>
+                                        </td>
+									</tr>
                             </table>
                             <!--end tabbable-->
                         </form>
