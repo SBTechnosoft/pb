@@ -314,6 +314,16 @@ function showTransVend($conn)
 		$sqlTransDtlVend = "select `event_id`,sum(vend_price) as vtot from new_event_places_dtl where vend_id != 0  GROUP BY `event_id`   "; 
 		return $conn->getResultArray($sqlTransDtlVend);	
 	}
+function showExpCtg($conn)
+	{
+		$sqlshowExpCtg = " select `exp_cat_id`,`cat_name`,`cat_type`  from  `expence_cat_mst` "; 
+		return $conn->getResultArray($sqlshowExpCtg);	
+	}
+function showEvent($conn)
+	{
+		$sqlshowEvent = " select `event_id`,`event_name`  from  `event_mst` "; 
+		return $conn->getResultArray($sqlshowEvent);	
+	}
 	
 	/*
 	
