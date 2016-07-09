@@ -39,7 +39,8 @@
 			<div class="row-fluid">
 				<div class="span12 booking-search">
 					<h4>Event Details </h4><hr/>
-					<form action="#" name="Form" class="form-horizontal" role="form" >
+					
+					<form name="f1" action="./includes/newEventsPost.php" method="post" id="f1">
 						<div class="clearfix margin-bottom-10">
 							Event Name <font color="red">*</font> 
 							<div class="input-icon left">
@@ -147,34 +148,34 @@
 							<div id="dynamic_field">
 								<h4>
 									Event places 
-									<!--a name="add" id="add" class="btn blue event">
+									<a name="add" id="add" class="btn blue event">
 										<i class="icon-plus"></i>								
-									</a-->									
+									</a>									
 								</h4>
 								<hr />
 								<div class="clearfix margin-bottom-10">
 									<label for="txtvenue">Venue </label>
 									<div class="input-icon left">
-										<input class="m-wrap" id="txtvenue" name="txtvenue" type="text"  />
+										<input class="m-wrap" id="hdn[0][txtvenue]" name="hdn[0][txtvenue]" type="text"  />
 									</div>
 								</div>
 								<div class="clearfix margin-bottom-10">
 									<label for="txthall">Hall </label>
 									<div class="input-icon left">
-										<input class="m-wrap" id="txthall" name="txthall" type="text"  />
+										<input class="m-wrap" id="hdn[0][txthall]" name="hdn[0][txthall]" type="text"  />
 									</div>
 								</div>
 								<div class="clearfix margin-bottom-10">
 									<label for="txtldmark">Land Mark </label>
 									<div class="input-icon left">
-										<input class="m-wrap" id="txtldmark" name="txtldmark" type="text" />
+										<input class="m-wrap" id="hdn[0][txtldmark]" name="hdn[0][txtldmark]" type="text" />
 									</div>
 								</div>
 								<div class="clearfix margin-bottom-10">
 									<div class="pull-left margin-right-20">
 										<label for="txtfromdate">From Date </label>
 										<div id="datetimepickerPF" class="input-append date">
-											<input data-format="yyyy-MM-dd hh:mm:ss" class="m-wrap" value="<?php echo Date;?>" type="text" name="txtfromdate" id="txtfromdate"></input>
+											<input data-format="yyyy-MM-dd hh:mm:ss" class="m-wrap" value="<?php echo Date;?>" type="text" name="hdn[0][txtfromdate]" id="hdn[0][txtfromdate]"></input>
 											<span class="add-on">
 											  <i class="icon-time" class="icon-calendar"></i>
 											</span>
@@ -183,7 +184,7 @@
 									<div class="pull-right margin-right-20">
 									<label for="txttodate" class="well1">To Date </label>
 									<div id="datetimepickerPT" class="input-append date">
-										<input data-format="yyyy-MM-dd hh:mm:ss" type="text" class="m-wrap" value="<?php echo Date;?>" name="txttodate" id="txttodate"></input>
+										<input data-format="yyyy-MM-dd hh:mm:ss" type="text" class="m-wrap" value="<?php echo Date;?>" name="hdn[0][txttodate]" id="hdn[0][txttodate]"></input>
 										<span class="add-on">
 										  <i class="icon-time" class="icon-calendar"></i>
 										</span>
@@ -235,7 +236,7 @@
 									</div>
 									</br></br>
 									<div class="span8 booking-search">
-										<form action="#">
+										
 											<div class="clearfix margin-bottom-10">
 												<label> Name </label>
 												<div class="input-icon left">
@@ -268,7 +269,7 @@
 												<label >Purchase Date</label>
 												
 													<div class="input-append date" id="datetimepicker3">
-														<input data-format="yyyy-MM-dd hh:mm:ss" class="m-wrap m-ctrl-medium date-picker" type="text"  id="txtpurdate" name="txtpurdate" value="<?php //echo Date;?>" /><span class="add-on"><i class="icon-calendar"></i></span>
+														<input data-format="yyyy-MM-dd hh:mm:ss" class="m-wrap m-ctrl-medium date-picker" type="text"  id="txtpurdate" name="txtpurdate" value="<?php echo Date;?>" /><span class="add-on"><i class="icon-calendar"></i></span>
 													</div>
 												
 											</div>
@@ -309,7 +310,7 @@
 												<a class="btn blue" id="addEquip">Add</a>										
 												<a class="btn blue" id="close1">CANCEL</a>
 											</div>
-										</form>
+										
 										<span id="msgs">
 											
 										</span>
@@ -356,7 +357,7 @@
 									</div>
 									</br></br>
 									<div class="span8 booking-search">
-										<form action="#">
+										
 											<div class="clearfix margin-bottom-10">
 												<label> Vendor Name </label>
 												<div class="input-icon left">
@@ -397,7 +398,7 @@
 												<a class="btn blue" id="addvend">Add</a>										
 												<a class="btn blue" id="close1vd">CANCEL</a>
 											</div>	
-										</form>
+										
 										<span id="msgs">
 											
 										</span>
@@ -435,8 +436,8 @@
 									
 									
 									
-									<input style="width:120px;" type="text" id="label1" name="label1"  value="Length(FT)" readonly />
-									<input style="width:120px;" type="text" id="label2" name="label2" value="Width(FT)" readonly />
+									<input style="width:120px;" type="text" id="labelLT" name="labelLT"  value="Length(FT)" readonly />
+									<input style="width:120px;" type="text" id="labelWT" name="labelWT" value="Width(FT)" readonly />
 									
 									
 									
@@ -468,7 +469,7 @@
 									</i>
 									<input style="width:124px;" type="text"  value="Price" readonly />
 								
-									<input  type="text"  value="Select Image" readonly />
+									
 								
 									
 								</div>
@@ -498,7 +499,7 @@
 									</select>
 									<input class="small m-wrap txtvprice" type="text"  id="txtvprice" name="txtvprice" value="" />
 								
-									<input type="file" name="myFile" id="myFile"  multiple />
+									
 								</div>
 												
 								
@@ -532,8 +533,7 @@
 													<th> Staff</th>
 													<th> Vendor</th>
 													<th> Price</th>
-													<th> Remark</th>
-													<th> Image </th>
+													<th> Remark</th>													
 													<th> Action</th>													 
 												</tr>
 											</thead>
@@ -669,12 +669,19 @@
 						<br/>
 						
 						<div class="right-side">
-							<a class="btn blue" id="newaddevent">SAVE <i class="icon-download"></i></a>
+							<!--a class="btn blue" id="newaddevent">SAVE <i class="icon-download"></i></a-->
+							<a class="btn blue" onclick="myFunction()">SAVE <i class="icon-download"></i></a>
 							<a class="btn blue" id="newaddenquiry">ENQUIRY <i class="icon-download"></i></a>
 							<button type="reset" class="btn blue">CANCEL <i class="icon-remove-sign"></i></button>
 						</div>
 						<!--input type="submit" value="SUBMIT"/-->
 					</form>
+					
+					<script>
+						function myFunction() {
+							document.getElementById("f1").submit();
+						}
+					</script>
 				</div>
 			</div>
 		<!-- END PAGE CONTENT-->

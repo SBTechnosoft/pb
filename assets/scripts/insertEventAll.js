@@ -861,8 +861,8 @@
 			});
 		});
 		
-		$('#label1').hide();
-		$('#label2').hide();
+		$('#labelLT').hide();
+		$('#labelWT').hide();
 		$('#txtlength').hide();
 		$('#txtwidth').hide();
 		
@@ -872,15 +872,15 @@
 			
 			if(gettype == 2)
 			{
-				$('#label1').show();
-				$('#label2').show();
+				$('#labelLT').show();
+				$('#labelWT').show();
 				$('#txtlength').show();
 				$('#txtwidth').show();
 			}
 			else
 			{
-				$('#label1').hide();
-				$('#label2').hide();
+				$('#labelLT').hide();
+				$('#labelWT').hide();
 				$('#txtlength').hide();
 				$('#txtwidth').hide();
 			}
@@ -1175,19 +1175,33 @@
 					'</tr>';*/
 					
 					'<tr id="eqrow'+i+'">'+
-						'<input   type="hidden"  id="txtieqp" name="txtieqp" value="'+eqpid+'">'+
-						'<input  type="hidden"  id="txtieqpnm" name="txtieqpnm" value="'+eqpnm+'">'+
-						'<input  type="hidden"  id="txtirate" name="txtirate" value="'+rate+'">'+
-						'<input  type="hidden"  id="txtiqty" name="txtiqty" value="'+qty+'">'+
-						'<input   type="hidden" class="txtiamt" id="txtiamt" name="txtiamt" value="'+amt+'">'+
-						'<input   type="hidden"  id="txtistf" name="txtistf" value="'+staff+'">'+
-						'<input  type="hidden"  id="txtistfnm" name="txtistfnm" value="'+staffnm+'">'+
-						'<input  type="hidden"  id="txtivend" name="txtivend" value="'+vend+'">'+
-						'<input type="hidden"  id="txtivendnm" name="txtivendnm" value="'+vendnm+'">'+
-						'<input  type="hidden"  id="txtivendprice" name="txtivendprice" value="'+vprice+'">'+
-						'<input   type="hidden"  id="txtiremark" name="txtiremark" value="'+reamrk+'">'+
-						'<input  type="hidden"  id="txtilength" name="txtilength" value="'+length+'">'+
-						'<input   type="hidden"  id="txtiwidth" name="txtiwidth" value="'+width+'">'+
+						// '<input   type="hidden"  id="txtieqp" name="txtieqp" value="'+eqpid+'">'+
+						// '<input  type="hidden"  id="txtieqpnm" name="txtieqpnm" value="'+eqpnm+'">'+
+						// '<input  type="hidden"  id="txtirate" name="txtirate" value="'+rate+'">'+
+						// '<input  type="hidden"  id="txtiqty" name="txtiqty" value="'+qty+'">'+
+						// '<input   type="hidden" class="txtiamt" id="txtiamt" name="txtiamt" value="'+amt+'">'+
+						// '<input   type="hidden"  id="txtistf" name="txtistf" value="'+staff+'">'+
+						// '<input  type="hidden"  id="txtistfnm" name="txtistfnm" value="'+staffnm+'">'+
+						// '<input  type="hidden"  id="txtivend" name="txtivend" value="'+vend+'">'+
+						// '<input type="hidden"  id="txtivendnm" name="txtivendnm" value="'+vendnm+'">'+
+						// '<input  type="hidden"  id="txtivendprice" name="txtivendprice" value="'+vprice+'">'+
+						// '<input   type="hidden"  id="txtiremark" name="txtiremark" value="'+reamrk+'">'+
+						// '<input  type="hidden"  id="txtilength" name="txtilength" value="'+length+'">'+
+						// '<input   type="hidden"  id="txtiwidth" name="txtiwidth" value="'+width+'">'+
+						
+						'<input   type="hidden"  id="hdn[0]['+i+'][txtieqp]" name="hdn[0]['+i+'][txtieqp]" value="'+eqpid+'">'+
+						'<input  type="hidden"  id="hdn[0]['+i+'][txtieqpnm]" name="hdn[0]['+i+'][txtieqpnm]" value="'+eqpnm+'">'+
+						'<input  type="hidden"  id="hdn[0]['+i+'][txtirate]" name="hdn[0]['+i+'][txtirate]" value="'+rate+'">'+
+						'<input  type="hidden"  id="hdn[0]['+i+'][txtiqty]" name="hdn[0]['+i+'][txtiqty]" value="'+qty+'">'+
+						'<input   type="hidden" class="txtiamt"  id="hdn[0]['+i+'][txtiamt]" name="hdn[0]['+i+'][txtiamt]" value="'+amt+'">'+
+						'<input   type="hidden"  id="hdn[0]['+i+'][txtistf]" name="hdn[0]['+i+'][txtistf]" value="'+staff+'">'+
+						'<input  type="hidden"  id="hdn[0]['+i+'][txtistfnm]" name="hdn[0]['+i+'][txtistfnm]" value="'+staffnm+'">'+
+						'<input  type="hidden"  id="hdn[0]['+i+'][txtivend]" name="hdn[0]['+i+'][txtivend]" value="'+vend+'">'+
+						'<input type="hidden"  id="hdn[0]['+i+'][txtivendnm]" name="hdn[0]['+i+'][txtivendnm]" value="'+vendnm+'">'+
+						'<input  type="hidden"  id="hdn[0]['+i+'][txtivendprice]" name="hdn[0]['+i+'][txtivendprice]" value="'+vprice+'">'+
+						'<input   type="hidden"  id="hdn[0]['+i+'][txtiremark]" name="hdn[0]['+i+'][txtiremark]" value="'+reamrk+'">'+
+						'<input  type="hidden"  id="hdn[0]['+i+'][txtilength]" name="hdn[0]['+i+'][txtilength]" value="'+length+'">'+
+						'<input   type="hidden"  id="hdn[0]['+i+'][txtiwidth]" name="hdn[0]['+i+'][txtiwidth]" value="'+width+'">'+
 						
 						
 						
@@ -1198,8 +1212,7 @@
 						'<td>'+ staffnm+'</td>'+						
 						'<td>'+ vendnm+'</td>'+
 						'<td>'+ vprice+'</td>'+
-						'<td>'+ reamrk+'</td>'+	
-						'<td><input type="file" id="fimg'+i+'" name="fimg'+i+'[]" multiple /></td>'+	
+						'<td>'+ reamrk+'</td>'+								
 						'<td><a class="remove" id="'+i+'" style= "cursor:pointer; margin-left:15px;">'+
 							'<i class="fa fa-times" aria-hidden="true"></i>'+							
 						'</a></td>'+
@@ -1238,8 +1251,8 @@
 			$('.txtremark').val('');
 			$('.txtlength').val('');
 			$('.txtwidth').val('');
-			$('#label1').hide();
-			$('#label2').hide();
+			$('#labelLT').hide();
+			$('#labelWT').hide();
 			$('#txtlength').hide();
 			$('#txtwidth').hide();
 			$('.txtcharge').val(total_amt);
