@@ -1,7 +1,7 @@
 <?php
 	include_once('includes/header.php');
 	//require('/home/siliconbrain/public_html/beta.prabandhak.co.in/fpdf/fpdf.php');
-	require('./fpdf/fpdf.php');
+	require(DIR_WS_FPDF.'fpdf.php');
 	//$fname = $inm.$id.".pdf";
 	
 	$date=date_create($_POST['txtfdate']);
@@ -45,7 +45,7 @@
 			if($data[$i]['inv_file_name']=='')
 			{
 				$fname = $inm."-".$_POST['txteid']."_1.pdf";
-				
+				echo $fname;
 				class Mipdf extends FPDF
 				{
 					function Header()
@@ -167,7 +167,8 @@
 				$mipdf->Cell(60,8,"      ".ucfirst($data[$i]['cmp_name'])."",0,1,'C');	
 				$mipdf->Cell(190,8,"   Email: rmhathi@redcarpetevents.co.in",0,1,'R');
 				
-				$mipdf->Output($fname,'F');				
+				$path = DIR_WS_INV.$fname;				
+				$mipdf->Output($path,'F');				
 				
 				$date = date('Y-m-d H:i:s');
 				updInvEM($conn,$id,$fname);
@@ -184,7 +185,7 @@
 				$pos = substr($data[$i]['inv_file_name'],(strpos($data[$i]['inv_file_name'],"_") + 1),1);
 				$pos = $pos+ 1;
 				$newFileName = substr($data[$i]['inv_file_name'],0,strpos($data[$i]['inv_file_name'],"_") + 1) . (int)$pos . ".pdf" ;
-				
+				echo $newFileName;
 				//$start = $pos + 1;
 				//$stop =  $len - 3;
 				//echo $stop;
@@ -325,7 +326,10 @@
 				$mipdf->Cell(60,8,"      ".ucfirst($data[$i]['cmp_name'])."",0,1,'C');	
 				$mipdf->Cell(190,8,"   Email: rmhathi@redcarpetevents.co.in",0,1,'R');
 				
-				$mipdf->Output($newFileName,'F');
+				$path = DIR_WS_INV.$newFileName;
+				//echo $path;
+				//exit;
+				$mipdf->Output($path,'F');
 				
 				//echo $id."<br/>";
 				//echo $fname."<br/>";
