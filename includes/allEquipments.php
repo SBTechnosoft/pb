@@ -66,16 +66,16 @@
 
                             </div>
                             <div class="portlet-body">
-                                <table class="table table-striped table-bordered table-hover table-full-width" id="sample_1">
+                                <table class="table table-striped table-bordered table-hover table-full-width" id="sample_2">
                                     <thead>
                                         <tr>
                                             <th>Equipment Name</th>
                                             <th> Serial No </th>
                                             <th>Model No </th>
-                                            <th> Category Id</th>
-                                            <th>Purchase_date</th>
-                                            <th>Purchase_From</th>
-                                            <th>Price</th>
+                                            <th> Category</th>
+                                            <th>Purchase Date</th>
+                                            <th>Purchase From</th>
+                                            <th>Min.Client Charged</th>
                                             <th>Remark</th>
 											<th>Action</th>
                                         </tr>

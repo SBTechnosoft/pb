@@ -493,7 +493,17 @@
 		function last_event()
 		{
 			//alert('hello Divyesh');
-			var id = $('#lasteid').val();
+			//var id = $('#lasteid').val();
+			
+			var enqid = $('#txtenqid').val();
+			if(enqid == '')
+			{
+				var id = $('#lasteid').val();
+			}
+			else
+			{
+				var id = $('#txtenqid').val();
+			}
 			$.ajax({
 				url : 'includes/eventDetailPost.php',
 				type : 'POST',

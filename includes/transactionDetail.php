@@ -217,7 +217,7 @@
 								</a>
                         </div>
                         <div class="portlet-body">
-                            <table class="table table-striped table-bordered table-hover table-full-width" id="sample_1">
+                            <table class="table table-striped table-bordered table-hover table-full-width" id="sample_2">
                                 <thead>
                                     <tr>
                                         <th> Event Id</th>
@@ -225,7 +225,8 @@
                                         <th>Client Name </th>
                                         
                                         <th>Income</th>
-                                        <th>Expence</th>                                        
+                                        <th>Expence</th> 
+										<th>Other Exp.</th>
                                     </tr>
                                 </thead>
                                 <tbody id="showTrnDetail">

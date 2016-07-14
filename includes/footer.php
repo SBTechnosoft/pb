@@ -1046,13 +1046,7 @@
 					<script src="<?php echo HTTP_SERVER; ?>assets/scripts/search.js"></script>      
 					<script src="<?php echo HTTP_SERVER; ?>assets/scripts/insertAccessories.js"></script> 
 					<script src="<?php echo HTTP_SERVER; ?>assets/scripts/showAccessories.js"></script> 
-					<script>
-						jQuery(document).ready(function() {    
-						   App.init();
-						   Search.init();
-						   TableAdvanced.init();
-						});
-					</script>
+					
 					<script>
 						$("#search_btn").click(function(){
 						$("#search_form").toggle();
@@ -1075,7 +1069,14 @@
 					<!-- END PAGE LEVEL PLUGINS -->
 					<!-- BEGIN PAGE LEVEL SCRIPTS -->
 					<script src="<?php echo HTTP_SERVER; ?>assets/scripts/app.js"></script>
-					<script src="<?php echo HTTP_SERVER; ?>assets/scripts/table-advanced.js"></script> 			
+					<script src="<?php echo HTTP_SERVER; ?>assets/scripts/table-advanced.js"></script>
+					<script>
+						jQuery(document).ready(function() {    
+						   App.init();
+						   Search.init();
+						   TableAdvanced.init();
+						});
+					</script>
 				
 				<?php
 					break;
@@ -1690,6 +1691,15 @@
 						});
 						
 						$("#hide1").hide();
+						
+						$('#editdays').click(function()
+						{
+							$('#txtdays').removeAttr('readonly');
+							$("#editdays").hide();
+							$("#updays").show();
+						});
+						
+						$("#updays").hide();
 						
 						
 					</script>

@@ -41,6 +41,12 @@
         <!-- END PAGE TITLE & BREADCRUMB-->
         <!-- END PAGE HEADER-->
         <!-- BEGIN PAGE CONTENT-->
+		<div>
+			<a style="cursor:pointer; float:left;margin-right:10px;" id="selchkitm" target="_blank" class="btn blue"> Submit </a>
+			<input type="checkbox" id="chall" name="chall" class="chall"  >
+			Check All
+		</div>
+		
         <div class="tabbable tabbable-custom tabbable-full-width">
             <div class="tab-content">
                 <div id="tab_1_2" class="tab-pane active">
@@ -55,15 +61,17 @@
 								
                         </div>
                         <div class="portlet-body">
-                            <table class="table table-striped table-bordered table-hover table-full-width" id="sample_1">
+                            <table class="table table-striped table-bordered table-hover table-full-width" id="sample_2">
                                 <thead>
                                     <tr>
                                         <th> Event Id</th>
                                         <th> Event Name </th>
-                                        <th>Client Name </th>
-                                        <th> Mobile No</th>
+                                        <th>Client Name </th>                                       
                                         <th>Client charge</th>
-                                        <th>Clent Paid Amount</th>
+										<th>Discount</th>
++										<th>S.Tax</th>
++										<th>Amt</th>
+                                        <th>Paid Amount</th>
                                         <th>Remaining Amount</th>
 										<th> Action </th>
                                     </tr>

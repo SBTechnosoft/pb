@@ -59,7 +59,7 @@
                                 <table class="table table-striped table-bordered table-hover table-full-width" id="sample_1">
                                     <thead>
                                         <tr>
-											<th>Id</th>
+											<th>Sr.No</th>
 											<th> Event Name </th>
 											<th>Client Name </th>
 											<th> FP No </th>
@@ -69,7 +69,7 @@
 											
 											<th> Charged Amt </th>
 											<th> S.Tax </th>
-											<th> Tot Amt </th>
+											<th> Amount </th>
 											
 											<!--th>Rec.Amt</th>
 											<th> Payment Status </th>

@@ -55,15 +55,19 @@
 								
                         </div>
                         <div class="portlet-body">
-                            <table class="table table-striped table-bordered table-hover table-full-width" id="sample_1">
+                            <table class="table table-striped table-bordered table-hover table-full-width" id="sample_2">
                                 <thead>
                                     <tr>
                                         <th> Event Id</th>
                                         <th> Event Name </th>
                                         <th>Client Name </th>
-                                        <th> Mobile No</th>
+                                        
                                         <th>Client charge</th>
-                                        <th>Client Paid Amount</th>
+                                        
+										<th>Discount</th>
+										<th>S.Tax</th>
+										<th>Amt</th>
+										<th>Paid Amount</th>
                                         <th>Remaining Amount</th>
                                     </tr>
                                 </thead>

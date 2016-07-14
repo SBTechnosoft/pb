@@ -26,9 +26,18 @@
 		
 			<tr>
 				
-				<td><?php echo $data[$i]['event_id'];?></td>
 				
-				<td><?php echo ucfirst($data[$i]['event_name']);?></td>
+				<td>
+					<a href="<?php echo HTTP_SERVER ; ?>index.php?url=EVD&id=<?php echo $data[$i]['event_id'];?>" data-id="<?php echo $data[$i]['event_id']; ?>" class="edit" data-toggle="tooltip" title="Enquiry">						
+ 						<?php echo $data[$i]['event_id'];?>
+ 					</a>					
+				</td>
+				
+				<td>
+					<a href="<?php echo HTTP_SERVER ; ?>index.php?url=EVD&id=<?php echo $data[$i]['event_id'];?>" data-id="<?php echo $data[$i]['event_id']; ?>" class="edit" data-toggle="tooltip" title="Enquiry">						
+						<?php echo ucfirst($data[$i]['event_name']);?></td>
+					</a>
+ 				<td>
 				
 				<td>
 					<i class="fa fa-info-circle" style="cursor:pointer;" data-toggle="tooltip" data-html="true" 
@@ -56,7 +65,7 @@
 				
 				<td>
 					<span style="float:right;">
-						<?php if($data[$i]['service_tax_rate']!=''){?><i class="fa fa-info-circle" style="cursor:pointer;" data-toggle="tooltip" data-html="true" 
+						<?php if($data[$i]['service_tax_amt']!=''){?><i class="fa fa-info-circle" style="cursor:pointer;" data-toggle="tooltip" data-html="true" 
 						title="Tax Rate:<?php echo $data[$i]['service_tax_rate']."%";?>">
 						</i>&nbsp;&nbsp;<?php echo $data[$i]['service_tax_amt'];}?> 
 					</span>
