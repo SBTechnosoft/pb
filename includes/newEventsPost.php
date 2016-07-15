@@ -116,16 +116,44 @@ if(isset($_POST['showtax']))
 	
 	if(isset($_POST['txteventnm']))
 	{	
-		$hdn_ary = $_POST['hdn'];	
+				if($_POST['taxmode'] == 'Yes')
+				{
+					if($_POST['txtdisc']=='')
+					{
+						$tax  =	($_POST['txtcharge'])* ($_POST['txtstax'])/100;				
+						$gtot =  ($_POST['txtcharge'] ) + ($tax) ;				
+					}
+					else
+					{
+						$tax =  ((($_POST['txtcharge']) - ($_POST['txtdisc'])) * ($_POST['txtstax']))/100;				
+						$gtot =  (($_POST['txtcharge']) - ($_POST['txtdisc']) ) + ($tax) ;
+					}
+				}
+				else
+				{
+					if($_POST['txtdisc'] == '')
+					{
+						$gtot = ($_POST['txtcharge']);
+					}
+					else
+					{
+						
+						$gtot =  (($_POST['txtcharge']) - ($_POST['txtdisc']) )  ;
+						
+					}
+						
+					
+				}
 		
 		
+		$hdn_ary = $_POST['hdn'];		
 		// inserted in event_mst
 		$cur_date = date('Y-m-d H:i:s');
 		
 		//$tot_amt = $_POST['gtot'];
 		
 		//temporory data
-		$tot_amt = $_POST['txtcharge'];
+		$tot_amt = $gtot;
 		
 		$paid_amt = $_POST['txtpaid'];
 		
@@ -149,11 +177,11 @@ if(isset($_POST['showtax']))
 			$txtpaid = $_POST['txtpaid'];
 		}
 		
-		$estatus = "new";
+		$estatus = "new";		
 		
-		//need chng on gtot value
-		$gtot = $_POST['txtcharge'];
-		insertEventAdd($conn,$_POST['txteventnm'],$_POST['txteventds'],$_POST['txtclnm'],$_POST['txtclcmp'],$_POST['txtclemail'],$_POST['txtworkmob'],$_POST['txthmmob'],$_POST['txtmob'],$_POST['txtcharge'],$_POST['txtpaid'],$_POST['txtfromdt'],$_POST['txttodt'],$estatus,$cur_date,$pay_status,$_POST['drpcmpnm'],$_POST['taxmode'],$_POST['txtbillno'],$_POST['txtfpno'],$_POST['tax'],$gtot,$_POST['txtstax'],$_POST['txtdisc']);
+		$gtot = $tot_amt;
+		
+		insertEventAdd($conn,$_POST['txteventnm'],$_POST['txteventds'],$_POST['txtclnm'],$_POST['txtclcmp'],$_POST['txtclemail'],$_POST['txtworkmob'],$_POST['txthmmob'],$_POST['txtmob'],$_POST['txtcharge'],$_POST['txtpaid'],$_POST['txtfromdt'],$_POST['txttodt'],$estatus,$cur_date,$pay_status,$_POST['drpcmpnm'],$_POST['taxmode'],$_POST['txtbillno'],$_POST['txtfpno'],$tax,$gtot,$_POST['txtstax'],$_POST['txtdisc']);
 		
 		//select last record inserted from event_mst	
 		$eventlast_id = mysql_insert_id();;
