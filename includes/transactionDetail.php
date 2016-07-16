@@ -223,7 +223,7 @@
                                         <th> Event Id</th>
                                         <th> Event Name </th>
                                         <th>Client Name </th>
-                                        
+                                        <th> Date </th>
                                         <th>Income</th>
                                         <th>Expence</th> 
 										<th>Other Exp.</th>
