@@ -307,9 +307,9 @@ function showCntStatus($conn)
 		
 		$sqlCntStatus = " SELECT 
 				(SELECT COUNT(*) FROM event_mst WHERE status ='new' and  deleted_at = '0000-00-00 00:00:00' ) as new1,
-				(SELECT COUNT(*) FROM event_mst WHERE status ='upcoming' and  deleted_at = '0000-00-00 00:00:00' ) as upcoming,
+				(SELECT COUNT(*) FROM event_mst WHERE status ='upcoming' and `status` != 'enquiry' and  deleted_at = '0000-00-00 00:00:00' ) as upcoming,
 				
-				(select COUNT(*) from `event_mst` where  `to_date` < curdate()  and `deleted_at` = '0000-00-00 00:00:00') as completed,
+				(select COUNT(*) from `event_mst` where  `to_date` < curdate() and `status` != 'enquiry'  and `deleted_at` = '0000-00-00 00:00:00') as completed,
 				(SELECT COUNT(`status`) FROM event_mst where status != 'enquiry' and  deleted_at = '0000-00-00 00:00:00'  ) as tot
 			FROM event_mst limit 1 "; 
 		return $conn->getResultArray($sqlCntStatus);		
