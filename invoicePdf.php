@@ -25,27 +25,16 @@
 	$cpaid = $_POST['txtpaid'];
 	$ramt = $charge - $cpaid;
 	
-	
-	//$date=date_create($_POST['txtfdate']);
-	//$inm = date_format($date,"Ymd");
-	//value null hoy to 
-	
-	
-	//echo $fname."<br>";
-	
-	//$num =  substr($fname,-1);
-	//$new = $num + 1;
-	//echo $new;
 	if(isset($_POST['txteid']))
 	{		
 		$data = showInvName($conn,$_POST['txteid']);
-		$cnt = count($data);		
+		$cnt = count($data);	
+		
 		for($i=0;$i<$cnt;$i++)
 		{
 			if($data[$i]['inv_file_name']=='')
 			{
-				$fname = $inm."-".$_POST['txteid']."_1.pdf";
-				echo $fname;
+				$fname = $inm."-".$_POST['txteid']."_1.pdf";				
 				class Mipdf extends FPDF
 				{
 					function Header()
@@ -72,7 +61,7 @@
 				$mipdf->SetFont("Arial","",10);
 				
 				$mipdf->Cell(130,10,"To: ".$cmp,1,0);
-				$mipdf->Cell(60,10,$sdate,1,1,'C');
+				$mipdf->Cell(60,10,$sdate,1,1);
 				
 				$mipdf->Cell(130,10,"Event: ".$enm,1,0);
 				$mipdf->Cell(60,10,"FP No.: ".$data[$i]['fp_no'],1,1);
@@ -84,14 +73,15 @@
 				
 				$mipdf->Cell(190,10,"Client: ".$cnm,1,1);
 				
-				$mipdf->Cell(20,10,"SR No.:",1,0,'C');
+				$mipdf->Cell(20,10,"SR No.",1,0,'C');
 				$mipdf->Cell(90,10,"Event Detail",1,0,'C');
-				$mipdf->Cell(20,10,"Qty.:",1,0,'C');
-				$mipdf->Cell(30,10,"Rate.:",1,0,'C');
-				$mipdf->Cell(30,10,"Amount",1,1,'C');
+				$mipdf->Cell(20,10,"Qty.",1,0,'R');
+				$mipdf->Cell(30,10,"Rate.",1,0,'R');
+				$mipdf->Cell(30,10,"Amount",1,1,'R');
 				
 				$dEqp = showEqpRsDtl($conn,$_POST['txteid']);
-				$cnt = count($dEqp);		
+				$cnt = count($dEqp);
+				
 				for($a=0;$a<$cnt;$a++)
 				{
 					if($dEqp[$a]['length']!='')
@@ -116,24 +106,8 @@
 					$mipdf->Cell(90,10,"",1,0);
 					$mipdf->Cell(20,10,"",1,0);
 					$mipdf->Cell(30,10,"",1,0);
-					$mipdf->Cell(30,10,"",1,1);
-					
-					
-				// for($a=1; $a<=7 ; $a++)
-				// {
-					// if($a==1)
-					// {
-						// $mipdf->Cell(30,10,$a,1,0,'R');
-						// $mipdf->Cell(100,10," ".$enm,1,0);
-						// $mipdf->Cell(60,10,$charge,1,1,'R');
-					// }
-					// else
-					// {
-						// $mipdf->Cell(30,10,$a,1,0,'R');
-						// $mipdf->Cell(100,10,"",1,0);
-						// $mipdf->Cell(60,10,"",1,1);
-					// }
-				// }
+					$mipdf->Cell(30,10,"",1,1);			
+				
 				
 				$mipdf->Cell(160,10,"Charge ",1,0,'R');
 				$mipdf->Cell(30,10,$data[$i]['client_charges'],1,1,'R');
@@ -155,50 +129,45 @@
 				
 				$mipdf->Cell(190,8,"",0,1);
 				
-				$mipdf->Cell(190,8," * Service Tax no: ACYPH0646KSD001 , PAN No.:ACYPH0646K ",0,1);
-				$mipdf->Cell(190,8," * Category : Event Management & Promotions",0,1);
-				$mipdf->Cell(190,8," * Payment to be done on the name of \"Red Carpet Events\" ",0,1);
-				$mipdf->Cell(190,8,"   Through bank a/c no: 1002021001469 with The Textile Co-Op. Bank Of Surat Ltd. :  ",0,1);
-				$mipdf->Cell(190,8,"   City light Road, Surat.   IFSC CODE FOR NEFT/RTGS: YESB0TCB003 ",0,1);
-				$mipdf->Cell(190,8," *  [Subject to Surat jurisdiction]",0,1);
-				$mipdf->Cell(190,4,"",0,1);
+				$cond = showInvCond($conn);				
+				$cnt = count($cond);	
+				for($b=0;$b<$cnt;$b++)
+				{
+					$allcond = json_decode($cond[$b]['inv_cond_json']);
+					$cntjsn = count($allcond);
+					for($k=0;$k<$cntjsn;$k++)
+					{
+						$mipdf->Cell(190,8,$allcond[$k],0,1);
+					}
+				}
+				if($data[$i]['cmp_name']!='')
+				{
+					$company=ucfirst($data[$i]['cmp_name']);
+				}
+				else
+				{
+					$company="-";
+				}
 				
 				$mipdf->Cell(130,8,"",0,0);
-				$mipdf->Cell(60,8,"      ".ucfirst($data[$i]['cmp_name'])."",0,1,'C');	
-				$mipdf->Cell(190,8,"   Email: rmhathi@redcarpetevents.co.in",0,1,'R');
+				$mipdf->Cell(60,8,$company,0,1,'C');	
+				$mipdf->Cell(190,8,"   Email: abc@gmail.com",0,1,'R');
 				
 				$path = DIR_WS_INV.$fname;				
 				$mipdf->Output($path,'F');				
 				
-				$date = date('Y-m-d H:i:s');
+				$date1 = date('Y-m-d H:i:s');
 				updInvEM($conn,$id,$fname);
-				insInvECID($conn,$id,$fname,$date,$_SESSION['USER_ID']);
+				insInvECID($conn,$id,$fname,$date1,$_SESSION['USER_ID']);
 				
 				header('Location: upload/invoice/'.$fname);		
 			}
 			else
 			{
-				//echo "something!!!";
-				//echo $data[$i]['inv_file_name']."</br>";
 				
-				//$len = strlen($data[$i]['inv_file_name']) ;
 				$pos = substr($data[$i]['inv_file_name'],(strpos($data[$i]['inv_file_name'],"_") + 1),1);
 				$pos = $pos+ 1;
 				$newFileName = substr($data[$i]['inv_file_name'],0,strpos($data[$i]['inv_file_name'],"_") + 1) . (int)$pos . ".pdf" ;
-				echo $newFileName;
-				//$start = $pos + 1;
-				//$stop =  $len - 3;
-				//echo $stop;
-				
-				
-				//$name = $data[$i]['inv_file_name'];
-				//echo substr($name,12,13);
-				//echo "<br>";
-				//echo substr("divyesh",2,4);
-				
-				
-				//exit;
-				//$fname = $inm."-".$_POST['txteid']."_1.pdf";
 				
 				class Mipdf extends FPDF
 				{
@@ -226,7 +195,7 @@
 				$mipdf->SetFont("Arial","",10);
 				
 				$mipdf->Cell(130,10,"To: ".$cmp,1,0);
-				$mipdf->Cell(60,10,$sdate,1,1,'C');
+				$mipdf->Cell(60,10,$sdate,1,1);
 				
 				$mipdf->Cell(130,10,"Event: ".$enm,1,0);
 				$mipdf->Cell(60,10,"FP No.: ".$data[$i]['fp_no'],1,1);
@@ -238,11 +207,11 @@
 				
 				$mipdf->Cell(190,10,"Client: ".$cnm,1,1);
 				
-				$mipdf->Cell(20,10,"SR No.:",1,0,'C');
+				$mipdf->Cell(20,10,"SR No.",1,0,'C');
 				$mipdf->Cell(90,10,"Event Detail",1,0,'C');
-				$mipdf->Cell(20,10,"Qty.:",1,0,'C');
-				$mipdf->Cell(30,10,"Rate.:",1,0,'C');
-				$mipdf->Cell(30,10,"Amount",1,1,'C');
+				$mipdf->Cell(20,10,"Qty.",1,0,'R');
+				$mipdf->Cell(30,10,"Rate.",1,0,'R');
+				$mipdf->Cell(30,10,"Amount",1,1,'R');
 				
 				//fetch the data from new event_places_dtail with the amount of the equipment
 				
@@ -267,22 +236,6 @@
 					$mipdf->Cell(30,10,$dEqp[$a]['amount'],1,1,'R');
 					}
 				}
-				
-				// for($a=1; $a<=7 ; $a++)
-				// {
-					// if($a==1)
-					// {
-						// $mipdf->Cell(30,10,$a,1,0,'R');
-						// $mipdf->Cell(100,10," ".$enm,1,0);
-						// $mipdf->Cell(60,10,$charge,1,1,'R');
-					// }
-					// else
-					// {
-						// $mipdf->Cell(30,10,$a,1,0,'R');
-						// $mipdf->Cell(100,10,"",1,0);
-						// $mipdf->Cell(60,10,"",1,1);
-					// }
-				// }
 				
 				//end of fetching
 					$mipdf->Cell(20,10,"",1,0);
@@ -314,35 +267,42 @@
 				
 				$mipdf->Cell(190,8,"",0,1);
 				
-				$mipdf->Cell(190,8," * Service Tax no: ACYPH0646KSD001 , PAN No.:ACYPH0646K ",0,1);
-				$mipdf->Cell(190,8," * Category : Event Management & Promotions",0,1);
-				$mipdf->Cell(190,8," * Payment to be done on the name of \"Red Carpet Events\" ",0,1);
-				$mipdf->Cell(190,8,"   Through bank a/c no: 1002021001469 with The Textile Co-Op. Bank Of Surat Ltd. :  ",0,1);
-				$mipdf->Cell(190,8,"   City light Road, Surat.   IFSC CODE FOR NEFT/RTGS: YESB0TCB003 ",0,1);
-				$mipdf->Cell(190,8," *  [Subject to Surat jurisdiction]",0,1);
-				$mipdf->Cell(190,4,"",0,1);
+				$cond = showInvCond($conn);
+				
+				$cnt = count($cond);	
+				for($b=0;$b<$cnt;$b++)
+				{
+					$allcond = json_decode($cond[$b]['inv_cond_json']);
+					$cntjsn = count($allcond);
+					for($k=0;$k<$cntjsn;$k++)
+					{
+						$mipdf->Cell(190,8,$allcond[$k],0,1);
+					}
+				}
+				
+				if($data[$i]['cmp_name']!='')
+				{
+					$company=ucfirst($data[$i]['cmp_name']);
+				}
+				else
+				{
+					$company="-";
+				}
 				
 				$mipdf->Cell(130,8,"",0,0);
-				$mipdf->Cell(60,8,"      ".ucfirst($data[$i]['cmp_name'])."",0,1,'C');	
-				$mipdf->Cell(190,8,"   Email: rmhathi@redcarpetevents.co.in",0,1,'R');
+				$mipdf->Cell(60,8,$company,0,1,'C');	
+				$mipdf->Cell(190,8,"Email: abc@gmail.com",0,1,'R');
 				
 				$path = DIR_WS_INV.$newFileName;
-				//echo $path;
-				//exit;
+				
 				$mipdf->Output($path,'F');
 				
-				//echo $id."<br/>";
-				//echo $fname."<br/>";
+				
 				$date = date('Y-m-d H:i:s');
-				//echo $date."<br/>";
-				//echo $_SESSION['USER_ID'];
+				
 				
 				updInvEM($conn,$id,$newFileName);
-				insInvECID($conn,$id,$newFileName,$date,$_SESSION['USER_ID']);
-				//exit;
-				//header('Location:index.php?url=EVD');
-				
-				
+				insInvECID($conn,$id,$newFileName,$date,$_SESSION['USER_ID']);		
 				
 				header('Location: upload/invoice/'.$newFileName);	
 				

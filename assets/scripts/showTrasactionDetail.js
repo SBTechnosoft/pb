@@ -1,6 +1,6 @@
 
 
-$('body').delegate('.open','click',function()
+$('body').delegate('.expopen','click',function()
 	{			
 			
 		$('#pop_background').fadeIn();
