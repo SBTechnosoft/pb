@@ -75,6 +75,12 @@
 							<span style="float:right;" class="label label-warning">
 								<?php if($ETrnDtl[$i]['amount']!=''){echo $ETrnDtl[$i]['amount'];}else {echo "";}?>
 							</span>
+							<?php 
+							if($ETrnDtl[$i]['amount']!=''){?>								
+								<a class="expopen" data-id ="<?php echo $ETrnDtl[$i]['event_id']; ?>" style="cursor:pointer; float:right;">
+									<i class="fa fa-file-text" aria-hidden="true"></i>
+								</a>
+							<?php } ?>
 						</td>
 						
 						

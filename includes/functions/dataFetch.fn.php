@@ -391,7 +391,7 @@ function showTransDtl($conn)
 			from expence_dtl 
 			where expence_dtl.event_id=event_mst.event_id
 		) as amount
-		from event_mst
+		from event_mst where `status` != 'enquiry' and deleted_at = '0000-00-00 00:00:00' 
 		UNION
 		select event_id,'General Expense',NULL,NULL,exp_date,sm.first_name,NULL,NULL,NULL,NULL,NULL,NULL,amount
 		from expence_dtl exd
