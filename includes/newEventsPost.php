@@ -120,12 +120,12 @@ if(isset($_POST['showtax']))
 				{
 					if($_POST['txtdisc']=='')
 					{
-						$tax  =	($_POST['txtcharge'])* ($_POST['txtstax'])/100;				
+						$tax  =	round(($_POST['txtcharge'])* ($_POST['txtstax'])/100);				
 						$gtot =  ($_POST['txtcharge'] ) + ($tax) ;				
 					}
 					else
 					{
-						$tax =  ((($_POST['txtcharge']) - ($_POST['txtdisc'])) * ($_POST['txtstax']))/100;				
+						$tax =  round((($_POST['txtcharge']) - ($_POST['txtdisc'])) * ($_POST['txtstax'])/100);				
 						$gtot =  (($_POST['txtcharge']) - ($_POST['txtdisc']) ) + ($tax) ;
 					}
 				}
@@ -184,7 +184,17 @@ if(isset($_POST['showtax']))
 		//echo $vtot;
 		//exit;
 		
-		insertEventAdd($conn,$_POST['txteventnm'],$_POST['txteventds'],$_POST['txtclnm'],$_POST['txtclcmp'],$_POST['txtclemail'],$_POST['txtworkmob'],$_POST['txthmmob'],$_POST['txtmob'],$_POST['txtcharge'],$_POST['txtpaid'],$_POST['txtfromdt'],$_POST['txttodt'],$estatus,$cur_date,$pay_status,$_POST['drpcmpnm'],$_POST['taxmode'],$_POST['txtbillno'],$_POST['txtfpno'],$tax,$gtot,$_POST['txtstax'],$_POST['txtdisc'],$vtot);
+		$frdt = $_POST['txtfromdt'];
+		$trdt = $_POST['txttodt'];
+		
+		$nfrdt = date_format(new DateTime($frdt),'Y-m-d H:i:s');
+		$ntrdt = date_format(new DateTime($frdt),'Y-m-d H:i:s');
+		
+		// echo $frdt."<br>";
+		// echo $nfrdt."<br>";
+		// echo $trdt."<br>";
+		// exit;
+		insertEventAdd($conn,$_POST['txteventnm'],$_POST['txteventds'],$_POST['txtclnm'],$_POST['txtclcmp'],$_POST['txtclemail'],$_POST['txtworkmob'],$_POST['txthmmob'],$_POST['txtmob'],$_POST['txtcharge'],$_POST['txtpaid'],$nfrdt,$ntrdt,$estatus,$cur_date,$pay_status,$_POST['drpcmpnm'],$_POST['taxmode'],$_POST['txtbillno'],$_POST['txtfpno'],$tax,$gtot,$_POST['txtstax'],$_POST['txtdisc'],$vtot);
 		
 		//select last record inserted from event_mst	
 		$eventlast_id = mysql_insert_id();;
@@ -207,7 +217,14 @@ if(isset($_POST['showtax']))
 				
 			//insertion work start
 			
-			insertEventPlaces($conn,$eventlast_id, $value['txtvenue'],$value['txthall'],$value['txtldmark'],$value['txtfromdate'],$value['txttodate']);			
+			
+			$fromdt = $value['txtfromdate'];
+			$tordt = $value['txttodate'];
+			
+			$nfromdt = date_format(new DateTime($fromdt),'Y-m-d H:i:s');
+			$ntordt = date_format(new DateTime($tordt),'Y-m-d H:i:s');
+			
+			insertEventPlaces($conn,$eventlast_id, $value['txtvenue'],$value['txthall'],$value['txtldmark'],$nfromdt,$ntordt);			
 			$last_vplc_id  =  mysql_insert_id();			
 			//insertion of event_place over stop
 				

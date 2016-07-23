@@ -281,6 +281,12 @@
 				var txtvenue    =   $('#txtvenue').val();
 				var txtldmark    =   $('#txtldmark').val();
 				
+				
+				//$fname = $inm."_".$eid.".pdf";
+				// var fname = $('#fname').val();
+				// alert(fname);
+				// return false;
+				
 				var eqp = [];
 					$.each($("input[name='eqp']"), function(){            
 						 eqp.push($(this).val());
@@ -466,6 +472,9 @@
 					
 					//this for invoice
 					$('#txteid').val(e.event_id);
+					$('#txtfpdfeid').val(e.event_id);
+					$('#txtfpdffromdt').val(e.from_date);
+					
 					$('#txtenm').val(e.event_name);
 					$('#txtfdate').val(e.from_date);
 					$('#txtcnm').val(e.client_name);
@@ -533,6 +542,9 @@
 					
 					//this for invoice
 					$('#txteid').val(e.event_id);
+					$('#txtfpdfeid').val(e.event_id);
+					$('#txtfpdffromdt').val(e.from_date);
+					
 					$('#txtenm').val(e.event_name);
 					$('#txtfdate').val(e.from_date);
 					$('#txtcnm').val(e.client_name);

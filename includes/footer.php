@@ -1277,7 +1277,7 @@
 					<script src="<?php echo HTTP_SERVER; ?>assets/plugins/jquery.cookie.min.js" type="text/javascript"></script>
 					<script src="<?php echo HTTP_SERVER; ?>assets/plugins/uniform/jquery.uniform.min.js" type="text/javascript" ></script>
 					<!-- END CORE PLUGINS -->
-					<script type="text/javascript" src="<?php echo HTTP_SERVER; ?>assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+					<!--script type="text/javascript" src="<?php echo HTTP_SERVER; ?>assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script-->
 					<script src="<?php echo HTTP_SERVER; ?>assets/plugins/fancybox/source/jquery.fancybox.pack.js"></script>
 					<script src="<?php echo HTTP_SERVER; ?>assets/scripts/app.js"></script>
 					<script src="<?php echo HTTP_SERVER; ?>assets/scripts/search.js"></script>  

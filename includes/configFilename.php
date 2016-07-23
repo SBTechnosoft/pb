@@ -13,7 +13,7 @@ define('FILENAME_LOGIN','login.php');
 
 //Constant for date
 date_default_timezone_set('Asia/Calcutta');
- $date =  Date('Y-m-d h:m:s');
+ $date =  Date('d-m-Y h:m A');
  //echo $date;
 define('Date',$date);
 // $dateFormat = date_format($date,"d-M-Y  H:i A");
