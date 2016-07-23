@@ -344,7 +344,7 @@
 		for($i=0;$i<$showPdfCnt;$i++)
 		{
 		?>
-			<a href="upload/invoice/<?php echo $data[$i]['inv_file_name'] ; ?>" class="pdflist" target="_blank"> 
+			<a href="upload/minvoice/<?php echo $data[$i]['inv_file_name'] ; ?>" class="pdflist" target="_blank"> 
 				<?php echo $data[$i]['inv_file_name'] ;?> 
 			</a></br>
 		<?php	
@@ -359,7 +359,7 @@
 		for($i=0;$i<$showPdfCnt;$i++)
 		{
 		?>
-			<a href="upload/invoice/<?php echo $data[$i]['info_file_name'] ; ?>" class="pdflist" target="_blank"> 
+			<a href="upload/minvoice/<?php echo $data[$i]['info_file_name'] ; ?>" class="pdflist" target="_blank"> 
 				<?php echo $data[$i]['info_file_name'] ;?> 
 			</a></br>
 		<?php	

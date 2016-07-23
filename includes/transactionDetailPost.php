@@ -3,7 +3,10 @@
 	//include_once('./footer.php');
 	if(isset($_POST['saverecord']))
 	{
-		insertExpence($conn,$_POST['showexpctg'],$_POST['showevent'],$_POST['txtfromdt'],$_POST['txtamt'],$_POST['showstf']);
+		$frdt = $_POST['txtfromdt'];		
+		$nfrdt = date_format(new DateTime($frdt),'Y-m-d H:i:s');
+		
+		insertExpence($conn,$_POST['showexpctg'],$_POST['showevent'],$nfrdt,$_POST['txtamt'],$_POST['showstf']);
 		
 	}		
 	
