@@ -323,7 +323,7 @@
 								
 								<a class="invoice invoice_btn btn blue" onclick="document.getElementById('form2').submit();" >
 									<h3 class="invoice_font"> Event Info <i style="cursor : pointer; color:white;" class="fa fa-file-pdf-o" aria-hidden="true" >
-									</h3></i>
+									</i></h3>
 								</a>
 							</form>	
 								<div id="showfullpdf">
