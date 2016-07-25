@@ -390,15 +390,16 @@ function showAccExp($conn)
 function showTransDtl($conn)
 	{
 		$sqlTransDtl = 
-				"select event_id,'Event Expense',event_name,client_name,from_date,null, client_charges, vendor_charges,client_cmp,client_email,client_work_mob,client_home_mob,
+				"select event_id,'Event Expense',event_name,client_name,from_date,null,
+				client_charges,client_discount_amt,service_tax_amt, service_tax_rate,total_amt,client_paid_amt,(total_amt - client_paid_amt) as client_unpaid, vendor_charges,client_cmp,client_email,client_work_mob,client_home_mob,
 		(
 			select sum(amount) 
 			from expence_dtl 
 			where expence_dtl.event_id=event_mst.event_id
-		) as amount
+		) as amount 
 		from event_mst where `status` != 'enquiry' and deleted_at = '0000-00-00 00:00:00' 
 		UNION
-		select event_id,'General Expense',NULL,NULL,exp_date,sm.first_name,NULL,NULL,NULL,NULL,NULL,NULL,amount
+		select event_id,'General Expense',NULL,NULL,exp_date,sm.first_name,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,amount
 		from expence_dtl exd
 		inner join staff_mst sm on sm.staff_id = exd.exp_by
 		where event_id = 0"; 

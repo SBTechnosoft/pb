@@ -246,14 +246,22 @@
                                 <thead>
                                     <tr>
                                         <th> Event Id</th>
-										<th> Event Expence </th>
+										<th> Event Exp. </th>
                                         <th> Event Name </th>
-                                        <th>Client Name </th>
+                                        <th>C.Name </th>
                                         <th> Date </th>
-										<th>Expence By </th>
+										<th>Exp.By </th>
+										
+										<th>C.Charge</th>
+										<th>Disc.</th>
+										<th>S.Tax</th>
+										
                                         <th>Income</th>
-                                        <th>Expence</th> 
+										<th>C.Paid</th>
+										<th>C.Unpaid</th>										
+                                        <th>Exp.</th> 
 										<th>Other Exp.</th>
+										<th>P/L</th>
                                     </tr>
                                 </thead>
                                 <tbody id="showTrnDetail">

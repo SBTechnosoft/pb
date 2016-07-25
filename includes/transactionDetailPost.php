@@ -58,15 +58,45 @@
 							Mobile2:<?php echo $ETrnDtl[$i]['client_home_mob'];?>">
 							</i>&nbsp;&nbsp;<?php echo ucfirst($ETrnDtl[$i]['client_name']); }else {echo "-";}?>
 						</td>
+						<?php 
+							$from_date=date_create($ETrnDtl[$i]['from_date']);
+							$inm1= date_format($from_date,dateFormat);  
+						?>
 						<td>					
-							<?php echo $ETrnDtl[$i]['from_date'];?>
+							<?php echo $inm1;?>
 						</td>
 						<td>					
 							<?php echo $ETrnDtl[$i]['NULL'];?>
 						</td>
 						<td>
-							<span style="float:right;" class="label label-success">
+							<span style="float:right;" >
 								<?php echo $ETrnDtl[$i]['client_charges'];?>
+							</span>
+						</td>
+						<td>
+							<span style="float:right;" >
+								<?php echo $ETrnDtl[$i]['client_discount_amt'];?>
+							</span>
+						</td>
+						<td>
+							<span style="float:right;" >
+								<?php echo $ETrnDtl[$i]['service_tax_amt'];?>
+							</span>
+						</td>
+						
+						<td>
+							<span style="float:right;" class="label label-success">
+								<?php echo $ETrnDtl[$i]['total_amt'];?>
+							</span>
+						</td>
+						<td>
+							<span style="float:right;color:green;" >
+								<?php echo $ETrnDtl[$i]['client_paid_amt'];?>
+							</span>
+						</td>
+						<td>
+							<span style="float:right;color:red;" >
+								<?php echo $ETrnDtl[$i]['client_unpaid'];?>
 							</span>
 						</td>
 						<td>
@@ -79,11 +109,20 @@
 								<?php if($ETrnDtl[$i]['amount']!=''){echo $ETrnDtl[$i]['amount'];}else {echo "";}?>
 							</span>
 							<?php 
-							if($ETrnDtl[$i]['amount']!=''){?>								
+							if($ETrnDtl[$i]['amount']!='' && $ETrnDtl[$i]['event_id']!=0){?>								
 								<a class="expopen" data-id ="<?php echo $ETrnDtl[$i]['event_id']; ?>" style="cursor:pointer; float:right;">
 									<i class="fa fa-file-text" aria-hidden="true"></i>
 								</a>
 							<?php } ?>
+						</td>
+						<?php
+							$pl = ($ETrnDtl[$i]['client_charges'] - $ETrnDtl[$i]['client_discount_amt'] )- ($ETrnDtl[$i]['vendor_charges'] + $ETrnDtl[$i]['amount']);
+							?>
+						<td  style= "<?php if($pl > 0){ echo "color:green;"; }else{ echo "color:red;";} ?>">
+							
+							<span style="float:right;" >
+								<?php echo $pl; //echo  ($ETrnDtl[$i]['client_charges'] - $ETrnDtl[$i]['client_discount_amt'] )- ($ETrnDtl[$i]['vendor_charges'] + $ETrnDtl[$i]['amount']) ;?>
+							</span>
 						</td>
 						
 						
@@ -131,15 +170,49 @@
 							Mobile2:<?php echo $ETrnDtl[$i]['client_home_mob'];?>">
 							</i>&nbsp;&nbsp;<?php echo ucfirst($ETrnDtl[$i]['client_name']); }else {echo "-";}?>
 						</td>
+						<?php 
+							$from_date=date_create($ETrnDtl[$i]['from_date']);
+							$inm1= date_format($from_date,dateFormat);  
+						?>
 						<td>					
-							<?php echo $ETrnDtl[$i]['from_date'];?>
+							<?php echo $inm1;?>
 						</td>
+						
 						<td>					
 							<?php echo $ETrnDtl[$i]['NULL'];?>
 						</td>
 						<td>
-							<span style="float:right;" class="label label-success">
+							<span style="float:right;" >
 								<?php echo $ETrnDtl[$i]['client_charges'];?>
+							</span>
+						</td>
+						<td>
+							<span style="float:right;" >
+								<?php echo $ETrnDtl[$i]['client_discount_amt'];?>
+							</span>
+						</td>
+						<td>
+							<span style="float:right;" >
+								<?php //echo $ETrnDtl[$i]['service_tax_amt'];?>							
+								<?php if($ETrnDtl[$i]['service_tax_amt']!=''){?>
+								<i class="fa fa-info-circle" style="cursor:pointer;" data-toggle="tooltip" data-html="true" 
+								title="Tax Rate:<?php echo $ETrnDtl[$i]['service_tax_rate']."%";?>">
+								</i>&nbsp;&nbsp;<?php echo $ETrnDtl[$i]['service_tax_amt'];}?>
+							</span>
+						</td>
+						<td>
+							<span style="float:right;" class="label label-success">
+								<?php echo $ETrnDtl[$i]['total_amt'];?>
+							</span>
+						</td>
+						<td>
+							<span style="float:right;color:green;" >
+								<?php echo $ETrnDtl[$i]['client_paid_amt'];?>
+							</span>
+						</td>
+						<td>
+							<span style="float:right;color:red;" >
+								<?php echo $ETrnDtl[$i]['client_unpaid'];?>
 							</span>
 						</td>
 						<td>
@@ -152,13 +225,21 @@
 								<?php if($ETrnDtl[$i]['amount']!=''){echo $ETrnDtl[$i]['amount'];}else {echo "";}?>
 							</span>
 							<?php 
-							if($ETrnDtl[$i]['amount']!=''){?>								
+							if($ETrnDtl[$i]['amount']!='' && $ETrnDtl[$i]['event_id']!=0 ){?>								
 								<a class="expopen" data-id ="<?php echo $ETrnDtl[$i]['event_id']; ?>" style="cursor:pointer; float:right;">
 									<i class="fa fa-file-text" aria-hidden="true"></i>
 								</a>
 							<?php } ?>
 						</td>
-						
+						<?php
+							$pl = ($ETrnDtl[$i]['client_charges'] - $ETrnDtl[$i]['client_discount_amt'] )- ($ETrnDtl[$i]['vendor_charges'] + $ETrnDtl[$i]['amount']);
+							?>
+						<td  style= "<?php if($pl > 0){ echo "color:green;"; }else{ echo "color:red;";} ?>">
+							
+							<span style="float:right;" >
+								<?php echo $pl; //echo  ($ETrnDtl[$i]['client_charges'] - $ETrnDtl[$i]['client_discount_amt'] )- ($ETrnDtl[$i]['vendor_charges'] + $ETrnDtl[$i]['amount']) ;?>
+							</span>
+						</td>
 						
 					</tr>
 					
