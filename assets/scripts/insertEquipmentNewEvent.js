@@ -34,12 +34,12 @@ function showCatInEqp()
 			
 			if(txteqpnm == "" )
 			{
-				alert('Plz Fill Equpment Name ');
+				alert('Plz Fill Equipment Name ');
 				return false;
 			}
 			if(txtcateqp == "" )
 			{
-				alert('Plz Fill Equpment category ');
+				alert('Plz Fill Equipment category ');
 				return false;
 			}
 			if(txtprice == "" )
@@ -93,7 +93,7 @@ function showCatInEqp()
 						$('#msgs').addClass('fadeInDown').fadeIn('slow');
 						$('#msgs').addClass('fadeInDown').fadeOut('slow');
 						shownewEqp();
-						alert('Inserted Equipemnt!!!');
+						alert('Inserted Equipment!');
 						$('#popup_equipment').fadeOut();
 						$('#popup_equipment_data').fadeOut();
 						//window.location.reload();						

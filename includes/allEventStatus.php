@@ -128,6 +128,7 @@
 										<th>Rec.Amt</th>
 										<th> Payment Status </th>
 										<th> Event Status </th>
+										<th> Action</th>
                                     </tr>
                                 </thead>
                                 <tbody id="all_event">

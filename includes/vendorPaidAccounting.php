@@ -66,6 +66,7 @@
 										<th> Vendor Company</th>
                                         <th>Vendor Charges</th>
                                         <th>Vendor Paid Amt</th>
+										<th>Action</th>
                                        
                                     </tr>
                                 </thead>

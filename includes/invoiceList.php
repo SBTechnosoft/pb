@@ -69,8 +69,8 @@
                                         <th>Client Name </th>                                       
                                         <th>Client charge</th>
 										<th>Discount</th>
-+										<th>S.Tax</th>
-+										<th>Amt</th>
+										<th>S.Tax</th>
+										<th>Amt</th>
                                         <th>Paid Amount</th>
                                         <th>Remaining Amount</th>
 										<th> Action </th>

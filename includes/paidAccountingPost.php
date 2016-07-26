@@ -48,7 +48,12 @@
 						<td><span style="float:right;"><?php echo $ClPaid[$i]['client_discount_amt'];?></span></td>
 						<td><span style="float:right;"><?php echo $ClPaid[$i]['service_tax_amt'];?></span></td>
 						<td><span style="float:right;"><?php echo $ClPaid[$i]['total_amt'];?></span></td>
-						<td><span style="float:right;"><?php echo $ClPaid[$i]['client_paid_amt'];?></span></td>				
+						<td><span style="float:right;"><?php echo $ClPaid[$i]['client_paid_amt'];?></span></td>	
+						<td>
+							<a data-toggle="tooltip" title="Delete" data-id="<?php echo $ClPaid[$i]['event_id']; ?>" class="delete"> 
+								<i class="fa fa-trash-o"></i> 
+							</a> 
+						</td>
 						
 					</tr>
 					<tr>
@@ -60,7 +65,7 @@
 						<td><span style="float:right;"><b><?php echo $ClPaid[$i]['stotal'];?> </b></span></td>
 						<td><span style="float:right;"><b><?php echo $ClPaid[$i]['ttotal'];?> </b></span></td>
 						<td><span style="float:right;"><b><?php echo $ClPaid[$i]['ptotal'];?></b> </span></td>
-						
+						<td></td>
 					</tr>
 					
 					
@@ -100,6 +105,11 @@
 						<td><span style="float:right;"><?php echo $ClPaid[$i]['service_tax_amt'];?></span></td>
 						<td><span style="float:right;"><?php echo $ClPaid[$i]['total_amt'];?></span></td>
 						<td><span style="float:right;"><?php echo $ClPaid[$i]['client_paid_amt'];?></span></td>	
+						<td>
+							<a data-toggle="tooltip" title="Delete" data-id="<?php echo $ClPaid[$i]['event_id']; ?>" class="delete"> 
+								<i class="fa fa-trash-o"></i> 
+							</a> 
+						</td>
 					</tr>
 		<?php
 				}
