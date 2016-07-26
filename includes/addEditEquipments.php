@@ -1,3 +1,14 @@
+<?php
+
+if(isset($_POST['eq_id']))
+{
+	$sid = $_POST['eq_id'];
+	//echo $sid;
+}
+
+
+?>
+
 <!-- BEGIN PAGE -->
 <div class="page-content">
     <!-- BEGIN PAGE CONTAINER-->
@@ -44,6 +55,8 @@
                         <div class="row-fluid">
                             <div class="span8 booking-search">
                                 <form action="#">
+								
+								<input type="hidden" id="eq_id" name="eq_id" value="<?php if(isset($_POST['eq_id'])){echo $_POST['eq_id'];}  ?>" />
                                     <div class="clearfix margin-bottom-10">
                                         <label> Name </label>
                                         <div class="input-icon left">
@@ -175,10 +188,12 @@
 
                                     <!--button class="btn blue right-side">SAVE <i class="icon-download"></i></button-->
 									<div class="right-side">
-									<button id="addEquip" type="button" class="btn blue">Save
-                                        <i class="icon-download"></i>
-                                    </button>
-                                    <button class="btn blue ">CANCEL <i class="icon-remove-sign"></i></button>
+									<?php if(!isset($_POST['eq_id'])) {?>
+										<button id="addEquip" type="button" class="btn blue">Save<i class="icon-download"></i></button>
+									<?php } else { ?>	
+										<button id="updEQuip" type="button" class="btn blue">UPDATE <i class="icon-download"></i></button>
+									<?php } ?>
+										<button class="btn blue ">CANCEL <i class="icon-remove-sign"></i></button>
 									</div>
                                 </form>
 								<span id="msgs">

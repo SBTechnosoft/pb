@@ -21,7 +21,8 @@ function showCatInEqp()
 
 	$( function() {		
 		//save data
-		$('#addEquip').click(function(){
+		$('#addEquip').click(function()
+		{
 			var txteqpnm    =   $('#txteqpnm').val();
 			var txtserno     =   $('#txtserno').val();
 			var txtmodel    =   $('#txtmodel').val();
@@ -98,9 +99,49 @@ function showCatInEqp()
 				}				
 			});	
 			//showdata();			
-		});		
+		});
+		
+		
+		
 	});
 
-
+function showeqpdetail()
+		{
+			var eq_id =  $('#eq_id').val();
+			
+			 
+			
+			$.ajax({
+					url : 'includes/allEquipmentsPost.php',
+					type : 'POST',
+					async : false,
+					data : {
+						'equipedit'  : 1,
+						'eq_id' 	: eq_id,
+						
+					},
+					success : function(v)
+					{
+					
+						$('#eq_id').val(v.eq_id);
+						$('#txteqpnm').val(v.eq_name);
+						$('#txtserno').val(v.serial_no);						
+						$('#txtmodel').val(v.model_no);
+						$('#txtcateqp').val(v.category_id);						
+						
+						$('#txtpurdate').val(v.purchase_date);						
+						$('#txtpurfrm').val(v.purchase_from);
+						$('#txtprice').val(v.price);
+						$('#drptype').val(v.price_type);						
+						$('#txtremk').val(v.remark);
+						
+						//$('#txtstype').val(v.staff_type);						
+						
+					}
+					
+				});	
+			
+		}
+		showeqpdetail();
 	
 			
