@@ -57,7 +57,8 @@ if(isset($_POST['eq_id']))
                                 <form action="#">
 								
 								<input type="hidden" id="eq_id" name="eq_id" value="<?php if(isset($_POST['eq_id'])){echo $_POST['eq_id'];}  ?>" />
-                                    <div class="clearfix margin-bottom-10">
+                                    
+									<div class="clearfix margin-bottom-10">
                                         <label> Name </label>
                                         <div class="input-icon left">
 
@@ -106,62 +107,7 @@ if(isset($_POST['eq_id']))
 
                                             <input class="m-wrap" type="text"  id="txtpurfrm" name="txtpurfrm" />
                                         </div>
-                                    </div>
-
-                                    <!--div class="clearfix margin-bottom-20">
-                                        <label> Accessories </label>
-                                        <hr>
-                                        <div class="control-group pull-left margin-right-20">
-                                            <label class="control-label"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;All </label>
-                                            <div class="controls">
-                                                <input type="checkbox" />
-                                                <input type="text" />
-                                            </div>
-                                            <div class="controls">
-                                                <input type="checkbox" />
-                                                <input type="text" />
-                                            </div>
-                                            <div class="controls">
-                                                <input type="checkbox" />
-                                                <input type="text" />
-                                            </div>
-                                            <div class="controls">
-                                                <input type="checkbox" />
-                                                <input type="text" />
-                                            </div>
-                                            <div class="controls">
-                                                <input type="checkbox" />
-                                                <input type="text" />
-                                            </div>
-                                            <div class="controls">
-                                                <input type="checkbox" />
-                                                <input type="text" />
-                                            </div>
-                                        </div>
-
-                                        <div class="control-group">
-                                            <label class="control-label">Required </label>
-                                            <div class="controls">
-                                                <input type="text" />&nbsp;<i class="icon-remove-sign"></i>
-                                            </div>
-                                            <div class="controls">
-                                                <input type="text" />&nbsp;<i class="icon-remove-sign"></i>
-                                            </div>
-                                            <div class="controls">
-                                                <input type="text" />&nbsp;<i class="icon-remove-sign"></i>
-                                            </div>
-                                            <div class="controls">
-                                                <input type="text" />&nbsp;<i class="icon-remove-sign"></i>
-                                            </div>
-                                            <div class="controls">
-                                                <input type="text" />&nbsp;<i class="icon-remove-sign"></i>
-                                            </div>
-                                            <div class="controls">
-                                                <input type="text" />&nbsp;<i class="icon-remove-sign"></i>
-                                            </div>
-                                        </div>
-                                    </div-->
-									
+                                    </div>								
 									<div class="clearfix margin-bottom-10">
                                         <label> Min.Client Charged  </label>
                                         <div class="input-icon left">
@@ -191,7 +137,7 @@ if(isset($_POST['eq_id']))
 									<?php if(!isset($_POST['eq_id'])) {?>
 										<button id="addEquip" type="button" class="btn blue">Save<i class="icon-download"></i></button>
 									<?php } else { ?>	
-										<button id="updEQuip" type="button" class="btn blue">UPDATE <i class="icon-download"></i></button>
+										<a id="updEquip"  class="btn blue">UPDATE <i class="icon-download"></i></a>
 									<?php } ?>
 										<button class="btn blue ">CANCEL <i class="icon-remove-sign"></i></button>
 									</div>
