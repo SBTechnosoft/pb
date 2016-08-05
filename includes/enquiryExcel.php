@@ -18,14 +18,11 @@ if(isset($_POST['excel']))
 	or die("database cannot be selected <br>");
 
 		
-	// Fetch Record from Database
-
+	// Fetch Record from Database		
+	
 	$output			= "";
 	$table 			= ""; // Enter Your Table Name
-	$sql 			= mysql_query( UNPAID_EVENT_EXCEL	);
-	
-							
-							
+	$sql 			= mysql_query(	ENQUIRY_EVENT_EXCEL	);
 	$columns_total 	= mysql_num_fields($sql);
 
 	// Get The Field Name
@@ -51,7 +48,7 @@ if(isset($_POST['excel']))
 	// header('Content-type: application/csv');
 	// header('Content-Disposition: attachment; filename=upload/'.$filename);
 
-	$name="../upload/excel/unpaid.csv";
+	$name="../upload/excel/enquiryexcel.csv";
 		$f=fopen($name,'wb');				
 		fwrite($f,$output,strlen($output));
 		fclose($f);
