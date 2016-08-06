@@ -98,6 +98,7 @@ function showdata()
 			var txtfromdt    =   $('#txtfromdt').val();
 			var txttodt    =   $('#txttodt').val();
 			var drpcmpnm  = $('#drpcmpnm').val();
+			var txtupdays = $('#txtupdays').val();
 			
 			if(txtename == '' && txtclname == '' && txtfpno == '' && txtbillno == '' && txtfromdt == '' && txttodt == '' && drpcmpnm == '' )
 			{
@@ -119,7 +120,7 @@ function showdata()
 					'txtfromdt' : txtfromdt,
 					'txttodt' :txttodt,
 					'drpcmpnm' : drpcmpnm,
-					
+					'txtupdays' : txtupdays,
 				},
 				success : function(v)
 				{	
