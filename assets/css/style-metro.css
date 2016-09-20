@@ -394,7 +394,108 @@ label.m-wrap {
   display: block;
   margin-bottom: 5px;
 }
+.hr1{
+	margin:-4px;
+	
+}
+.divcli{
+	margin-top:-25px;
+	
+}
+.invoice
+{
+	margin-left:33px;	
+}
+.hr2{
+	margin:4px;
+	
+}
+.abc{
+	margin-left:5%;	
+}
+.abc1{
+	margin-left:50px;	
+}
+.selectpay{
+	margin-left:70px;	
+}
+.client{
+	margin-left:80px;	
+}
+.select12{
+	margin-left:28px;	
+}
+.selectcom{
+	margin-right:-18px;	
+}
+.textArea{
+	   margin-left: 15px;
+}
+.textArea12{
+	   margin-left: 10px;
+}
+.discount1{
+	margin-left:105px;	
+}
+.sertax{
+	   margin-left: 20px;
+}
+.eid1{
+	   margin-left: 28px;
+}
+.mob1{
+	   margin-left: 36px;
+}
+.pqr
+{
+	margin-left:80%;
+	margin-top:-2%
+}
 
+.xyz
+{
+	width:100px;
+	margin-right:1%;
+}
+.xyz123
+{
+	width:100px;
+	margin-right:1.5%;
+}
+.set1
+{
+	width:70px !important;
+	margin-right:0.5%;
+}
+.set3
+{
+	width:124px !important;
+	margin-right:0.7%;
+}
+.set2
+{
+	width:67px !important;
+	margin-right:0.5%;
+}
+.textalign
+{
+	text-align:right;
+}
+.venuetxt
+{
+	width:255px;
+	
+}
+.fdate1
+{
+	width:240px;
+	
+}
+.selectfun
+{
+	width:254px;
+	
+}
 .uneditable-input,
 textarea.m-wrap,
 input[type="text"].m-wrap,
@@ -429,7 +530,7 @@ input[type="color"].m-wrap {
 	  -webkit-border-radius: 0px;
 	     -moz-border-radius: 0px;
 	          border-radius: 0px;
-  background: transparent;   
+ /* background: transparent; */   /*  comment done by the Divyesh for transperent remove in text box  */
 }
 
 input.m-wrap {

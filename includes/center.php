@@ -49,6 +49,9 @@
 				case 'TRN':
 					$url = FILENAME_TRANSACTION;
 					break;
+				case 'TEMP':
+					$url = FILENAME_TEMPLATE;
+					break;
 				case 'CTG':
 					$url = FILENAME_CATEGORY;
 					break;
@@ -106,7 +109,12 @@
 				case 'LOG':
 					$url = FILENAME_LOGOUT;
 					break;
-						
+				case 'INSE':
+					$url = FILENAME_INVOICESETTING;
+					break;
+				case 'NCAL':
+					$url = NFILENAME_CALENDAR;
+					break;		
 				default:
 					$url = FILENAME_DASHBOARD;
 					break;

@@ -43,116 +43,127 @@
 					<form name="f1" action="./includes/newEventsPost.php" method="post" id="f1">
 						<div class="clearfix margin-bottom-10">
 							
-							<div class="input-icon left">
+							<div class="pull-left margin-right-20">
 								<!--input type="text" class="large m-wrap" id="txteventnm" name="txteventnm"  /-->
-								Enquiry &nbsp&nbsp <input type="radio" name="order_type" id="" value="enquiry" > /
-								Order &nbsp&nbsp <input type="radio" name="order_type" id="" value="new" checked><br/>
+								Enquiry &nbsp <input type="radio" name="order_type" id="" value="enquiry" > /
+								Order &nbsp <input type="radio" name="order_type" id="" value="new" checked><br/>
 							</div>
 							
 						</div>
 						
 						<div class="clearfix margin-bottom-10">
-							Event Name <font color="red">*</font> 
-							<div class="input-icon left">
-								<input type="text" class="large m-wrap" id="txteventnm" name="txteventnm"  />
+							
+							<div class="pull-left margin-right-20 ">
+								<div class="input-icon input-append">
+									<label> Event Name:</label>
+								</div>
+								<input type="text" class="large m-wrap" id="txteventnm" name="txteventnm"  /><font color="red">*</font>
 							</div>
-						</div>
-						<div class="clearfix margin-bottom-10">
-							<label for="txteventds">Description</label>
-							<div class="input-icon left">
-								<input class="large m-wrap" id="txteventds" name="txteventds" type="text" />
-							</div>
-						</div>
-						<div class="clearfix margin-bottom-10">
-							<label for="">Company</label>
-							<div class="input-icon left">
-								<select name="drpcmpnm" id="drpcmpnm" class="large m-wrap"> 
-									
+							<div class="pull-right margin-right-20">
+								<div class="input-icon input-append">
+									<label for="">Company:</label>
+								</div>
+								<select name="drpcmpnm" id="drpcmpnm" class="large m-wrap selectcom">								
 								</select>
 							</div>
 						</div>
-						</br>
+						<div class="clearfix margin-bottom-10">
+							<div class="pull-left margin-right-20">
+								<div class="input-icon input-append">
+									<label for="txteventds">Description:</label>
+								</div>
+						    	<textarea rows="2" cols="109"  class="txtremark" id="txteventds" name="txteventds">
+								</textarea>	
+					    	</div>
+					    </div>						
+						
 						<h4>Client Details </h4>
 						<hr />
 						<div class="clearfix margin-bottom-10">
-							<label for="txtclnm">Client Name </label>
-							<div class="input-icon left">
-								<input type="text" id="txtclnm" name="txtclnm"  class="m-wrap" />
+							<div class="pull-left margin-right-10">
+								<div class="input-icon input-append">
+									<label for="txtclnm">Client Name: </label>
+								</div>
+								<input type="text" id="txtclnm" name="txtclnm"  class="large m-wrap" />
 							</div>
-						</div>
-						<div class="clearfix margin-bottom-10">
-							<label for="txtclcmp">Client Company </label>
-							<div class="input-icon left">
-								<input class="m-wrap" id="txtclcmp" name="txtclcmp" type="text" />
+							<div class="pull-right margin-right-10">
+								<div class="input-icon input-append">
+									<label for="txtclcmp">Client Company: </label>
+								</div>
+								<input class="large m-wrap" id="txtclcmp" name="txtclcmp" type="text" />
 							</div>
-						</div>
+						</div>						
 						
 						<div class="clearfix margin-bottom-10">
-							<label for="txtmob">FP No. </label>
-							<div class="input-icon left">
-								<input type="text" id="txtfpno" name="txtfpno" class="m-wrap" />
+							<div class="pull-left margin-right-10">
+								<div class="input-icon input-append">
+									<label for="txtfpno">FP No: </label>
+								</div>
+								<input type="text" id="txtfpno" name="txtfpno"  class="large m-wrap" />
 							</div>
-						</div>
-						<div class="clearfix margin-bottom-10">
-							<label for="txtmob">Bill No. </label>
-							<div class="input-icon left">
-								<input type="text" id="txtbillno" name="txtbillno" class="m-wrap" />
+							<div class="pull-right margin-right-10">
+								<div class="input-icon input-append">
+									<label for="txtbillno">Bill No: </label>
+								</div>
+								<input class="large m-wrap" id="txtbillno" name="txtbillno" type="text" />
 							</div>
-						</div>
-						
-						
-						<div class="clearfix margin-bottom-10">
-							<label for="txtclemail">Email ID </label>
-							<div class="input-icon left">
-								<input type="text" class="m-wrap" id="txtclemail" name="txtclemail" placeholder="Eg; www.siliconbrain.com"/>
-							</div>
-						</div>
+						</div>						
 						<div class="clearfix margin-bottom-10">
 							<div class="pull-left margin-right-20">
-								<label for="txtworkmob">Work</label>
-								<div class="input-icon left">
-									<input type="text" id="txtworkmob" name="txtworkmob" class="m-wrap" placeholder="Eg; +919858784525"/>
+								<div class="input-icon input-append">
+									<label for="txtmob">Mobile: </label>
 								</div>
-							</div>
-							<div class="pull-right margin-right-20">
-								<label for="txthmmob" class="well1">Home</label>
-								<div class="input-icon left">
-									<input type="text" id="txthmmob" name="txthmmob" class="m-wrap" />
+								<input type="text" id="txtmob" name="txtmob" class="large m-wrap mob1" /><font color="red">*</font>
+						   </div>
+							<div class="pull-right margin-right-10">
+								<div class="input-icon input-append">
+									<label for="txtworkmob">Work:</label>
 								</div>
+								<input type="text" id="txtworkmob" name="txtworkmob" class="large m-wrap mob1" placeholder="Eg; +919858784525"/>
 							</div>
 						</div>
 						<div class="clearfix margin-bottom-10">
-							<label for="txtmob">Mobile <font color="red">*</font></label>
-							<div class="input-icon left">
-								<input type="text" id="txtmob" name="txtmob" class="m-wrap" />
+							<div class="pull-left margin-right-10">
+								<div class="input-icon input-append">
+									<label for="txthmmob" class="well1">Home:</label>
+								</div>
+								<input type="text" id="txthmmob" name="txthmmob" class="large m-wrap eid1" />
 							</div>
-						</div>
-						
-						
-						
+							<div class="pull-right margin-right-10 ">
+								<div class="input-icon input-append">
+									<label for="txtclemail">Email ID: </label>
+								</div>
+								<input type="text" class="large m-wrap eid1" id="txtclemail" name="txtclemail" placeholder="Eg; www.siliconbrain.com"/>
+							</div>
+						</div>					
 						<div class="">
 							<div class="clearfix margin-bottom-10">
 							<div class="pull-left margin-right-20">
-								<label for="txtfromdt">From Date </label>
+							<div class="input-icon input-append">
+								<label for="txtfromdt">From Date: </label>
+							</div>
 								<div id="datetimepicker1" class="input-append date">
-									<input data-format="dd-MM-yyyy HH:mm PP" class="m-wrap" value="<?php echo Date;?>" type="text" name="txtfromdt" id="txtfromdt"></input>
+									<input data-format="dd-MM-yyyy HH:mm PP" class="medium  m-wrap " value="<?php echo Date;?>" type="text" name="txtfromdt" id="txtfromdt"></input>
 									<span class="add-on">
 									  <i class="icon-time" class="icon-calendar"></i>
 									</span>
 								</div>
 							</div>
-							<div class="pull-right margin-right-20">
-								<label for="txttodt" class="well1">To Date </label> 
+							<div class="pull-right margin-right-10">
+							<div class="input-icon input-append">
+								<label for="txttodt" class="well1">To Date: </label> 
+							</div>
 								<div id="datetimepicker2" class="input-append date">
-									<input data-format="dd-MM-yyyy HH:mm PP" class="m-wrap" value="<?php echo Date;?>" type="text" name="txttodt" id="txttodt"></input>
+									<input data-format="dd-MM-yyyy HH:mm PP" class="medium  m-wrap " value="<?php echo Date;?>" type="text" name="txttodt" id="txttodt"></input>
 									<span class="add-on">
 									  <i class="icon-time" class="icon-calendar"></i>
 									</span>
 								</div>
 							</div>	
-							</div>
-							
-						</div>
+							</div>							
+						</div>				
+						
+						
 						<br />
 						<div id= "multiinsert">
 							<div id="dynamic_field">
@@ -164,43 +175,52 @@
 								</h4>
 								<hr />
 								<div class="clearfix margin-bottom-10">
-									<label for="txtvenue">Venue </label>
-									<div class="input-icon left">
-										<input class="m-wrap" id="hdn[0][txtvenue]" name="hdn[0][txtvenue]" type="text"  />
+									<div class="pull-left margin-right-10">
+										<div class="input-icon input-append">
+											<label for="txtvenue">Venue: </label>
+										</div>
+										<input class="venuetxt m-wrap" id="hdn[0][txtvenue]" name="hdn[0][txtvenue]" type="text"  />
+									</div>
+									<div class="pull-left margin-right-10">
+										<div class="input-icon input-append abc1">
+											<label for="txthall">Hall: </label>
+										</div>
+										<input class="venuetxt m-wrap " id="hdn[0][txthall]" name="hdn[0][txthall]" type="text"  />
+									</div>
+									<div class="pull-right margin-right-10">
+										<div class="input-icon input-append">
+											<label for="txtldmark">Land Mark: </label>
+										</div>
+										<input class="venuetxt m-wrap" id="hdn[0][txtldmark]" name="hdn[0][txtldmark]" type="text" />
 									</div>
 								</div>
 								<div class="clearfix margin-bottom-10">
-									<label for="txthall">Hall </label>
-									<div class="input-icon left">
-										<input class="m-wrap" id="hdn[0][txthall]" name="hdn[0][txthall]" type="text"  />
-									</div>
-								</div>
-								<div class="clearfix margin-bottom-10">
-									<label for="txtldmark">Land Mark </label>
-									<div class="input-icon left">
-										<input class="m-wrap" id="hdn[0][txtldmark]" name="hdn[0][txtldmark]" type="text" />
-									</div>
-								</div>
-								<div class="clearfix margin-bottom-10">
-									<div class="pull-left margin-right-20">
-										<label for="txtfromdate">From Date </label>
+									
+									<div class="pull-left margin-right-10" style="margin-left:40px;">
+										<div class="input-icon input-append">
+											<label for="txtfromdate">From Date: </label>
+										</div>
 										<div id="datetimepickerPF" class="input-append date">
-											<input data-format="dd-MM-yyyy HH:mm PP" class="m-wrap" value="<?php echo Date;?>" type="text" name="hdn[0][txtfromdate]" id="hdn[0][txtfromdate]"></input>
+											<input data-format="dd-MM-yyyy HH:mm PP" class="fdate1  m-wrap " value="<?php echo Date;?>" type="text" name="hdn[0][txtfromdate]" id="hdn[0][txtfromdate]"></input>
 											<span class="add-on">
 											  <i class="icon-time" class="icon-calendar"></i>
 											</span>
 										</div>
 									</div>
-									<div class="pull-right margin-right-20">
-									<label for="txttodate" class="well1">To Date </label>
-									<div id="datetimepickerPT" class="input-append date">
-										<input data-format="dd-MM-yyyy HH:mm PP" type="text" class="m-wrap" value="<?php echo Date;?>" name="hdn[0][txttodate]" id="hdn[0][txttodate]"></input>
-										<span class="add-on">
-										  <i class="icon-time" class="icon-calendar"></i>
-										</span>
-									</div>
+									<div class="pull-right margin-right-10">
+										<div class="input-icon input-append">
+											<label for="txttodate" class="well1">To Date: </label>
+										</div>
+										<div id="datetimepickerPT" class="input-append date">
+											<input data-format="dd-MM-yyyy HH:mm PP" type="text" class="fdate1  m-wrap " value="<?php echo Date;?>" name="hdn[0][txttodate]" id="hdn[0][txttodate]"></input>
+											<span class="add-on">
+											  <i class="icon-time" class="icon-calendar"></i>
+											</span>
+										</div>
 									</div>									
-								</div>
+								</div>			
+								
+								
 								<!--div class="clearfix margin-bottom-10">
 									<label for="eqpdrp">Equipment</label>
 									<div class="multiselect input-icon left">
@@ -627,58 +647,62 @@
 						<hr />
 						<input type="hidden" id="txtvcharge" name="txtvcharge" class="m-wrap txtvcharge" readonly  />
 						
-						<div class="clearfix margin-bottom-10">
-							<label for="txtcharge">Client Charge </label>
-							<div class="input-icon left">
-								<input type="text" id="txtcharge" name="txtcharge" class="m-wrap txtcharge" readonly  />
+						<div class="clearfix margin-bottom-10">							
+							<div class="input-icon input-append">
+								<label for="txtcharge">Client Charge:</label>
 							</div>
+							<input type="text" id="txtcharge" name="txtcharge" class=" large m-wrap txtcharge client" readonly />
 						</div>
+						
 						<div class="clearfix margin-bottom-10">
-							<label for="txtpaid">Paid Amount / Advance </label>
-							<div class="input-icon left">
-								<input type="number" id="txtpaid" name="txtpaid" class="m-wrap" />
+							<div class="input-icon input-append">
+								<label for="txtpaid">Paid Amount / Advance: </label>
 							</div>
+							<input type="number" id="txtpaid" name="txtpaid" class="large m-wrap sertax" />
 						</div>
-						<div class="clearfix margin-bottom-10">
-							<label for="txtpaid">Discount </label>
-							<div class="input-icon left">
-								<input type="text" id="txtdisc" name="txtdisc" class="m-wrap" />
+						
+						<div class="clearfix margin-bottom-10" >							
+							<div class="input-icon input-append">
+								<label for="txtpaid">Discount: </label>
 							</div>
+							<input type="text" id="txtdisc" name="txtdisc" class="large m-wrap discount1" />							
 						</div>
-						<div class="clearfix margin-bottom-10" >
-							<label for="paymentMode">Payment Mode </label>
-							<div class="input-icon left">
-								<select name="paymentMode" id="paymentMode" onchange='ShowHideDiv();'> 
-									<option value="cash">Cash</option>
-									<option value="cheque">Cheque</option>
-								</select>
+						
+						<div class="clearfix margin-bottom-10">							
+							<div class="input-icon input-append">
+								<label for="paymentMode">Payment Mode: </label>
 							</div>
+							<select name="paymentMode" id="paymentMode" onchange='ShowHideDiv();' class="large m-wrap selectpay"> 
+								<option value="cash">Cash</option>
+								<option value="cheque">Cheque</option>
+							</select>							
 						</div>
 						<div class="clearfix margin-bottom-10" id="showHide" style="display:none;">
 							<div class="pull-left margin-right-20">
-								<label for="txtbanknm">Bank Name</label>
+								<label for="txtbanknm">Bank Name:</label>
 								<div class="input-icon left">
 									<input type="text" id="txtbanknm" name="txtbanknm" class="m-wrap" />
 								</div>
 							</div>
 							<div class="pull-right margin-right-20">
-								<label for="txtchkno" class="well1">Cheque No</label>
+								<label for="txtchkno" class="well1">Cheque No:</label>
 								<div class="input-icon left">
 									<input type="text" id="txtchkno" name="txtchkno" class="m-wrap" />
 								</div>
 							</div>
 						</div>
 						<div class="clearfix margin-bottom-10" >
-							<label for="">Service Tax Applicability </label>
-							<div class="input-icon left">
-								<select name="taxmode" id="taxmode" > 
-									<option select="selected" value="No">No</option>
-									<option value="Yes">Yes</option>
-								</select>
+							<div class="pull-left margin-right-10">
+								<label for="">Service Tax Applicability: </label>
 							</div>
+							<select name="taxmode" id="taxmode" class="large m-wrap sertax"> 
+								<option select="selected" value="No">No</option>
+								<option value="Yes">Yes</option>
+							</select>
 						</div>
+						
 						<input type="hidden" id="txtstax" name="txtstax" value=""/>
-						<br/>
+						<br/>				
 						
 						<div class="right-side">
 							<!--a class="btn blue" id="newaddevent">SAVE <i class="icon-download"></i></a-->

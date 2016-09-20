@@ -205,12 +205,12 @@ function updatePaidAmtVendP($conn,$vueid,$total_amt_paid)
 			echo 8;
 			//exit;
 		}
-function insCmpNew($conn,$txtcmpnm,$txtcmprno,$cur_date)
+function insCmpNew($conn,$txtcmpnm,$txtcmprno,$txtbnrnm,$cur_date)
 		{
-			$sqlInsCmp = "INSERT INTO `company_mst` (`cmp_name`,`cmp_reg_no`,`created_at`,`deleted_at`,`updated_at`) VALUES ('".$txtcmpnm."','".$txtcmprno."','".$cur_date."','','')"; 
+			$sqlInsCmp = "INSERT INTO `company_mst` (`cmp_name`,`cmp_reg_no`,`banner_img`,`created_at`,`deleted_at`,`updated_at`) VALUES ('".$txtcmpnm."','".$txtcmprno."','".$txtbnrnm."','".$cur_date."','','')"; 
 			$resultArray = $conn->insertQuery($sqlInsCmp);
-			echo 1;
-			exit;
+			//echo 1;
+			//exit;
 		}
 function updEnqFrm($conn,$id)
 		{
@@ -226,9 +226,15 @@ function updEnqFrm($conn,$id)
 			//echo 12;
 			exit;
 		}*/
-function updInvEM($conn,$id,$fname)
+function updInvEM($conn,$id,$fname,$INVID)
 		{
-			$sqlinsInvEM = "Update `event_mst` set `inv_file_name` = '".$fname."' where event_id = '".$id."'"; 
+			$sqlinsInvEM = "Update `event_mst` set `inv_file_name` = '".$fname."',`inv_file_id` = '".$INVID."' where `event_id` = '".$id."'"; 
+			$resultArray = $conn->insertQuery($sqlinsInvEM);
+			
+		}
+function updInvConfig($conn,$cnf_id,$nextval)
+		{
+			$sqlinsInvEM = "Update `invoice_config` set `next_val` = '".$nextval."' where `invoice_conf_id` = '".$cnf_id."'"; 
 			$resultArray = $conn->insertQuery($sqlinsInvEM);
 			
 		}
@@ -299,6 +305,20 @@ function updEventDetail($conn,$eid,$txteventnm,$txteventds,$txtclnm,$txtclcmp,$t
 			echo 0;
 			exit;
 		}
+ function updEventPlacesDetail($conn,$epldtlid,$txtvenue,$txthall,$txtldmark,$txtfromdate,$txttodate,$date)
+		{
+			
+			$sqlupdEventDetail = "UPDATE `event_places_dtl` set `event_vennue` = '".$txtvenue."',
+													`event_hall` = '".$txthall."',
+													`event_ld_mark` = '".$txtldmark."',
+													
+													`event_date` = '".$txtfromdate."',
+													`event_to_date` = '".$txttodate."'													
+													where `event_places_id` = '".$epldtlid."'	";
+			$resultArray = $conn->insertQuery($sqlupdEventDetail);
+			echo 0;
+			exit;
+		}
 		
 function insertMassPayTrn($conn,$json,$cur_date,$pay_mode,$bk_nm,$chk_no,$mass_amt)
 		{
@@ -331,6 +351,40 @@ function insertExpence($conn,$showexpctg,$showevent,$txtfromdt,$txtamt,$showstf)
 			//exit;
 		}
 
+ function updateTemplate($conn,$txttempid,$txtename,$txttemplate)
+	{
+		$sqlupdateTemplate = "UPDATE `template_mst` set `template_name` = '".$txtename."',
+													`template_body` = '".$txttemplate."'
+													 where `template_id` = '".$txttempid."' ";
+		return $conn->getResultArray($sqlupdateTemplate);
+	}
+function insEquipmentUpd($conn,$evntid,$epldtlid,$txtieqp,$txtirate,$txtiqty,$txtiamt,$txtistf,$txtivend,$txtivendprice,
+							$txtiremark,$txtilength,$txtiwidth)
+		{
+			$sqlinsNewEqp = "INSERT INTO `new_event_places_dtl`	(`event_id`,`event_places_id`,`eq_id`,`rate`,`qty`,
+			`amount`,`staff_id`,`vend_id`,`vend_price`,`remark`,`length`,`width`) 
+			VALUES ('".$evntid."','".$epldtlid."','".$txtieqp."','".$txtirate."','".$txtiqty."','".$txtiamt."',
+			'".$txtistf."','".$txtivend."','".$txtivendprice."','".$txtiremark."','".$txtilength."','".$txtiwidth."')"; 
+			$resultArray = $conn->insertQuery($sqlinsNewEqp);
+			
+		}		
+function updEqpEventMst($conn,$evntid,$totammt,$txamt,$clcharge,$vdcharge)
+		{
+			$sqlupdResEventMst = "Update `event_mst` set `total_amt` = '".$totammt."',
+														`service_tax_amt` = '".$txamt."',
+														`client_charges`= '".$clcharge."',
+														`vendor_charges`= '".$vdcharge."'	where `event_id` = '".$evntid."'"; 
+			$resultArray = $conn->insertQuery($sqlupdResEventMst);
+			
+		}
+  function insInvoicSet($conn,$txtlabel,$type,$start_at,$cur_date)
+		{
+			$sqlInsCatg = "INSERT INTO `invoice_config` (`label`,`type`,`start_at`,`next_val`,`created_at`) VALUES ('".$txtlabel."','".$type."','".$start_at."','".$start_at."','".$cur_date."')"; 
+			$resultArray = $conn->insertQuery($sqlInsCatg);
+			echo 0;
+			exit;
+		}
+	
 // function insDesg($conn,$desgId,$designation)
 // {
     // $sqlInsDesg = "INSERT INTO ".TABLE_M_DESG_MST." (DESG_ID,DESIGNATION) VALUES ('".$desgId."','".strtoupper($designation)."')"; 

@@ -329,10 +329,10 @@
 					{	
 						alert('successfull pdf generated!!!');
 						//window.location.href= 'upload/invoice/19700101_95.pdf';
-						window.open(
-						  './upload/invoice/20160519_95.pdf',
-						  '_blank' 
-						);
+						//window.open(
+						 // './upload/invoice/20160519_95.pdf',
+						//  '_blank' 
+						//);
 
 
 					}				
@@ -481,11 +481,27 @@
 					$('#txtcmpnm').val(e.client_cmp);
 					$('#txtcharge1').val(e.total_amt);
 					$('#txtpaid').val(e.client_paid_amt);
+					$('#client_charges').val(e.client_charges);
+					$('#st').val(e.service_tax_amt);
+					var cli_charge=$('#client_charges').val();
+					var cli_disc=$('#txtcldesc').val();
+					var disamt=cli_charge-cli_disc;
+					$('#disamt').val(disamt);
 					//end of invoice data
 					
+					//this for update
+					$('#clchargen').val(e.client_charges);
+					$('#clpdchargen').val(e.client_paid_amt);
+					$('#vdchargen').val(e.vendor_charges);
+					$('#vdpdchargen').val(e.vd_paid_amt);
+					$('#txmdn').val(e.taxmode);
+					$('#txratn').val(e.service_tax_rate);
+					$('#txamtn').val(e.service_tax_amt);
+					$('#totammtn').val(e.total_amt);
+					//end
 					//call to display for evend places detail..
-					showeventplaces();
-					
+					//its old//showeventplaces();
+					newshoweventplaces();
 					//call of function which show the popup data that get the paid amt detail from event payment trn table					
 					showeventpaid();
 					$('#txtpeid').val(e.event_id);
@@ -498,11 +514,168 @@
 			});		
 		});		
 		//end
+  //removing the Equipment from the database
+			
+				$('body').delegate('.eqpdel','click',function()
+				{					
+					var id = $(this).data('id');
+					var txtiamt = $('#txtiamt'+id).val();
+					var txtivendprice = $('#txtivendprice'+id).val();
+					var evnt_id = $('#eid').val();					
+					var contres = $('#contres').val();
+					var clcharge = $('#clcharge').val();
+					var clpdcharge = $('#clpdcharge').val();					
+					var txmd = $('#txmd').val();
+					var txrat = $('#txrat').val();
+					var txamt = $('#txamt').val();
+					var totammt = $('#totammt').val();	
+					var vdcharge = $('#vdcharge').val();			
+					
+					
+					if( contres == 0 )
+					{													
+						
+						clcharge = parseInt(clcharge) - parseInt(txtiamt);						
+						vdcharge = parseInt(vdcharge) - parseInt(txtivendprice); 
+						
+						
+						if(txmd=='Yes')
+						{							
+							var servtax  =	(parseInt(txtiamt)* parseFloat(txrat))/100;
+							txamt =  parseInt(txamt) - parseInt(servtax);
+							totammt = parseInt(totammt) - parseInt(txtiamt) - parseInt(servtax) ;
+						}
+						else
+						{
+							totammt = parseInt(totammt) - parseInt(txtiamt);
+						}
+						
+					}
+								
+					
+					$.ajax({
+						url : 'includes/eventDetailPost.php',
+						type : 'POST',
+						async : false,
+						data : {
+							'eqpdel'  : 1,
+							'id' 	: id,
+							'evnt_id' : evnt_id,
+							'totammt'   : totammt,
+							'txamt'     : txamt,
+							'clcharge' : clcharge,
+							'vdcharge' : vdcharge,
+						},
+						success : function(d)
+						{
+							alert("Delete Successfully");							
+						}						
+					});
+					$( this ).parent().parent().css( "display", "none" );					
+				});
+				
+				
+			//end
+	  //removing the equipment places dtl from the database
+			
+				$('body').delegate('.epddel','click',function()
+				{
+					//alert('hello Divyesh');
+					var id = $(this).data('id');
+					
+					var event_id = $('#eid').val();
+					var contres = $('#contres').val();
+					var clcharge = $('#clcharge').val();
+					var clpdcharge = $('#clpdcharge').val();					
+					var txmd = $('#txmd').val();
+					var txrat = $('#txrat').val();
+					var txamt = $('#txamt').val();
+					var totammt = $('#totammt').val();
+					
+					var vdcharge = $('#vdcharge').val();
+					
+					//Resource
+					var res_sum = [];
+					$.each($('.rtxtallpamt'+id), function(){          
+						res_sum.push($(this).val());
+					});
+					var res_amt = 0;
+					$.each(res_sum,function() {
+						res_amt += parseInt(this);
+					});
+					
+					//Equipment
+					var eqp_sum = [];
+					$.each($('.txtallpamt'+id), function(){          
+						eqp_sum.push($(this).val());
+					});
+					
+					var eqp_amt = 0;
+					$.each(eqp_sum,function() {
+						eqp_amt += parseInt(this);
+					});
+					
+					//Vendor
+					var ven_sum = [];
+					$.each($('.txtallpvendprice'+id), function(){          
+						ven_sum.push($(this).val());
+					});
+					
+					var ven_amt = 0;
+					$.each(ven_sum,function() {
+						ven_amt += parseInt(this);
+					});	
+					
+					//Res Vendor
+					var rven_sum = [];
+					$.each($('.rtxtallpvendprice'+id), function(){          
+						rven_sum.push($(this).val());
+					});
+					
+					var rven_amt = 0;
+					$.each(rven_sum,function() {
+						rven_amt += parseInt(this);
+					});	
+					
+					$.ajax({
+						url : 'includes/eventDetailPost.php',
+						type : 'POST',
+						async : false,
+						data : {
+							'epddel'  : 1,
+							'id' 	: id,
+							'contres' : contres,
+							'clcharge' : clcharge,
+							'txmd' : txmd,
+							'txrat' : txrat,
+							'txamt' : txamt,
+							'totammt' : totammt,
+							'vdcharge' : vdcharge,							
+							'res_amt' : res_amt,
+							'eqp_amt' : eqp_amt,
+							'ven_amt' : ven_amt,
+							'rven_amt' : rven_amt,
+							'event_id': event_id,
+												
+						},
+						success : function(d)
+						{
+							alert("Delete Successfully");
+							//window.location.reload();
+							UpdateAcc();
+						}
+						
+					});
+					$( this ).parent().parent().css( "display", "none" );					
+				});
+				
+				
+			//end
 		//default show data in edit mode
 		function last_event()
 		{
 			//alert('hello Divyesh');
-			//var id = $('#lasteid').val();
+			
 			
 			var enqid = $('#txtenqid').val();
 			if(enqid == '')
@@ -553,8 +726,19 @@
 					$('#txtpaid').val(e.client_paid_amt);
 					//end of invoice data
 					
+					//this for update
+					$('#clchargen').val(e.client_charges);
+					$('#clpdchargen').val(e.client_paid_amt);
+					$('#vdchargen').val(e.vendor_charges);
+					$('#vdpdchargen').val(e.vd_paid_amt);
+					$('#txmdn').val(e.taxmode);
+					$('#txratn').val(e.service_tax_rate);
+					$('#txamtn').val(e.service_tax_amt);
+					$('#totammtn').val(e.total_amt);
+					//end
 					//call to display for evend places detail..
-					showeventplaces();
+					//its old//showeventplaces();
+					newshoweventplaces();
 					
 					//call of function which show the popup data that get the paid amt detail from event payment trn table					
 					showeventpaid();
@@ -573,6 +757,58 @@
 		
 		
 		//end of the default show data
+	   function UpdateAcc()
+		{
+			var id = $('#eid').val();
+			//alert(id);
+			
+			$.ajax({
+				url : 'includes/eventDetailPost.php',
+				type : 'POST',
+				async : false,
+				data : {
+					'UpdateAcc'  : 1,
+					'id' 	: id,
+										
+				},
+				success : function(e)
+				{
+					$('#txtcharge').val(e.total_amt);
+					
+					$('#clcharge').val(e.client_charges);
+					$('#vdcharge').val(e.vendor_charges);
+					$('#txamt').val(e.service_tax_amt);
+					$('#totammt').val(e.total_amt);
+				}
+			});
+		}
+		
+		function newshoweventplaces ()
+		{
+			var eid    =   $('#eid').val();
+			
+			//alert(eid);
+			$.ajax({
+				url : 'includes/eventDetailPost.php',
+				type : 'POST',
+				async : false,
+				data : {
+					'newshoweventdtl'  : 1,
+					'eid'   : eid,				
+					
+				},
+				success : function(rd1)
+				{										
+					 $('#multiinsert').html(rd1);
+					 
+						// showdataeqp();
+						// showdatastf();
+						// showdatavend();
+						// showdatavendsel();										
+				}				
+			});	
+					
+		}
 		
 		function showeventplaces ()
 		{

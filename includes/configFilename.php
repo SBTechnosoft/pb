@@ -14,7 +14,7 @@ define('FILENAME_LOGIN','login.php');
 //Constant for date
 date_default_timezone_set('Asia/Calcutta');
  $date =  Date('d-m-Y h:m A');
- //echo $date;
+ 
 define('Date',$date);
 // $dateFormat = date_format($date,"d-M-Y  H:i A");
 define('dateFormat',"d-M-Y g:i A");
@@ -86,6 +86,8 @@ define('FILENAME_ADDCOMPANY',DIR_WS_INCLUDES.'addCompanySettings.php');
 define('FILENAME_ADDOPTION',DIR_WS_INCLUDES.'addOptionSettings.php');
 define('FILENAME_INVOICE',DIR_WS_INCLUDES.'invoiceList.php');
 define('FILENAME_TRANSACTION',DIR_WS_INCLUDES.'transactionDetail.php');
+define('FILENAME_INVOICESETTING',DIR_WS_INCLUDES.'invoice_Setting.php');
+define('FILENAME_TEMPLATE',DIR_WS_INCLUDES.'templateSettings.php');
 
 //registration files
 //define('FILENAME_REGISTRATION',DIR_WS_INCLUDES.'registration.php');

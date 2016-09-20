@@ -75,8 +75,8 @@
 											<th> Amount </th>
 											
 											<!--th>Rec.Amt</th>
-											<th> Payment Status </th>
-											<th> Inv.</th-->
+											<th> Payment Status </th-->
+											<th> Qua.</th>
 											
 											<th> Action </th>
 										</tr>

@@ -8,8 +8,8 @@ position: relative;
 }
 ul.checktree-root label input {
 position: relative;
-top: 2px;
-left: -5px;
+top: 0px;
+left: 0px;
 }
 </style>
 
@@ -97,6 +97,7 @@ left: -5px;
 							<div class="span8 booking-search">
 								<form action="#">
 									<input type="hidden"  name="txtid" id="txtid" value="" />
+									<input type="hidden"  name="txtidper" id="txtidper" value="" />
 									<ul id="tree">										
 										<li>
 											<label>
@@ -194,6 +195,12 @@ left: -5px;
 											<ul>
 												<li>
 													<label>
+													 <input type="checkbox" name="myCheckbox" id="myCheckbox" value="TRN">
+													Transaction
+													</label>
+												</li>
+												<li>
+													<label>
 													<input type="checkbox" name="myCheckbox" id="myCheckbox" value="PID">
 													Paid
 													</label>
@@ -204,6 +211,13 @@ left: -5px;
 													Unpaid
 													</label>
 												</li>
+												<li>
+													<label>
+													<input type="checkbox" name="myCheckbox" id="myCheckbox" value="INV">
+													Invoice
+													</label>
+												</li>
+												
 												<li>
 													<label>
 													<input type="checkbox" name="myCheckbox" id="myCheckbox" value="VPD">
@@ -275,6 +289,12 @@ left: -5px;
 													<label>
 													<input type="checkbox" name="myCheckbox" id="myCheckbox" value="EML">
 													Emails
+													</label>
+												</li>
+												<li>
+													<label>
+													<input type="checkbox" name="myCheckbox" id="myCheckbox" value="TEMP">
+													Templates
 													</label>
 												</li>
 											</ul>

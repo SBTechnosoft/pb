@@ -116,6 +116,7 @@ if(isset($_POST['showtax']))
 	
 	if(isset($_POST['txteventnm']))
 	{	
+			   $evnt_nm = $_POST['txteventnm'];
 				if($_POST['taxmode'] == 'Yes')
 				{
 					if($_POST['txtdisc']=='')
@@ -188,7 +189,7 @@ if(isset($_POST['showtax']))
 		$trdt = $_POST['txttodt'];
 		
 		$nfrdt = date_format(new DateTime($frdt),'Y-m-d H:i:s');
-		$ntrdt = date_format(new DateTime($frdt),'Y-m-d H:i:s');
+		$ntrdt = date_format(new DateTime($trdt),'Y-m-d H:i:s');
 		
 		// echo $frdt."<br>";
 		// echo $nfrdt."<br>";
@@ -265,9 +266,16 @@ if(isset($_POST['showtax']))
 		{
 			insertPaymentTrn($conn,$eventlast_id,$cur_date,$_POST['txtpaid'],$_POST['paymentMode'],$_POST['txtbanknm'],$_POST['txtchkno']);
 		}
+		if($_POST['order_type'] == 'enquiry')
+		{
+			header ('location:'.HTTP_SERVER.'index.php?url=ENR');
+		}	
+		else
+		{
+			header ('location:'.HTTP_SERVER.'index.php?url=EVD');
+		}
 		
-		
-		header ('location:'.HTTP_SERVER.'index.php?url=EVD');		
+			
 	}
 	
 	if(isset($_POST['showEqp']))
@@ -317,7 +325,7 @@ if(isset($_POST['showtax']))
 		$data = showEqupDrp($conn);
 		$showEqpCnt = count($data);
 	?>
-		<option select= "selected" value=""> Select the Equpment </option>
+		<option select= "selected" value=""> Select the Equipment </option>
 	<?php
 		for($i=0;$i<$showEqpCnt;$i++)		
 		{

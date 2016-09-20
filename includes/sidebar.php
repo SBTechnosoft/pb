@@ -337,12 +337,12 @@ $arr1 = json_decode($data[0]['permission']);
             <ul class="sub-menu">
 
 			<?php 
-			   if(isset($arr1) && !empty($arr1) && in_array("PID", $arr1))
+			   if(isset($arr1) && !empty($arr1) && in_array("TRN", $arr1))
 				{					
 			?>
                 <li class="">
                     <a href="<?php echo HTTP_SERVER.'index.php?url=TRN';?>">
-                        <i class="icon-check-sign"></i> Transaction </a>
+                        <i class="fa fa-credit-card"></i> Transaction </a>
                 </li>			
 			<?php 
 			
@@ -388,6 +388,14 @@ $arr1 = json_decode($data[0]['permission']);
                         <i class="icon-remove-sign"></i> Vendor Unpaid</a>
                 </li>
 				
+			<?php
+				
+				}
+			 
+				if(isset($arr1) && !empty($arr1) && in_array("INV", $arr1))
+				{
+				
+			?>
 				<li class="">
                     <a href="<?php echo HTTP_SERVER.'index.php?url=INV';?>">
                         <i class="icon-file"></i> Invoice</a>
@@ -479,6 +487,14 @@ $arr1 = json_decode($data[0]['permission']);
 						{
 							echo "active ";
 						}
+					   elseif(isset($_GET['url']) && strtoupper($_GET['url']) == 'TEMP')
+						{
+							echo "active ";
+						}
+						elseif(isset($_GET['url']) && strtoupper($_GET['url']) == 'INSE')
+						{
+							echo "active ";
+						}
 						else
 						{
 							echo" ";
@@ -535,10 +551,31 @@ $arr1 = json_decode($data[0]['permission']);
 			?>
 				<li class="">
                     <a href="<?php echo HTTP_SERVER.'index.php?url=EML';?>">
-                        <i class="icon-cog"></i> Emails 
+                        <i class="fa fa-envelope"></i> Emails 
 					</a>
                 </li>
-				<?php } ?>
+				<?php 
+                 } 
+               if(isset($arr1) && !empty($arr1) && in_array("TEMP", $arr1))
+				{
+					?>
+					<li class="">
+						<a href="<?php echo HTTP_SERVER.'index.php?url=TEMP';?>">
+							<i class="icon-file"></i> Templates</a>
+					</li>
+					
+					<?php
+				}
+				if(isset($arr1) && !empty($arr1) && in_array("TEMP", $arr1))
+				{
+					?>
+					<li class="">
+						<a href="<?php echo HTTP_SERVER.'index.php?url=INSE';?>">
+							<i class="icon-file"></i> Invoice#</a>
+					</li>
+					
+					<?php
+				}  ?>
             </ul>
         </li>
 			<?php } ?>

@@ -154,8 +154,8 @@
         <!--end tabbable-->
         <div class="tabbable tabbable-custom tabbable-full-width">
             <ul class="nav nav-tabs">
-                <li class="active"><a data-toggle="tab" href="#tab_2_5">Details </a></li>
-                <li><a data-toggle="tab" href="#tab_1_2" >Places</a></li>
+                <li class="<?php if(!isset($_GET['id'])&& empty($_GET['id'])){ echo 'active'; }?>"><a data-toggle="tab" href="#tab_2_5">Details </a></li>
+                <li class="<?php if(isset($_GET['id'])&& !empty($_GET['id'])){ echo 'active'; }?>"><a data-toggle="tab" href="#tab_1_2" >Places</a></li>
                 <li><a data-toggle="tab" href="#tab_2_2" > Accounting </a></li>
 				<!-- id is removed here first given the ajax call o the id now no need on this click default fn call-->
 				<!--li><a data-toggle="tab" href="#tab_1_2" id="event_places_dtl">Places</a></li>
@@ -164,7 +164,7 @@
             </ul>
 			
             <div class="tab-content">				
-                <div id="tab_2_5" class="tab-pane active">
+                <div id="tab_2_5" class="tab-pane <?php if(!isset($_GET['id'])&& empty($_GET['id'])){ echo 'active'; }?>">
                     <div class="row-fluid">
 						<div class="span8 detail_content">
                         <div class="search-forms search-default">
@@ -322,8 +322,10 @@
 								<input type="hidden" id="txtfpdffromdt" name="txtfpdffromdt" value=""/>
 								
 								<a class="invoice invoice_btn btn blue" onclick="document.getElementById('form2').submit();" >
-									<h3 class="invoice_font"> Event Info <i style="cursor : pointer; color:white;" class="fa fa-file-pdf-o" aria-hidden="true" >
-									</i></h3>
+									<h3 class="invoice_font"> Event Info 
+                                      <i style="cursor : pointer; color:white;" class="fa fa-file-pdf-o" aria-hidden="true" >
+									</i>
+                                    </h3>
 								</a>
 							</form>	
 								<div id="showfullpdf">
@@ -338,10 +340,40 @@
                     </div>
                 </div>
                 <!--end tab-pane-->
-                <div id="tab_1_2" class="tab-pane">
+                <div id="tab_1_2" class="tab-pane<?php if(isset($_GET['id'])&& !empty($_GET['id'])){ echo 'active'; }?>">
                     <div class="row-fluid search-forms search-default">
-                        <form class="form-search" action="#">
-                            <div id="dynamic_field">
+						<form class="form-search" action="#">
+						
+							<div id= "multiinsert">
+								
+							</div>
+						</form>
+							<form class="form-search" name="f1" method="post" action="includes/newEventsPost.php" >
+								<input type="hidden" class="m-wrap" id="contresn" name="contresn" value="" />		
+								<input type="hidden" class="m-wrap" id="clchargen" name="clchargen" value="" />
+								<input type="hidden" class="m-wrap" id="clpdchargen" name="clpdchargen" value="" />
+								<input type="hidden" class="m-wrap" id="vdchargen" name="vdchargen" value="" />
+								<input type="hidden" class="m-wrap" id="vdpdchargen" name="vdpdchargen" value="" />
+								<input type="hidden" class="m-wrap" id="txmdn" name="txmdn" value="" />
+								<input type="hidden" class="m-wrap" id="txratn" name="txratn" value="" />
+								<input type="hidden" class="m-wrap" id="txamtn" name="txamtn" value="" />
+								<input type="hidden" class="m-wrap" id="totammtn" name="totammtn" value="" />
+															
+								<input id="txtrescharge" class="m-wrap txtrescharge" name="txtrescharge" readonly="" type="hidden">
+								<input id="txtvcharge" class="m-wrap txtvcharge" name="txtvcharge" readonly="" type="hidden" >
+								<input id="txtucharge" class="m-wrap txtucharge" name="txtucharge" readonly="" type="hidden" >
+								<input id="txtresvcharge" class="m-wrap txtresvcharge" name="txtresvcharge" readonly="" type="hidden" >
+								<div id= "multiupdinsert">
+									
+								</div>
+								<div id="svbtn" class="clearfix margin-bottom-10">				
+									<div class="input-icon left">
+										<input class="m-wrap btn blue" value="Save" type="submit" />
+									</div>
+								</div>
+							</form>
+                       
+                            <!--div id="dynamic_field">
                                 <h4>Event places </h4>
                                 <hr />
                                
@@ -362,8 +394,8 @@
 								</div>
 								
 								
-                            </div>
-                        </form>
+                            </div-->
+                        
 					</div>
                 </div>
                 <!--end tab-pane-->
@@ -378,10 +410,50 @@
 										<div class="input-icon left">
 											<div class="controls">
 												<tr>
-													<td class="names"><label for="showeqp">Client Charge</label></td>
+													<td class="names"><label for="showeqp">Total Amount</label></td>
 													<td>
-														<input  id="txtcharge" name="txtcharge" type="text" readonly />
+														<input  class="textalign" id="client_charges" name="client_charges" type="text" readonly />
 													</td>                                            
+												</tr>
+											</div>
+										</div>
+										<div class="input-icon left">
+											<div class="controls">
+												<tr>
+													<td class="names"><label for="txtstf"> Discount</label></td>
+													<td>
+														<input  class="textalign" id="txtcldesc" name="txtcldesc" type="text" readonly />
+													</td> 
+												</tr>
+											</div>
+										</div>
+										<div class="input-icon left">
+											<div class="controls">
+												<tr>
+													<td class="names"><label for="txtstf"> Discounted Amount</label></td>
+													<td>
+														<input  class="textalign" id="disamt" name="disamt" type="text" readonly />
+													</td> 
+												</tr>
+											</div>
+										</div>
+										<div class="input-icon left">
+											<div class="controls">
+												<tr>
+													<td class="names"><label for="txtstf"> Service Tax</label></td>
+													<td>
+														<input  class="textalign" id="st" name="st" type="text" readonly />
+													</td> 
+												</tr>
+											</div>
+										</div>
+										<div class="input-icon left">
+											<div class="controls">
+												<tr>
+													<td class="names"><label for="txtstf"> Final Amount</label></td>
+													<td>
+														<input  class="textalign" id="txtcharge" name="txtcharge" type="text" readonly />
+													</td> 
 												</tr>
 											</div>
 										</div>
@@ -533,18 +605,7 @@
 													</td> 
 												</tr>
 											</div>
-										</div>	
-										
-										<div class="input-icon left">
-											<div class="controls">
-												<tr>
-													<td class="names"><label for="txtstf">Client Discount</label></td>
-													<td>
-														<input  id="txtcldesc" name="txtcldesc" type="text" readonly />
-													</td> 
-												</tr>
-											</div>
-										</div>
+										</div>										
 									</table>
 									<br/>
 								</div>	

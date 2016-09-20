@@ -13,7 +13,11 @@
 	{		
 		updEnqFrm($conn,$_POST['id']);	
 	}
-	
+	if(isset($_POST['delete']))
+	{	
+		$del_date = date('Y-m-d H:i:s');
+		delEnq($conn,$_POST['id'],$del_date);	
+	}
 	
 	if(isset($_POST['show']))
 	{	
@@ -37,7 +41,7 @@
 					<a href="<?php echo HTTP_SERVER ; ?>index.php?url=EVD&id=<?php echo $data[$i]['event_id'];?>" data-id="<?php echo $data[$i]['event_id']; ?>" class="edit" data-toggle="tooltip" title="Enquiry">						
 						<?php echo ucfirst($data[$i]['event_name']);?></td>
 					</a>
- 				<td>
+ 				</td>
 				
 				<td>
 					<i class="fa fa-info-circle" style="cursor:pointer;" data-toggle="tooltip" data-html="true" 
@@ -72,10 +76,30 @@
 				</td>
 				<td><span style="float:right;"><?php echo $data[$i]['total_amt'];?> </span></td>
 				<td> 
+					<form class="form-search" id="<?php echo $data[$i]['event_id'];?>" target="_blank" method="post" action="invoicePdfQ.php">
+							
+						<input type="hidden" id="txteid" name="txteid" value="<?php echo $data[$i]['event_id'];?>"/>
+						<input type="hidden" id="txtcmpnm" name="txtcmpnm" value="<?php echo $data[$i]['client_cmp'];?>"/>
+						<input type="hidden" id="txtenm" name="txtenm" value="<?php echo ucfirst($data[$i]['event_name']);?>"/>
+						<input type="hidden" id="txtfdate" name="txtfdate" value="<?php echo $data[$i]['from_date'];?>"/>
+						<input type="hidden" id="txtcnm" name="txtcnm" value="<?php echo ucfirst($data[$i]['client_name']);?>"/>
+						<input type="hidden" id="txtcharge1" name="txtcharge1" value="<?php echo $data[$i]['client_charges'];?>"/>
+						<input type="hidden" id="txtpaid" name="txtpaid" value="<?php echo $data[$i]['client_paid_amt'];?>" />
+						
+						<a onclick="document.getElementById('<?php echo $data[$i]['event_id'];?>').submit();" >
+							<i style="cursor : pointer; " class="fa fa-file-pdf-o" aria-hidden="true" >
+							</i>
+						</a>
+						
+					</form>
+				</td>
+				<td>
 					<a href="#" data-id="<?php echo $data[$i]['event_id']; ?>" class="editenq" data-toggle="tooltip" title="Order">
 						<i class="fa fa-file-text"></i>
 						Order
-					</a> &nbsp;&nbsp;&nbsp;
+					</a> 
+					<a data-id="<?php echo $data[$i]['event_id']; ?>" class="delete" data-toggle="tooltip" title="Delete">
+					<i class="fa fa-trash-o"></i> </a>
 					 
 				</td>		
 				
