@@ -44,12 +44,47 @@ function delAcs($conn,$id,$del_date)
 			//echo 12;
 			exit;
 		}
+function delEnq($conn,$id,$del_date)
+{
+	$sqldelCmpNew = "Update `event_mst`  set `deleted_at` = '".$del_date."',`deleted_by` = '".$_SESSION['USER_ID']."' where `event_id` = '".$id."' "; 
+	$resultArray = $conn->insertQuery($sqldelCmpNew);
+	
+	$sqldelCmpNew1 = "delete from `event_places_dtl` where `event_id` = '".$id."' "; 
+	$resultArray = $conn->insertQuery($sqldelCmpNew1);
+}
 function delVend($conn,$id,$del_date)
 		{
 			$sqldelCmpNew = "Update `vendor_mst`  set `deleted_at` = '".$del_date."',`deleted_by` = '".$_SESSION['USER_ID']."' where `vend_id` = '".$id."' "; 
 			$resultArray = $conn->insertQuery($sqldelCmpNew);
+
 			//echo 12;
 			exit;
 		}
-
+	   function deltranc($conn,$id)
+		{
+			$sqldelCmpNew = "Delete from `expence_dtl` where  exp_id = '".$id."' "; 
+			$resultArray = $conn->insertQuery($sqldelCmpNew);
+			//echo 12;
+			
+		}
+function delEquipmentUpd($conn,$id)
+		{
+			$sqldelCmpNew = "Delete from `new_event_places_dtl` where places_id = '".$id."' "; 
+			$resultArray = $conn->insertQuery($sqldelCmpNew);
+			//echo 12;
+			//exit;
+		}
+function delEventPlacesUpd($conn,$id)
+		{
+			$sqldelPlaces = "Delete from `event_places_dtl` where `event_places_id` = '".$id."' "; 
+			$resultArray = $conn->insertQuery($sqldelPlaces);
+			
+			$sqldelEquipment = "Delete from `new_event_places_dtl` where `event_places_id` = '".$id."' "; 
+			$resultArray = $conn->insertQuery($sqldelEquipment);
+			
+			$sqldelResource = "Delete from `res_places_dtl` where `event_places_id` = '".$id."' "; 
+			$resultArray = $conn->insertQuery($sqldelResource);
+			//echo 12;
+			exit;
+		}
 ?>

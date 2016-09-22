@@ -3,9 +3,11 @@
 	$html = ob_get_clean();
 	$html = utf8_encode($html);
 	
-	include_once('includes/header.php');
-	
+	include_once('includes/header.php');	
 	require(DIR_WS_MPDF.'mpdf.php');
+	require('html_dom/simple_html_dom.php');
+	
+	
 	
 	
 	$date=date_create($_POST['txtfdate']);
@@ -22,13 +24,12 @@
 		$cmp = $_POST['txtcmpnm'];
 	}
 	$enm = $_POST['txtenm'];	
-	$fdate= date_format($date,"dS F , Y H:i A");
-	$sdate= date_format($date,"dS F , Y");
+	$fdate= date_format($date,"dS F, Y H:i A");
+	$sdate= date_format($date,"dS F, Y");
 	$cnm = $_POST['txtcnm'];
 	$charge = $_POST['txtcharge1'];
 	$cpaid = $_POST['txtpaid'];
-	$ramt = $charge - $cpaid;
-	
+	$ramt = $charge - $cpaid;	
 	
 	
 	if(isset($_POST['txteid']))
@@ -42,161 +43,190 @@
 			if($data[$i]['inv_file_name']=='')
 			{				
 				$fname = $inm."-".$_POST['txteid']."_1.pdf";
-		
-			
-				$html .= '
-
-					<style>
-					.trhw {height : 35px;}
-
-					</style>
-					<style type="text/css">
-					.tg  {border-collapse:collapse;border-spacing:0;}
-					.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
-					.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:0px 0px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
-					.tg .tg-jtyd{font-weight:bold;font-family:Georgia, serif !important;;background-color:#9a9a9a;text-align:right;vertical-align:top}
-					.tg .tg-3gzm{font-weight:bold;font-family:Georgia, serif !important;;text-align:right;vertical-align:top}
-					.tg .tg-ullm{font-weight:bold;font-size:13px;font-family:Georgia, serif !important;;background-color:#999999;text-align:right;vertical-align:top}
-					.tg .tg-vi9z{font-weight:bold;font-family:Georgia, serif !important;;vertical-align:top}
-					.tg .tg-bjj3{font-weight:bold;font-style:italic;font-size:22px;font-family:Georgia, serif !important;;background-color:#d9d9d9;text-align:center;vertical-align:top}
-					.tg .tg-m36b{font-weight:bold;font-size:13px;font-family:Georgia, serif !important;;background-color:#999999;text-align:center;vertical-align:top}
-					.thsrno {width:50px;}
-					.theqp {width:400px;}
-					.thamt {width:90px;}
-					</style>
-
-					<html>
-						<body> 
-						
-						<table class="tg" >						
-						  <tr>
-							<th class="tg-bjj3" colspan="1"><img style="height:50px;width:100px;"src="assets/img/rclogo.png"> </th>
-							<th class="tg-bjj3" style="padding:10px 5px;" colspan="4">INVOICE <br></th>
-						  </tr>
-						  <tr class="trhw">
-							<td class="tg-vi9z" colspan="3">To.: '.$cmp.' <br></td>
-							<td class="tg-vi9z" colspan="2">'.$sdate.'</td>
-						  </tr>
-						  <tr class="trhw">
-							<td class="tg-vi9z" colspan="3">Event:'.$enm.'</td>
-							<td class="tg-vi9z" colspan="2">FP No.:'.$data[$i]['fp_no'].'<br></td>
-						  </tr>
-						  <tr class="trhw">
-							<td class="tg-vi9z" colspan="5">Event Date :'.$fdate.' <br></td>
-						  </tr>
-						  <tr class="trhw">
-							<td class="tg-vi9z" colspan="3">Vennue.:</td>
-							<td class="tg-vi9z" colspan="2">Invoice No.:'.$id.'<br></td>
-						  </tr>
-						  <tr class="trhw">
-							<td class="tg-vi9z" colspan="5">Client.:'.$cnm.'</td>
-						  </tr>	  
-						  <tr class="trhw">
-							<td class="tg-m36b thsrno">Sr.No</td>
-							<td class="tg-m36b theqp">Equipment</td>
-							<td class="tg-ullm thsrno">Qty.</td>
-							<td class="tg-ullm thamt">Unit Cost<br></td>
-							<td class="tg-ullm thamt">Amount</td>
-						  </tr>';
-						
-						$dEqp = showEqpRsDtl($conn,$_POST['txteid']);
-						$cnteqp = count($dEqp); 
-						
-						for($a=0;$a<$cnteqp;$a++)
+				
+				$InvBody = showInvBody($conn);
+				$input = showEventDetailInvD($conn,$_POST['txteid']);			
+				
+				//$ResourceDtl = showEqpResource($conn,$_POST['txteid']);
+				// print_r($ResourceDtl);
+				// exit;
+				
+				
+				
+				$dEqp = showEqpRsDtl($conn,$_POST['txteid']);
+				
+				$cnteqp = count($dEqp); 
+				if($cnteqp<11)
+				{
+					$cnteqp1 = 11;
+				}
+				else
+				{
+					$cnteqp1 = $cnteqp;
+				}
+				for($a=0;$a<$cnteqp1;$a++)
+				{
+					if($a < $cnteqp)
+					{
+						if($a%2==0)
 						{
 							if($dEqp[$a]['length']!='' && $dEqp[$a]['length']!='undefined')
 							{				
 							
-							$html .= '
-								<tr class="trhw">
-									<td class="tg-3gzm">'.($a+1).'</td>
-									<td class="tg-vi9z">'.$dEqp[$a]['eq_name'].'('.$dEqp[$a]['length'].'X'.$dEqp[$a]['width'].')<br></td>
-									<td class="tg-3gzm">'.$dEqp[$a]['qty'].'</td>
-									<td class="tg-3gzm">'.$dEqp[$a]['rate'].'</td>
-									<td class="tg-3gzm">'.$dEqp[$a]['amount'].'</td>
+							$outputD .= '
+								<tr class="trhw" >
+									<td class="tg-3gzm" style="text-align:right;font-size:12px;padding: 5px 5px;color:#4e4e4e;">'.($a+1).'</td>
+									<td class="tg-vi9z" style="font-size:12px;padding: 5px 5px;color:#4e4e4e;">'.$dEqp[$a]['eq_name'].'('.$dEqp[$a]['length'].'X'.$dEqp[$a]['width'].')<br></td>
+									<td class="tg-3gzm" style="text-align:right;font-size:12px;padding: 5px 5px;color:#4e4e4e;">'.$dEqp[$a]['qty'].'</td>
+									<td class="tg-3gzm" style="text-align:right;font-size:12px;padding: 5px 5px;color:#4e4e4e;">'.$dEqp[$a]['rate'].'</td>
+									<td class="tg-3gzm" style="text-align:right;font-size:12px;padding: 5px 5px;color:#4e4e4e;">'.$dEqp[$a]['amount'].'</td>
 								</tr>
 							';
 							}
 							else
 							{				
 							
-							$html .= '
+							$outputD .= '
 								<tr class="trhw">
-									<td class="tg-3gzm">'.($a+1).'</td>
-									<td class="tg-vi9z">'.$dEqp[$a]['eq_name'].'<br></td>
-									<td class="tg-3gzm">'.$dEqp[$a]['qty'].'</td>
-									<td class="tg-3gzm">'.$dEqp[$a]['rate'].'</td>
-									<td class="tg-3gzm">'.$dEqp[$a]['amount'].'</td>
+									<td class="tg-3gzm" style="text-align:right;font-size:12px;padding: 5px 5px;color:#4e4e4e;">'.($a+1).'</td>
+									<td class="tg-vi9z" style="font-size:12px;padding: 5px 5px;color:#4e4e4e;">'.$dEqp[$a]['eq_name'].'<br></td>
+									<td class="tg-3gzm" style="text-align:right;font-size:12px;padding: 5px 5px;color:#4e4e4e;">'.$dEqp[$a]['qty'].'</td>
+									<td class="tg-3gzm" style="text-align:right;font-size:12px;padding: 5px 5px;color:#4e4e4e;">'.$dEqp[$a]['rate'].'</td>
+									<td class="tg-3gzm" style="text-align:right;font-size:12px;padding: 5px 5px;color:#4e4e4e;">'.$dEqp[$a]['amount'].'</td>
 								</tr>
 							';
 							}
 						}
-						  
-						  
-						$html .= '  
-						
-						  <tr class="trhw">
-							<td class="tg-3gzm"></td>
-							<td class="tg-vi9z"> <br></td>
-							<td class="tg-3gzm"></td>
-							<td class="tg-3gzm"></td>
-							<td class="tg-3gzm"></td>
-						  </tr>
-						
-						  <tr class="trhw">
-							<td class="tg-jtyd" colspan="4">Charge<br></td>
-							<td class="tg-3gzm">'.$data[$i]['client_charges'].'</td>
-						  </tr>
-						  <tr class="trhw">
-							<td class="tg-jtyd" colspan="4">Discount</td>
-							<td class="tg-3gzm">'.$data[$i]['client_discount_amt'].'</td>
-						  </tr>
-						  <tr class="trhw">
-							<td class="tg-jtyd" colspan="4">S.Tax '.$data[$i]['service_tax_rate'].'%<br></td>
-							<td class="tg-3gzm">'.$data[$i]['service_tax_amt'].'</td>
-						  </tr>
-						  <tr class="trhw">
-							<td class="tg-jtyd" colspan="4">Total</td>
-							<td class="tg-3gzm">'.$data[$i]['total_amt'].'</td>
-						  </tr>
-						  <tr class="trhw">
-							<td class="tg-vi9z" colspan="5" rowspan="1">
-								Terms & Condition
-							';
-							
-						$cond = showInvCond($conn);				
-						$cnt = count($cond);	
-						for($b=0;$b<$cnt;$b++)
+						else
 						{
-							$allcond = json_decode($cond[$b]['inv_cond_json']);
-							$cntjsn = count($allcond);
-							for($k=0;$k<$cntjsn;$k++)
-							{						
-								$html .= $allcond[$k].'<br>';
+							if($dEqp[$a]['length']!='' && $dEqp[$a]['length']!='undefined')
+							{				
+							
+							$outputD .= '
+								<tr class="trhw" >
+									<td class="tg-3gzm" style="background-color:#d9d9d9;text-align:right;font-size:12px;padding: 5px 5px;color:#4e4e4e;">'.($a+1).'</td>
+									<td class="tg-vi9z" style="background-color:#d9d9d9;font-size:12px;padding: 5px 5px;color:#4e4e4e;">'.$dEqp[$a]['eq_name'].'('.$dEqp[$a]['length'].'X'.$dEqp[$a]['width'].')<br></td>
+									<td class="tg-3gzm" style="background-color:#d9d9d9;text-align:right;font-size:12px;padding: 5px 5px;color:#4e4e4e;">'.$dEqp[$a]['qty'].'</td>
+									<td class="tg-3gzm" style="background-color:#d9d9d9;text-align:right;font-size:12px;padding: 5px 5px;color:#4e4e4e;">'.$dEqp[$a]['rate'].'</td>
+									<td class="tg-3gzm" style="background-color:#d9d9d9;text-align:right;font-size:12px;padding: 5px 5px;color:#4e4e4e;">'.$dEqp[$a]['amount'].'</td>
+								</tr>
+							';
+							}
+							else
+							{				
+							
+							$outputD .= '<tr class="trhw">
+									<td class="tg-3gzm" style="background-color:#d9d9d9;text-align:right;font-size:12px;padding: 5px 5px;color:#4e4e4e;">'.($a+1).'</td>
+									<td class="tg-vi9z" style="background-color:#d9d9d9;font-size:12px;padding: 5px 5px;color:#4e4e4e;">'.$dEqp[$a]['eq_name'].'<br></td>
+									<td class="tg-3gzm" style="background-color:#d9d9d9;text-align:right;font-size:12px;padding: 5px 5px;color:#4e4e4e;">'.$dEqp[$a]['qty'].'</td>
+									<td class="tg-3gzm" style="background-color:#d9d9d9;text-align:right;font-size:12px;padding: 5px 5px;color:#4e4e4e;">'.$dEqp[$a]['rate'].'</td>
+									<td class="tg-3gzm" style="background-color:#d9d9d9;text-align:right;font-size:12px;padding: 5px 5px;color:#4e4e4e;">'.$dEqp[$a]['amount'].'</td>
+								</tr>';
 							}
 						}
-						
-						if($data[$i]['cmp_name']!='')
+					}
+					else
+					{
+						if($a%2==0)
 						{
-							$company=ucfirst($data[$i]['cmp_name']);
+							$outputD .= '<tr class="trhw">
+									<td class="tg-3gzm" style="text-align:right;font-size:12px;padding: 5px 5px;color:#4e4e4e;"></td>
+									<td class="tg-vi9z" style="font-size:12px;padding: 5px 5px;color:#4e4e4e;">'.$dEqp[$a]['eq_name'].'<br></td>
+									<td class="tg-3gzm" style="text-align:right;font-size:12px;padding: 5px 5px;color:#4e4e4e;">'.$dEqp[$a]['qty'].'</td>
+									<td class="tg-3gzm" style="text-align:right;font-size:12px;padding: 5px 5px;color:#4e4e4e;">'.$dEqp[$a]['rate'].'</td>
+									<td class="tg-3gzm" style="text-align:right;font-size:12px;padding: 5px 5px;color:#4e4e4e;">'.$dEqp[$a]['amount'].'</td>
+								</tr>';
 						}
 						else
 						{
-							$company="-";
+							$outputD .= '<tr class="trhw">
+									<td class="tg-3gzm" style="background-color:#d9d9d9;text-align:right;font-size:12px;padding: 5px 5px;color:#4e4e4e;"></td>
+									<td class="tg-vi9z" style="background-color:#d9d9d9;font-size:12px;padding: 5px 5px;color:#4e4e4e;">'.$dEqp[$a]['eq_name'].'<br></td>
+									<td class="tg-3gzm" style="background-color:#d9d9d9;text-align:right;font-size:12px;padding: 5px 5px;color:#4e4e4e;">'.$dEqp[$a]['qty'].'</td>
+									<td class="tg-3gzm" style="background-color:#d9d9d9;text-align:right;font-size:12px;padding: 5px 5px;color:#4e4e4e;">'.$dEqp[$a]['rate'].'</td>
+									<td class="tg-3gzm" style="background-color:#d9d9d9;text-align:right;font-size:12px;padding: 5px 5px;color:#4e4e4e;">'.$dEqp[$a]['amount'].'</td>
+								</tr>';
 						}
-						
-					$html .= '
-							</td>
-						  </tr>
-						  <tr class="trhw">
-							<td class="tg-3gzm" colspan="5" rowspan="1">'.$company.'&nbsp;&nbsp;   <br>abc@gmail.com </td>
-						  </tr>
-						 
-						</table>
-						</body>
-					</html>';
+					}					
+				}
+				
+				$vennue = showVennue($conn,$_POST['txteid']);
+				$cntven = count($vennue);
+				for($t=0;$t<$cntven;$t++)
+				{
+					if($t== $cntven-1)
+					{
+						$VennueD .= $vennue[$t]['event_vennue'];
+					}
+					else
+					{
+						$VennueD .= $vennue[$t]['event_vennue'].', ';
+					}
+				}
+				for($t=0;$t<$cntven;$t++)
+				{
+					if($t== $cntven-1)
+					{
+						$ADATE .= $vennue[$t]['event_date'];
+					}
+					else
+					{
+						$ADATE .= date_format(date_create($vennue[$t]['event_date']),"d M").', ';
+					}
+				}
+				$bnrimg = showBannerImg($conn,$_POST['txteid']);
+				$cntimg = count($bnrimg);
+				for($t=0;$t<$cntimg;$t++)
+				{					
+					$BnrImg .= '<img width="1020" height="320" src=" '.DIR_IMAGES.$bnrimg[$t]['Banner_Img'].' "  />';				
 					
-				$mpdf=new mPDF('c','A4','','GEORGIAN' , 25 , 25 , 30 , 15 , 0 , 0); 
+				}
+				
+				$inv_id = showInvoiceId($conn);
+				$cnf_id = $inv_id[0]['invoice_conf_id'];
+				if($inv_id[0]['type'] == 'prefix')
+				{
+					$INVID = $inv_id[0]['label'].$inv_id[0]['next_val'];
+					$nextval = $inv_id[0]['next_val'] + 1;
+				}
+				else
+				{
+					$INVID = $inv_id[0]['next_val'].$inv_id[0]['label'];
+					$nextval = $inv_id[0]['next_val'] + 1;
+				}
+				
+				
+				
+				$output =array(	
+						'Description' => $outputD,
+						'Venue' => $VennueD,
+						'ADATE' => $ADATE,
+						'INVID' => $INVID,
+						'Banner_Img' => $BnrImg
+						);
+				
+				
+				$htmlbody = $InvBody[0]['template_body'];
+			
+ 
+				
+				$htmlData = str_get_html($htmlbody);			
+				foreach($input as $key => $value)
+				{
+					foreach($value as $key =>$value)
+					{						
+						$htmlData = str_replace('['.$key.']', $value, $htmlData);
+					}
+				}							
+				foreach($output as $key => $value)
+				{											
+					$htmlData = str_replace('['.$key.']', $value, $htmlData);
+					
+				}
+				//$html = str_get_html($htmlData);				
+				$html = $htmlData;	
+				
+				$mpdf=new mPDF('c','A4','','GEORGIAN'); 
 				 
 				$mpdf->SetDisplayMode('fullpage');
 				 
@@ -209,8 +239,13 @@
 				//header('location : D:\xampp\htdocs\mpdf\invoice\meu-pdf.pdf');
 				$path = DIR_WS_MINV.$fname;								
 				$mpdf->Output($path,'F');//this fn on 8174 line in mpdf.php
+				
+				
 				$date1 = date('Y-m-d H:i:s');
-				updInvEM($conn,$id,$fname);
+				updInvEM($conn,$id,$fname,$INVID);
+				
+				updInvConfig($conn,$cnf_id,$nextval);
+				
 				insInvECID($conn,$id,$fname,$date1,$_SESSION['USER_ID']);
 				
 				header('Location: upload/minvoice/'.$fname);
@@ -221,164 +256,178 @@
 			{
 				
 				$pos = substr($data[$i]['inv_file_name'],(strpos($data[$i]['inv_file_name'],"_") + 1),1);
-				$pos = $pos+ 1;
+				$pos = $pos + 1;
 				$newFileName = substr($data[$i]['inv_file_name'],0,strpos($data[$i]['inv_file_name'],"_") + 1) . (int)$pos . ".pdf" ;
 				
+				$InvBody = showInvBody($conn);
+				$input = showEventDetailInvD($conn,$_POST['txteid']);				
+				
+				//$ResourceDtl = showEqpResource($conn,$_POST['txteid']);
+				// print_r($ResourceDtl);
+				// exit;
+				
+				
 			
-				$html .= '
-
-					<style>
-					.trhw {height : 35px;}
-
-					</style>
-					<style type="text/css">
-					.tg  {border-collapse:collapse;border-spacing:0;}
-					.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
-					.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:0px 0px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
-					.tg .tg-jtyd{font-weight:bold;font-family:Georgia, serif !important;;background-color:#9a9a9a;text-align:right;vertical-align:top}
-					.tg .tg-3gzm{font-weight:bold;font-family:Georgia, serif !important;;text-align:right;vertical-align:top}
-					.tg .tg-ullm{font-weight:bold;font-size:13px;font-family:Georgia, serif !important;;background-color:#999999;text-align:right;vertical-align:top}
-					.tg .tg-vi9z{font-weight:bold;font-family:Georgia, serif !important;;vertical-align:top}
-					.tg .tg-bjj3{font-weight:bold;font-style:italic;font-size:22px;font-family:Georgia, serif !important;;background-color:#d9d9d9;text-align:center;vertical-align:top}
-					.tg .tg-m36b{font-weight:bold;font-size:13px;font-family:Georgia, serif !important;;background-color:#999999;text-align:center;vertical-align:top}
-					.thsrno {width:50px;}
-					.theqp {width:400px;}
-					.thamt {width:90px;}
-					</style>
-
-					<html>
-						<body> 						
-						
-						<table class="tg" >							
-						  <tr>
-							
-							<th class="tg-bjj3" colspan="1"><img style="height:50px;width:100px;"src="assets/img/rclogo.png"> </th>
-							<th class="tg-bjj3" style="padding:10px 5px;" colspan="4">INVOICE <br></th>
-						  </tr>
-						  <tr class="trhw">
-							<td class="tg-vi9z" colspan="3">To.: '.$cmp.' <br></td>
-							<td class="tg-vi9z" colspan="2">'.$sdate.'</td>
-						  </tr>
-						  <tr class="trhw">
-							<td class="tg-vi9z" colspan="3">Event:'.$enm.'</td>
-							<td class="tg-vi9z" colspan="2">FP No.:'.$data[$i]['fp_no'].'<br></td>
-						  </tr>
-						  <tr class="trhw">
-							<td class="tg-vi9z" colspan="5">Event Date :'.$fdate.' <br></td>
-						  </tr>
-						  <tr class="trhw">
-							<td class="tg-vi9z" colspan="3">Vennue.:</td>
-							<td class="tg-vi9z" colspan="2">Invoice No.:'.$id.'<br></td>
-						  </tr>
-						  <tr class="trhw">
-							<td class="tg-vi9z" colspan="5">Client.:'.$cnm.'</td>
-						  </tr>	  
-						  <tr class="trhw">
-							<td class="tg-m36b thsrno">Sr.No</td>
-							<td class="tg-m36b theqp">Equipment</td>
-							<td class="tg-ullm thsrno">Qty.</td>
-							<td class="tg-ullm thamt">Unit Cost<br></td>
-							<td class="tg-ullm thamt">Amount</td>
-						  </tr>';
-						
-						$dEqp = showEqpRsDtl($conn,$_POST['txteid']);
-						$cnteqp = count($dEqp); 
-						
-						for($a=0;$a<$cnteqp;$a++)
+				$dEqp = showEqpRsDtl($conn,$_POST['txteid']);
+				
+				$cnteqp = count($dEqp); 
+				if($cnteqp<11)
+				{
+					$cnteqp1 = 11;
+				}
+				else
+				{
+					$cnteqp1 = $cnteqp;
+				}
+				for($a=0;$a<$cnteqp1;$a++)
+				{
+					if($a < $cnteqp)
+					{
+						if($a%2==0)
 						{
 							if($dEqp[$a]['length']!='' && $dEqp[$a]['length']!='undefined')
 							{				
 							
-							$html .= '
-								<tr class="trhw">
-									<td class="tg-3gzm">'.($a+1).'</td>
-									<td class="tg-vi9z">'.$dEqp[$a]['eq_name'].'('.$dEqp[$a]['length'].'X'.$dEqp[$a]['width'].')<br></td>
-									<td class="tg-3gzm">'.$dEqp[$a]['qty'].'</td>
-									<td class="tg-3gzm">'.$dEqp[$a]['rate'].'</td>
-									<td class="tg-3gzm">'.$dEqp[$a]['amount'].'</td>
+							$outputD .= '
+								<tr class="trhw" >
+									<td class="tg-3gzm" style="text-align:right;font-size:12px;padding: 5px 5px;color:#4e4e4e;">'.($a+1).'</td>
+									<td class="tg-vi9z" style="font-size:12px;padding: 5px 5px;color:#4e4e4e;">'.$dEqp[$a]['eq_name'].'('.$dEqp[$a]['length'].'X'.$dEqp[$a]['width'].')<br></td>
+									<td class="tg-3gzm" style="text-align:right;font-size:12px;padding: 5px 5px;color:#4e4e4e;">'.$dEqp[$a]['qty'].'</td>
+									<td class="tg-3gzm" style="text-align:right;font-size:12px;padding: 5px 5px;color:#4e4e4e;">'.$dEqp[$a]['rate'].'</td>
+									<td class="tg-3gzm" style="text-align:right;font-size:12px;padding: 5px 5px;color:#4e4e4e;">'.$dEqp[$a]['amount'].'</td>
 								</tr>
 							';
 							}
 							else
 							{				
 							
-							$html .= '
+							$outputD .= '
 								<tr class="trhw">
-									<td class="tg-3gzm">'.($a+1).'</td>
-									<td class="tg-vi9z">'.$dEqp[$a]['eq_name'].'<br></td>
-									<td class="tg-3gzm">'.$dEqp[$a]['qty'].'</td>
-									<td class="tg-3gzm">'.$dEqp[$a]['rate'].'</td>
-									<td class="tg-3gzm">'.$dEqp[$a]['amount'].'</td>
+									<td class="tg-3gzm" style="text-align:right;font-size:12px;padding: 5px 5px;color:#4e4e4e;">'.($a+1).'</td>
+									<td class="tg-vi9z" style="font-size:12px;padding: 5px 5px;color:#4e4e4e;">'.$dEqp[$a]['eq_name'].'<br></td>
+									<td class="tg-3gzm" style="text-align:right;font-size:12px;padding: 5px 5px;color:#4e4e4e;">'.$dEqp[$a]['qty'].'</td>
+									<td class="tg-3gzm" style="text-align:right;font-size:12px;padding: 5px 5px;color:#4e4e4e;">'.$dEqp[$a]['rate'].'</td>
+									<td class="tg-3gzm" style="text-align:right;font-size:12px;padding: 5px 5px;color:#4e4e4e;">'.$dEqp[$a]['amount'].'</td>
 								</tr>
 							';
 							}
 						}
-						  
-						  
-						$html .= '  
-						
-						  <tr class="trhw">
-							<td class="tg-3gzm"></td>
-							<td class="tg-vi9z"> <br></td>
-							<td class="tg-3gzm"></td>
-							<td class="tg-3gzm"></td>
-							<td class="tg-3gzm"></td>
-						  </tr>
-						
-						  <tr class="trhw">
-							<td class="tg-jtyd" colspan="4">Charge<br></td>
-							<td class="tg-3gzm">'.$data[$i]['client_charges'].'</td>
-						  </tr>
-						  <tr class="trhw">
-							<td class="tg-jtyd" colspan="4">Discount</td>
-							<td class="tg-3gzm">'.$data[$i]['client_discount_amt'].'</td>
-						  </tr>
-						  <tr class="trhw">
-							<td class="tg-jtyd" colspan="4">S.Tax '.$data[$i]['service_tax_rate'].'%<br></td>
-							<td class="tg-3gzm">'.$data[$i]['service_tax_amt'].'</td>
-						  </tr>
-						  <tr class="trhw">
-							<td class="tg-jtyd" colspan="4">Total</td>
-							<td class="tg-3gzm">'.$data[$i]['total_amt'].'</td>
-						  </tr>
-						  <tr class="trhw">
-							<td class="tg-vi9z" colspan="5" rowspan="1">
-								Terms & Condition
-							';
-							
-						$cond = showInvCond($conn);				
-						$cnt = count($cond);	
-						for($b=0;$b<$cnt;$b++)
+						else
 						{
-							$allcond = json_decode($cond[$b]['inv_cond_json']);
-							$cntjsn = count($allcond);
-							for($k=0;$k<$cntjsn;$k++)
-							{						
-								$html .= $allcond[$k].'<br>';
+							if($dEqp[$a]['length']!='' && $dEqp[$a]['length']!='undefined')
+							{				
+							
+							$outputD .= '
+								<tr class="trhw" >
+									<td class="tg-3gzm" style="background-color:#d9d9d9;text-align:right;font-size:12px;padding: 5px 5px;color:#4e4e4e;">'.($a+1).'</td>
+									<td class="tg-vi9z" style="background-color:#d9d9d9;font-size:12px;padding: 5px 5px;color:#4e4e4e;">'.$dEqp[$a]['eq_name'].'('.$dEqp[$a]['length'].'X'.$dEqp[$a]['width'].')<br></td>
+									<td class="tg-3gzm" style="background-color:#d9d9d9;text-align:right;font-size:12px;padding: 5px 5px;color:#4e4e4e;">'.$dEqp[$a]['qty'].'</td>
+									<td class="tg-3gzm" style="background-color:#d9d9d9;text-align:right;font-size:12px;padding: 5px 5px;color:#4e4e4e;">'.$dEqp[$a]['rate'].'</td>
+									<td class="tg-3gzm" style="background-color:#d9d9d9;text-align:right;font-size:12px;padding: 5px 5px;color:#4e4e4e;">'.$dEqp[$a]['amount'].'</td>
+								</tr>
+							';
+							}
+							else
+							{				
+							
+							$outputD .= '<tr class="trhw">
+									<td class="tg-3gzm" style="background-color:#d9d9d9;text-align:right;font-size:12px;padding: 5px 5px;color:#4e4e4e;">'.($a+1).'</td>
+									<td class="tg-vi9z" style="background-color:#d9d9d9;font-size:12px;padding: 5px 5px;color:#4e4e4e;">'.$dEqp[$a]['eq_name'].'<br></td>
+									<td class="tg-3gzm" style="background-color:#d9d9d9;text-align:right;font-size:12px;padding: 5px 5px;color:#4e4e4e;">'.$dEqp[$a]['qty'].'</td>
+									<td class="tg-3gzm" style="background-color:#d9d9d9;text-align:right;font-size:12px;padding: 5px 5px;color:#4e4e4e;">'.$dEqp[$a]['rate'].'</td>
+									<td class="tg-3gzm" style="background-color:#d9d9d9;text-align:right;font-size:12px;padding: 5px 5px;color:#4e4e4e;">'.$dEqp[$a]['amount'].'</td>
+								</tr>';
 							}
 						}
-						
-						if($data[$i]['cmp_name']!='')
+					}
+					else
+					{
+						if($a%2==0)
 						{
-							$company=ucfirst($data[$i]['cmp_name']);
+							$outputD .= '<tr class="trhw">
+									<td class="tg-3gzm" style="text-align:right;font-size:12px;padding: 5px 5px;color:#4e4e4e;"></td>
+									<td class="tg-vi9z" style="font-size:12px;padding: 5px 5px;color:#4e4e4e;">'.$dEqp[$a]['eq_name'].'<br></td>
+									<td class="tg-3gzm" style="text-align:right;font-size:12px;padding: 5px 5px;color:#4e4e4e;">'.$dEqp[$a]['qty'].'</td>
+									<td class="tg-3gzm" style="text-align:right;font-size:12px;padding: 5px 5px;color:#4e4e4e;">'.$dEqp[$a]['rate'].'</td>
+									<td class="tg-3gzm" style="text-align:right;font-size:12px;padding: 5px 5px;color:#4e4e4e;">'.$dEqp[$a]['amount'].'</td>
+								</tr>';
 						}
 						else
 						{
-							$company="-";
+							$outputD .= '<tr class="trhw">
+									<td class="tg-3gzm" style="background-color:#d9d9d9;text-align:right;font-size:12px;padding: 5px 5px;color:#4e4e4e;"></td>
+									<td class="tg-vi9z" style="background-color:#d9d9d9;font-size:12px;padding: 5px 5px;color:#4e4e4e;">'.$dEqp[$a]['eq_name'].'<br></td>
+									<td class="tg-3gzm" style="background-color:#d9d9d9;text-align:right;font-size:12px;padding: 5px 5px;color:#4e4e4e;">'.$dEqp[$a]['qty'].'</td>
+									<td class="tg-3gzm" style="background-color:#d9d9d9;text-align:right;font-size:12px;padding: 5px 5px;color:#4e4e4e;">'.$dEqp[$a]['rate'].'</td>
+									<td class="tg-3gzm" style="background-color:#d9d9d9;text-align:right;font-size:12px;padding: 5px 5px;color:#4e4e4e;">'.$dEqp[$a]['amount'].'</td>
+								</tr>';
 						}
-						
-					$html .= '
-							</td>
-						  </tr>
-						  <tr class="trhw">
-							<td class="tg-3gzm" colspan="5" rowspan="1">'.$company.'&nbsp;&nbsp;   <br>abc@gmail.com </td>
-						  </tr>
-						 
-						</table>
-						</body>
-					</html>';
+					}					
+				}
+				$vennue = showVennue($conn,$_POST['txteid']);
+				$cntven = count($vennue);
+				for($t=0;$t<$cntven;$t++)
+				{
+					if($t== $cntven-1)
+					{
+						$VennueD .= $vennue[$t]['event_vennue'];
+					}
+					else
+					{
+						$VennueD .= $vennue[$t]['event_vennue'].', ';
+					}
+				}
+				for($t=0;$t<$cntven;$t++)
+				{
+					if($t== $cntven-1)
+					{
+						$ADATE .= $vennue[$t]['event_date'];
+					}
+					else
+					{
+						$ADATE .= date_format(date_create($vennue[$t]['event_date']),"d M").', ';
+					}
+				}
+				$bnrimg = showBannerImg($conn,$_POST['txteid']);
+				$cntimg = count($bnrimg);
+				for($t=0;$t<$cntimg;$t++)
+				{					
+					$BnrImg .= '<img width="1020" height="320" src=" '.DIR_IMAGES.$bnrimg[$t]['Banner_Img'].' "  />';				
 					
-				$mpdf=new mPDF('c','A4','','GEORGIAN' , 25 , 25 , 30 , 15 , 0 , 0); 
+				}
+				
+				$INVID = $input[0]['inv_file_id'];
+				
+				$output =array(	
+						'Description' => $outputD,
+						'Venue' => $VennueD,
+						'ADATE' => $ADATE,
+						'INVID' => $INVID,
+						'Banner_Img' => $BnrImg
+						);
+				
+				
+				$htmlbody = $InvBody[0]['template_body'];
+			
+ 
+				
+				$htmlData = str_get_html($htmlbody);			
+				foreach($input as $key => $value)
+				{
+					foreach($value as $key =>$value)
+					{						
+						$htmlData = str_replace('['.$key.']', $value, $htmlData);
+					}
+				}							
+				foreach($output as $key => $value)
+				{											
+					$htmlData = str_replace('['.$key.']', $value, $htmlData);
+					
+				}
+				//$html = str_get_html($htmlData);				
+				$html = $htmlData;
+				
+				$mpdf=new mPDF('c','A4','','GEORGIAN'); 
 				 
 				$mpdf->SetDisplayMode('fullpage');
 				 
@@ -386,7 +435,8 @@
 				 
 				$mpdf->WriteHTML($html);
 						 
-				
+				// print_r($html);
+				// exit;
 				
 				//header('location : D:\xampp\htdocs\mpdf\invoice\meu-pdf.pdf');
 				
@@ -403,16 +453,6 @@
 		}
 	}
 	
-	// include("mpdf60/mpdf.php");
-	// $mpdf = new mPDF();
-	// $mpdf -> allow_charset_conversion = true;
-	// $mpdf -> charset_in = 'UTF-8';
-	// $mpdf -> WriteHTML($html);
-	// $mpdf -> Output('meu-pdf','I');
-	// exit();
-	
-	//include("mpdf/mpdf.php");
-	 
-	
+
 
 ?>

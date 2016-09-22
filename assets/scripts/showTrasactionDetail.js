@@ -20,6 +20,27 @@ $('#tranexcel').click(function()
 						
 		});
 
+$('body').delegate('.delete1','click',function()
+{
+	var id = $(this).data('id');
+			$.ajax({
+				url : 'includes/transactionDetailPost.php',
+				type : 'POST',
+				async : false,
+				data : {
+					'delete'  : 1,
+					'id' 	: id
+										
+				},
+				success : function(d)
+				{
+					alert("Delete Successfully");
+					window.location.reload();
+				}
+				
+			});
+		
+});
 $('body').delegate('.expopen','click',function()
 	{			
 			
@@ -47,6 +68,28 @@ $('body').delegate('.expopen','click',function()
 		});		
 	});
 
+ 	$('#drpcmpnmdtl').on('change',function() 
+	{
+		var value = $(this).val();
+		// alert(value);
+		// return false;
+		
+		$.ajax({
+				url : './includes/transactionDetailPost.php',
+				type : 'post',
+				async : false,
+				data : {
+					'showTrnDetailCmpType' : 1,
+					'value': value,
+					
+				},
+				success : function(r)
+				{
+					$('#showTrnDetail').html(r);					
+				}
+				
+			});
+	});
 function showTrnDtl()
 		{		
 			$.ajax({
@@ -127,6 +170,24 @@ function showStaffDrp()
 		}
 		showStaffDrp();
 		
+  function showVendDrp()
+		{		
+			$.ajax({
+				url : './includes/transactionDetailPost.php',
+				type : 'post',
+				async : false,
+				data : {
+					'showVendDrp' : 1
+					
+				},
+				success : function(r)
+				{
+					$('#showvnd').html(r);					
+				}
+				
+			});
+		}
+		showVendDrp();
 $('#addexp').click(function()
 	{
 		var showexpctg    =   $('#showexpctg').val();
@@ -134,6 +195,7 @@ $('#addexp').click(function()
 		var txtfromdt     =   $('#txtfromdt').val();	
 		var txtamt    =   $('#txtamt').val();
 		var showstf     =   $('#showstf').val();
+		var showvnd     =   $('#showvnd').val();
 		
 		// alert(showexpctg);
 		// alert(showevent);
@@ -155,7 +217,7 @@ $('#addexp').click(function()
 				'txtfromdt'  : txtfromdt,	
 				'txtamt'   : txtamt,
 				'showstf'  : showstf,
-				
+				'showvnd'  : showvnd,
 				
 			},
 			success : function(re)

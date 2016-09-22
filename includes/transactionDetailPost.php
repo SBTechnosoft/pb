@@ -6,10 +6,13 @@
 		$frdt = $_POST['txtfromdt'];		
 		$nfrdt = date_format(new DateTime($frdt),'Y-m-d H:i:s');
 		
-		insertExpence($conn,$_POST['showexpctg'],$_POST['showevent'],$nfrdt,$_POST['txtamt'],$_POST['showstf']);
+		insertExpence($conn,$_POST['showexpctg'],$_POST['showevent'],$nfrdt,$_POST['txtamt'],$_POST['showstf'],$_POST['showvnd']);
 		
 	}		
-	
+	if(isset($_POST['delete']))
+	{			
+		deltranc($conn,$_POST['id']);	
+	}
 	if(isset($_POST['showTrnDtl']))
 	{	
 		$ETrnDtl = showTransDtl ($conn);
@@ -20,7 +23,7 @@
 		$showTrnVend = count($VTrnDtl);
 		
 		
-		//print_r($VTrnDtl);
+		
 		
 		$showTrnCnt = count($ETrnDtl);	
 		for($i=0;$i<$showTrnCnt;$i++)
@@ -327,6 +330,20 @@
 			<?php
 		}
 	}
+   	if(isset($_POST['showVendDrp']))
+	{
+		$data = showVendName($conn);
+		$showStfCnt = count($data);
+		?>
+		<option select="selected" value="">Select Vendor</option>
+		<?php
+		for($i=0;$i<$showStfCnt;$i++)
+		{
+			?>
+			<option  value="<?php echo $data[$i]['vend_id'];?>"><?php echo $data[$i]['vendor_name']."(".$data[$i]['vendor_cmp'] .")";?></option>
+			<?php
+		}
+	}
 		//show the popup detail of expence detail.
 	if(isset($_POST['ExpDtl']))
 	{			
@@ -340,7 +357,9 @@
 			<div class="Cell"><span style="float:left;">Exp.Type</span></div>
 			<div class="Cell"><span style="float:left;">Exp date</span></div>
 			<div class="Cell"><span style="float:left;">Exp By</span></div>			
+			<div class="Cell"><span style="float:left;">Exp By Vendor</span></div>
 			<div class="Cell"><span style="float:left;">Amount</span></div>			
+			<div class="Cell"><span style="float:left;">Action</span></div>	
 		</div>
 		<?php
 		for($a=0;$a<$cntexpdtl;$a++)
@@ -370,9 +389,21 @@
 					</span>
 				</div>
 				<div class="Cell" >
+					<span style="float:left;">
+					<?php  if($expdtl[$a]['vendor_name']== ''){echo "-";}else{echo $expdtl[$a]['vendor_name']."(".$expdtl[$a]['vendor_cmp'].")"; } ?>
+					</span>
+				</div>
+				<div class="Cell">
 					<span style="float:right;">
 					<?php if($expdtl[$a]['amount']== ''){echo "-";}else{echo $expdtl[$a]['amount']; }  ?>
 					</span>
+				</div>
+				<div class="Cell">								
+					<a data-id="<?php echo $expdtl[$a]['exp_id']; ?>" class="edit" data-toggle="tooltip" title="View">
+						<i class="fa fa-pencil-square-o"></i>
+					</a> &nbsp;&nbsp;&nbsp;
+					<a data-toggle="tooltip" title="Delete" data-id="<?php echo $expdtl[$a]['exp_id']; ?>" class="delete1"> <i class="fa fa-trash-o"></i> 
+					</a>
 				</div>
 				
 			</div>

@@ -1309,7 +1309,7 @@
 				//insert the Equipment detail
 				$('#updEqpD<?php echo $i; ?>').click(function()
 				{									
-					var contres = $('#contres').val();
+					
 					var clcharge = $('#clcharge').val();
 					var clpdcharge = $('#clpdcharge').val();					
 					var txmd = $('#txmd').val();
@@ -1363,8 +1363,6 @@
 						 txtiwidth.push($(this).val());
 					});
 					
-					if( contres == 0 )
-					{													
 						var eqptotal_amt = 0;
 						$.each(txtiamt,function() {
 							eqptotal_amt += parseInt(this);
@@ -1389,10 +1387,7 @@
 						{
 							totammt = parseInt(totammt) +parseInt(eqptotal_amt);
 						}
-						// alert(txamt);
-						// alert(totammt);
-						// return false;
-					}
+						
 					
 					$.ajax({
 							url : 'includes/eventDetailPost.php',
@@ -1426,7 +1421,7 @@
 								$("#eqpinfo<?php echo $i;?>").hide();
 								$("#edteqp<?php echo $i;?>").show();
 								
-								newshowResDtl<?php echo $i; ?> ();
+								
 								newshowEqpDtl<?php echo $i; ?> ();
 								UpdateAcc();
 							}
@@ -1522,10 +1517,7 @@
 	
 	if(isset($_POST['epddel']))
 	{		
-		//$date = date('Y-m-d H:i:s');
-		if( $_POST['contres'] == 0 )
-		{													
-			
+		
 			$clcharge = $_POST['clcharge'] - $_POST['eqp_amt'] ;						
 			$vdcharge = $_POST['vdcharge'] - $_POST['ven_amt'] ; 
 			
@@ -1540,34 +1532,9 @@
 			{
 				$totammt = $_POST['totammt'] - $_POST['eqp_amt'];
 			}
-			// echo $clcharge."<br>";
-			// echo $vdcharge."<br>";
-			// echo $txamt."<br>";
-			// echo $totammt."<br>";
-			updEqpEventMst($conn,$_POST['event_id'],$totammt,$txamt,$clcharge,$vdcharge);
-		}
-		else
-		{
 			
-			$clcharge = $_POST['clcharge'] - $_POST['res_amt'] ;	
-			
-			$vdcharge = $_POST['vdcharge'] - $_POST['rven_amt'] ;
-			
-			if($_POST['txmd']=='Yes')
-			{							
-				$servtax  =	($_POST['res_amt']*$_POST['txrat'])/100;
-				$txamt =  $_POST['txamt'] - $servtax;
-				$totammt = $_POST['totammt'] - $_POST['res_amt'] - $servtax ;
-			}
-			else
-			{
-				$totammt = $_POST['totammt'] - $_POST['res_amt'];
-			}
-			// echo $clcharge."<br>";
-			// echo $txamt."<br>";
-			// echo $totammt."<br>";
-			updResEventMst($conn,$_POST['event_id'],$totammt,$txamt,$clcharge,$vdcharge);
-		}		
+			updEqpEventMst($conn,$_POST['event_id'],$totammt,$txamt,$clcharge,$vdcharge);		
+				
 		delEventPlacesUpd($conn,$_POST['id']);
 	}
 	if(isset($_POST['eqpdel']))
@@ -1596,7 +1563,7 @@
 	}
 	if(isset($_POST['UpdateAcc']))
 	{		
-		$q = mysql_query("select `total_amt`,`client_charges`,`vendor_charges`,`service_tax_amt` from `event_mst` where event_id='".$_POST['id']."'");
+		$q = mysql_query("select `total_amt`,`client_charges`,`vendor_charges`,`service_tax_amt`,`client_discount_amt`,`client_paid_amt`,(client_charges-client_discount_amt) as remain_amt from `event_mst` where event_id='".$_POST['id']."'");
 		$row = mysql_fetch_array($q);
 		header("Content-type: text/x-json");
 		echo json_encode($row);

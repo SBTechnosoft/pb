@@ -21,3 +21,9 @@ CREATE TABLE `event_mgt`.`invoice_config` (
   PRIMARY KEY (`invoice_conf_id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;
+
+ALTER TABLE `event_mgt`.`invoice_config` 
+CHANGE COLUMN `created_at` `created_at` DATETIME NULL DEFAULT NULL ;
+
+ALTER TABLE `event_mgt`.`invoice_config` 
+CHANGE COLUMN `invoice_conf_id` `invoice_conf_id` INT(11) NOT NULL AUTO_INCREMENT ;

@@ -522,7 +522,7 @@
 					var txtiamt = $('#txtiamt'+id).val();
 					var txtivendprice = $('#txtivendprice'+id).val();
 					var evnt_id = $('#eid').val();					
-					var contres = $('#contres').val();
+					
 					var clcharge = $('#clcharge').val();
 					var clpdcharge = $('#clpdcharge').val();					
 					var txmd = $('#txmd').val();
@@ -530,10 +530,12 @@
 					var txamt = $('#txamt').val();
 					var totammt = $('#totammt').val();	
 					var vdcharge = $('#vdcharge').val();			
+					if(vdcharge=='')
+					{
+						vdcharge=0;
+					}
 					
-					
-					if( contres == 0 )
-					{													
+																		
 						
 						clcharge = parseInt(clcharge) - parseInt(txtiamt);						
 						vdcharge = parseInt(vdcharge) - parseInt(txtivendprice); 
@@ -550,7 +552,7 @@
 							totammt = parseInt(totammt) - parseInt(txtiamt);
 						}
 						
-					}
+					
 								
 					
 					$.ajax({
@@ -584,7 +586,7 @@
 					var id = $(this).data('id');
 					
 					var event_id = $('#eid').val();
-					var contres = $('#contres').val();
+					
 					var clcharge = $('#clcharge').val();
 					var clpdcharge = $('#clpdcharge').val();					
 					var txmd = $('#txmd').val();
@@ -594,15 +596,7 @@
 					
 					var vdcharge = $('#vdcharge').val();
 					
-					//Resource
-					var res_sum = [];
-					$.each($('.rtxtallpamt'+id), function(){          
-						res_sum.push($(this).val());
-					});
-					var res_amt = 0;
-					$.each(res_sum,function() {
-						res_amt += parseInt(this);
-					});
+					
 					
 					//Equipment
 					var eqp_sum = [];
@@ -626,16 +620,7 @@
 						ven_amt += parseInt(this);
 					});	
 					
-					//Res Vendor
-					var rven_sum = [];
-					$.each($('.rtxtallpvendprice'+id), function(){          
-						rven_sum.push($(this).val());
-					});
 					
-					var rven_amt = 0;
-					$.each(rven_sum,function() {
-						rven_amt += parseInt(this);
-					});	
 					
 					$.ajax({
 						url : 'includes/eventDetailPost.php',
@@ -644,17 +629,17 @@
 						data : {
 							'epddel'  : 1,
 							'id' 	: id,
-							'contres' : contres,
+							
 							'clcharge' : clcharge,
 							'txmd' : txmd,
 							'txrat' : txrat,
 							'txamt' : txamt,
 							'totammt' : totammt,
 							'vdcharge' : vdcharge,							
-							'res_amt' : res_amt,
+							
 							'eqp_amt' : eqp_amt,
 							'ven_amt' : ven_amt,
-							'rven_amt' : rven_amt,
+							
 							'event_id': event_id,
 												
 						},
@@ -774,11 +759,13 @@
 				success : function(e)
 				{
 					$('#txtcharge').val(e.total_amt);
-					
+					$('#client_charges').val(e.client_charges);
 					$('#clcharge').val(e.client_charges);
 					$('#vdcharge').val(e.vendor_charges);
 					$('#txamt').val(e.service_tax_amt);
 					$('#totammt').val(e.total_amt);
+					$('#disamt').val(e.remain_amt);
+					$('#st').val(e.service_tax_amt);
 				}
 			});
 		}
