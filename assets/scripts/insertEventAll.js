@@ -1018,6 +1018,84 @@
 			$('#txtamt').val(tot);			
 		});
 		
+		$("#txtdisc").on("focusout", function(){
+			var txtdisc    =   $('#txtdisc').val();
+			var txtcharge    =   $('#txtcharge').val();
+			var taxmode = $('#taxmode').val();
+			var txtstax = $('#txtstax').val();
+			
+			
+			if(txtdisc == "" )
+			{
+				txtdisc = 0;
+			}
+			if(txtdisc != "")
+			{
+				if(isNaN(txtdisc))
+				{
+					alert("Please Only Numeric in qty!!! (Allowed input:0-9)")
+					return false;
+				}
+				
+			}
+			
+			if(taxmode == 'No')
+			{
+				var txtdiscAmt = parseInt(txtcharge) - parseInt(txtdisc);			
+				$('#txtdiscAmt').val(txtdiscAmt);	
+				$('#txtfinalamt').val(txtdiscAmt);
+				$('#STax').val('0');
+			}
+			else
+			{
+				var txtdiscAmt = parseInt(txtcharge) - parseInt(txtdisc);
+				var taxamt =  (parseInt(txtdiscAmt)*parseInt(txtstax))/100;
+				var txtfinalamt = parseInt(txtdiscAmt) + parseInt(taxamt);
+				$('#txtdiscAmt').val(txtdiscAmt);
+				$('#STax').val(taxamt);
+				$('#txtfinalamt').val(txtfinalamt);
+			}
+		});
+		
+		$("#taxmode").on("change", function(){
+			var txtdisc    =   $('#txtdisc').val();
+			var txtcharge    =   $('#txtcharge').val();
+			var taxmode = $('#taxmode').val();
+			var txtstax = $('#txtstax').val();
+			
+			
+			if(txtdisc == "" )
+			{
+				txtdisc = 0;
+			}
+			if(txtdisc != "")
+			{
+				if(isNaN(txtdisc))
+				{
+					alert("Please Only Numeric in qty!!! (Allowed input:0-9)")
+					return false;
+				}
+				
+			}
+			
+			if(taxmode == 'No')
+			{
+				var txtdiscAmt = parseInt(txtcharge) - parseInt(txtdisc);			
+				$('#txtdiscAmt').val(txtdiscAmt);	
+				$('#txtfinalamt').val(txtdiscAmt);
+				$('#STax').val('0');
+			}
+			else
+			{
+				var txtdiscAmt = parseInt(txtcharge) - parseInt(txtdisc);
+				var taxamt =  (parseInt(txtdiscAmt)*parseInt(txtstax))/100;
+				var txtfinalamt = parseInt(txtdiscAmt) + parseInt(taxamt);
+				$('#txtdiscAmt').val(txtdiscAmt);
+				$('#STax').val(taxamt);
+				$('#txtfinalamt').val(txtfinalamt);
+			}
+		});
+		
 		function total()
 		{
 			// var amount = [];
@@ -1269,6 +1347,8 @@
 			$('#txtwidth').hide();
 			$('.txtcharge').val(total_amt);
 			$('.txtvcharge').val(total_vamt);
+			$('.txtdiscAmt').val(total_amt);
+			$('.txtfinalamt').val(total_amt);
 			
 		});
 		$(document).on('click','.remove',function(){
@@ -1301,5 +1381,7 @@
 				//alert(total_vamt);
 			$('.txtcharge').val(total_amt);
 			$('.txtvcharge').val(total_vamt);
+			$('.txtdiscAmt').val(total_amt);
+			$('.txtfinalamt').val(total_amt);
 		});
 	});	

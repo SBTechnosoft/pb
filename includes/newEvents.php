@@ -649,9 +649,44 @@
 						
 						<div class="clearfix margin-bottom-10">							
 							<div class="input-icon input-append">
-								<label for="txtcharge">Client Charge:</label>
+								<label for="txtcharge">Total Amt:</label>
 							</div>
 							<input type="text" id="txtcharge" name="txtcharge" class=" large m-wrap txtcharge client" readonly />
+						</div>
+						<div class="clearfix margin-bottom-10" >							
+							<div class="input-icon input-append">
+								<label for="txtdisc">Discount: </label>
+							</div>
+							<input type="text" id="txtdisc" name="txtdisc" value="0" class="large m-wrap discount1" />							
+						</div>
+						
+						<div class="clearfix margin-bottom-10" >							
+							<div class="input-icon input-append">
+								<label for="txtdiscAmt">Discounted Amt: </label>
+							</div>
+							<input type="text" id="txtdiscAmt" name="txtdiscAmt" class="large m-wrap txtdiscAmt discount1" readonly />							
+						</div>
+						<div class="clearfix margin-bottom-10" >
+							<div class="pull-left margin-right-10">
+								<label for="">Service Tax Applicability: </label>
+							</div>
+							<select name="taxmode" id="taxmode" class="large m-wrap sertax"> 
+								<option select="selected" value="No">No</option>
+								<option value="Yes">Yes</option>
+							</select>
+						</div>
+						<div class="clearfix margin-bottom-10" >							
+							<div class="input-icon input-append">
+								<label for="STax">Tax: </label>
+							</div>
+							<input type="text" id="STax" name="STax" class="large m-wrap discount1" readonly />							
+						</div>
+						
+						<div class="clearfix margin-bottom-10" >							
+							<div class="input-icon input-append">
+								<label for="txtfinalamt">Final Amt: </label>
+							</div>
+							<input type="text" id="txtfinalamt" name="txtfinalamt" class="large m-wrap txtfinalamt discount1" readonly />							
 						</div>
 						
 						<div class="clearfix margin-bottom-10">
@@ -661,12 +696,7 @@
 							<input type="number" id="txtpaid" name="txtpaid" class="large m-wrap sertax" />
 						</div>
 						
-						<div class="clearfix margin-bottom-10" >							
-							<div class="input-icon input-append">
-								<label for="txtpaid">Discount: </label>
-							</div>
-							<input type="text" id="txtdisc" name="txtdisc" class="large m-wrap discount1" />							
-						</div>
+						
 						
 						<div class="clearfix margin-bottom-10">							
 							<div class="input-icon input-append">
@@ -691,15 +721,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="clearfix margin-bottom-10" >
-							<div class="pull-left margin-right-10">
-								<label for="">Service Tax Applicability: </label>
-							</div>
-							<select name="taxmode" id="taxmode" class="large m-wrap sertax"> 
-								<option select="selected" value="No">No</option>
-								<option value="Yes">Yes</option>
-							</select>
-						</div>
+						
 						
 						<input type="hidden" id="txtstax" name="txtstax" value=""/>
 						<br/>				

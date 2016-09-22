@@ -1759,7 +1759,7 @@
 					<script src="<?php echo HTTP_SERVER; ?>assets/scripts/insertEventAll.js"></script>
 					
 					<script src="<?php echo HTTP_SERVER; ?>assets/scripts/showCmpDrp.js"></script>
-					<script src="<?php echo HTTP_SERVER; ?>assets/scripts/showCtgDrp.js"></script>
+					
 					<script src="<?php echo HTTP_SERVER; ?>assets/scripts/showTax.js"></script>
 					<!--script src="<?php echo HTTP_SERVER; ?>assets/scripts/insertEvents.js"></script-->					
 					<script src="<?php echo HTTP_SERVER; ?>assets/scripts/table-advanced.js"></script> 	

@@ -117,34 +117,36 @@ if(isset($_POST['showtax']))
 	if(isset($_POST['txteventnm']))
 	{	
 			   $evnt_nm = $_POST['txteventnm'];
-				if($_POST['taxmode'] == 'Yes')
-				{
-					if($_POST['txtdisc']=='')
-					{
-						$tax  =	round(($_POST['txtcharge'])* ($_POST['txtstax'])/100);				
-						$gtot =  ($_POST['txtcharge'] ) + ($tax) ;				
-					}
-					else
-					{
-						$tax =  round((($_POST['txtcharge']) - ($_POST['txtdisc'])) * ($_POST['txtstax'])/100);				
-						$gtot =  (($_POST['txtcharge']) - ($_POST['txtdisc']) ) + ($tax) ;
-					}
-				}
-				else
-				{
-					if($_POST['txtdisc'] == '')
-					{
-						$gtot = ($_POST['txtcharge']);
-					}
-					else
-					{
+				// if($_POST['taxmode'] == 'Yes')
+				// {
+					// if($_POST['txtdisc']=='')
+					// {
+						// $tax  =	round(($_POST['txtcharge'])* ($_POST['txtstax'])/100);				
+						// $gtot =  ($_POST['txtcharge'] ) + ($tax) ;				
+					// }
+					// else
+					// {
+						// $tax =  round((($_POST['txtcharge']) - ($_POST['txtdisc'])) * ($_POST['txtstax'])/100);				
+						// $gtot =  (($_POST['txtcharge']) - ($_POST['txtdisc']) ) + ($tax) ;
+					// }
+				// }
+				// else
+				// {
+					// if($_POST['txtdisc'] == '')
+					// {
+						// $gtot = ($_POST['txtcharge']);
+					// }
+					// else
+					// {
 						
-						$gtot =  (($_POST['txtcharge']) - ($_POST['txtdisc']) )  ;
+						// $gtot =  (($_POST['txtcharge']) - ($_POST['txtdisc']) )  ;
 						
-					}
+					// }
 						
 					
-				}
+				// }
+				$gtot = $_POST['txtfinalamt'] ;
+				$tax = $_POST['STax'];
 		
 		
 		$hdn_ary = $_POST['hdn'];		

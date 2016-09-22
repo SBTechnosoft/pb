@@ -21,20 +21,22 @@ $(document).on('click','#add',function()
 		'	</h4>'+
 		'	<hr />'+
 		'	<div class="clearfix margin-bottom-10">'+
-		'		<label for="txtvenue">Venue </label>'+
-		'		<div class="input-icon left">'+
-		'			<input class="m-wrap" id="hdn['+i+'][txtvenue]" name="hdn['+i+'][txtvenue]" type="text"  />'+
+		'		<div class="pull-left margin-right-10">'+
+		'			<div class="input-icon input-append">'+
+		'				<label for="txtvenue">Venue: </label>'+
+		'			</div>'+	
+		'			<input class="m-wrap" id="hdn['+i+'][txtvenue]" name="hdn['+i+'][txtvenue]" type="text"  />'+	
 		'		</div>'+
-		'	</div>'+
-		'	<div class="clearfix margin-bottom-10">'+
-		'		<label for="txthall">Hall </label>'+
-		'		<div class="input-icon left">'+
+		'		<div class="pull-left margin-right-10">'+
+		'			<div class="input-icon input-append abc1">'+
+		'				<label for="txthall">Hall: </label>'+
+		'			</div>'+
 		'			<input class="m-wrap" id="hdn['+i+'][txthall]" name="hdn['+i+'][txthall]" type="text"  />'+
 		'		</div>'+
-		'	</div>'+
-		'	<div class="clearfix margin-bottom-10">'+
-		'		<label for="txtldmark">Land Mark </label>'+
-		'		<div class="input-icon left">'+
+		'		<div class="pull-left margin-right-10">'+
+		'			<div class="input-icon input-append">'+
+		'				<label for="txtldmark">Land Mark: </label>'+
+		'			</div>'+
 		'			<input class="m-wrap" id="hdn['+i+'][txtldmark]" name="hdn['+i+'][txtldmark]" type="text" />'+
 		'		</div>'+
 		'	</div>'+
