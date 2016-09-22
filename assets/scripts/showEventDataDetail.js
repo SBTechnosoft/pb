@@ -509,6 +509,7 @@
 					showvendorpaid();
 					showpdf();
 					showfullpdf();
+					UpdateAcc();
 				}
 				
 			});		
@@ -570,7 +571,8 @@
 						},
 						success : function(d)
 						{
-							alert("Delete Successfully");							
+							alert("Delete Successfully");
+							UpdateAcc();
 						}						
 					});
 					$( this ).parent().parent().css( "display", "none" );					
@@ -651,7 +653,7 @@
 						}
 						
 					});
-					$( this ).parent().parent().css( "display", "none" );					
+					$( this ).parent().parent().parent().css( "display", "none" );					
 				});
 				
 				
@@ -732,6 +734,7 @@
 					showvendorpaid();
 					showpdf();
 					showfullpdf();
+					UpdateAcc();
 				}
 				
 			});		

@@ -527,7 +527,7 @@
 									</select>
 									<select name="drpnewvend" id="drpnewvend" class="medium m-wrap drpnewvend"> 											
 									</select>
-									<input class="small m-wrap txtvprice" type="text"  id="txtvprice" name="txtvprice" value="" />
+									<input class="small m-wrap txtvprice" type="text"  id="txtvprice" name="txtvprice" value="0" />
 								
 									
 								</div>

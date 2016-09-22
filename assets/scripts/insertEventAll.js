@@ -1336,8 +1336,8 @@
 			$('.drpqty').val('1');
 			$('.txtamt').val('');
 			$('.drpnewstf').val('');
-			$('.drpnewvend').val('');
-			$('.txtvprice').val('');
+			$('.drpnewvend').val('0');
+			$('.txtvprice').val('0');
 			$('.txtremark').val('');
 			$('.txtlength').val('');
 			$('.txtwidth').val('');

@@ -279,7 +279,79 @@ if(isset($_POST['showtax']))
 		
 			
 	}
+	if(isset($_POST['txtupdchk']))
+	{	
+		$evnt_id = $_POST['txtupdchk'];		
+		$hdn_ary = $_POST['hdn'];
+		
+															
+			
+			$clcharge = $_POST['clchargen'] + $_POST['txtucharge'] ;						
+			$vdcharge = $_POST['vdchargen'] + $_POST['txtvcharge'] ; 
+			
+			
+			if($_POST['txmdn']=='Yes')
+			{							
+				$servtax  =	($_POST['txtucharge']*$_POST['txratn'])/100;
+				$txamt =  $_POST['txamtn'] + $servtax;
+				$totammt = $_POST['totammtn'] + $_POST['txtucharge'] + $servtax ;
+			}
+			else
+			{
+				$totammt = $_POST['totammtn'] + $_POST['txtucharge'];
+			}
+			// echo $clcharge."<br>";
+			// echo $vdcharge."<br>";
+			// echo $txamt."<br>";
+			// echo $totammt."<br>";
+			updEqpEventMst($conn,$evnt_id,$totammt,$txamt,$clcharge,$vdcharge);
+		
 	
+		
+		// exit;
+		//now inserted in event_places_id
+		
+		
+		//here is loop coming for multiple record//
+		foreach($hdn_ary as $key => $value)
+		{
+					  
+		  if(is_array($value))
+		  {							
+				
+				
+			//insertion work start
+			$fromdt = $value['txtfromdate'];
+			$tordt = $value['txttodate'];
+			
+			$nfromdt = date_format(new DateTime($fromdt),'Y-m-d H:i:s');
+			$ntordt = date_format(new DateTime($tordt),'Y-m-d H:i:s');
+			
+			 insertEventPlaces($conn,$evnt_id, $value['txtvenue'],$value['txthall'],$value['txtldmark'],$nfromdt,$ntordt);			
+			 $last_vplc_id  =  mysql_insert_id();			
+			
+			//insertion of event_place over stop
+				
+			foreach($value as $key => $subvalue)
+			{
+			
+				if(is_array($subvalue) && !empty($subvalue) )
+				{									
+				
+					insNewEventPlac($conn,$evnt_id,$last_vplc_id,$subvalue['txtieqp'],$subvalue['txtirate'],$subvalue['txtiqty'],$subvalue['txtiamt'],$subvalue['txtistf'],$subvalue['txtivend'],$subvalue['txtivendprice'],$subvalue['txtiremark'],$subvalue['txtilength'],$subvalue['txtiwidth']);	
+				
+				}
+				else
+				{				
+					
+				}				
+			}					
+		  }
+		  
+		}			
+		header ('location:'.HTTP_SERVER.'index.php?url=EVD&id='.$evnt_id.'#tab_1_2');
+		
+	}
 	if(isset($_POST['showEqp']))
 	{	
 		$data = showEqupDrp($conn);
@@ -355,7 +427,7 @@ if(isset($_POST['showtax']))
 		$data = showVendName($conn);
 		$showVendCnt = count($data);
 		?>
-			<option select= "selected" value=""> Select Vendor </option>
+			<option select= "selected" value="0"> Select Vendor </option>
 		<?php
 		
 		for($i=0;$i<$showVendCnt;$i++)

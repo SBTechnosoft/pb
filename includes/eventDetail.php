@@ -340,7 +340,7 @@
                     </div>
                 </div>
                 <!--end tab-pane-->
-                <div id="tab_1_2" class="tab-pane<?php if(isset($_GET['id'])&& !empty($_GET['id'])){ echo 'active'; }?>">
+                <div id="tab_1_2" class="tab-pane <?php if(isset($_GET['id'])&& !empty($_GET['id'])){ echo 'active'; }?>">
                     <div class="row-fluid search-forms search-default">
 						<form class="form-search" action="#">
 						
@@ -348,30 +348,31 @@
 								
 							</div>
 						</form>
-							<form class="form-search" name="f1" method="post" action="includes/newEventsPost.php" >
-								<input type="hidden" class="m-wrap" id="contresn" name="contresn" value="" />		
-								<input type="hidden" class="m-wrap" id="clchargen" name="clchargen" value="" />
-								<input type="hidden" class="m-wrap" id="clpdchargen" name="clpdchargen" value="" />
-								<input type="hidden" class="m-wrap" id="vdchargen" name="vdchargen" value="" />
-								<input type="hidden" class="m-wrap" id="vdpdchargen" name="vdpdchargen" value="" />
-								<input type="hidden" class="m-wrap" id="txmdn" name="txmdn" value="" />
-								<input type="hidden" class="m-wrap" id="txratn" name="txratn" value="" />
-								<input type="hidden" class="m-wrap" id="txamtn" name="txamtn" value="" />
-								<input type="hidden" class="m-wrap" id="totammtn" name="totammtn" value="" />
-															
-								<input id="txtrescharge" class="m-wrap txtrescharge" name="txtrescharge" readonly="" type="hidden">
-								<input id="txtvcharge" class="m-wrap txtvcharge" name="txtvcharge" readonly="" type="hidden" >
-								<input id="txtucharge" class="m-wrap txtucharge" name="txtucharge" readonly="" type="hidden" >
-								<input id="txtresvcharge" class="m-wrap txtresvcharge" name="txtresvcharge" readonly="" type="hidden" >
-								<div id= "multiupdinsert">
+						<form class="form-search" name="f1" method="post" action="includes/newEventsPost.php" >
 									
+							<input type="hidden" class="m-wrap" id="clchargen" name="clchargen" value="" />
+							<input type="hidden" class="m-wrap" id="clpdchargen" name="clpdchargen" value="" />
+							<input type="hidden" class="m-wrap" id="vdchargen" name="vdchargen" value="" />
+							<input type="hidden" class="m-wrap" id="vdpdchargen" name="vdpdchargen" value="" />
+							<input type="hidden" class="m-wrap" id="txmdn" name="txmdn" value="" />
+							<input type="hidden" class="m-wrap" id="txratn" name="txratn" value="" />
+							<input type="hidden" class="m-wrap" id="txamtn" name="txamtn" value="" />
+							<input type="hidden" class="m-wrap" id="totammtn" name="totammtn" value="" />
+														
+							<input id="txtrescharge" class="m-wrap txtrescharge" name="txtrescharge" readonly="" type="hidden">
+							<input id="txtvcharge" class="m-wrap txtvcharge" name="txtvcharge" readonly="" type="hidden" >
+							<input id="txtucharge" class="m-wrap txtucharge" name="txtucharge" readonly="" type="hidden" >
+							<input id="txtresvcharge" class="m-wrap txtresvcharge" name="txtresvcharge" readonly="" type="hidden" >
+							
+							<div id= "multiupdinsert">
+								
+							</div>
+							<div id="svbtn" class="clearfix margin-bottom-10">				
+								<div class="input-icon left">
+									<input class="m-wrap btn blue" value="Save" type="submit" />
 								</div>
-								<div id="svbtn" class="clearfix margin-bottom-10">				
-									<div class="input-icon left">
-										<input class="m-wrap btn blue" value="Save" type="submit" />
-									</div>
-								</div>
-							</form>
+							</div>
+						</form>
                        
                             <!--div id="dynamic_field">
                                 <h4>Event places </h4>
