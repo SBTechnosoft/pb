@@ -60,8 +60,8 @@
                                     <tr>
                                         <!--th> Event Vendor Id</th-->
                                         <th> Event Id </th>
-                                        <!--th>Event Places Id </th>
-                                        <th>Vendor Id</th-->
+                                        <th>Event Name</th>
+                                        <th>Client Name</th>
 										<th>Vendor Name</th>
 										<th> Vendor Company</th>
                                         <th>Vendor Charges</th>

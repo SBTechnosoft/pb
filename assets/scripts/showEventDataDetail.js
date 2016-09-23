@@ -498,6 +498,7 @@
 					$('#txratn').val(e.service_tax_rate);
 					$('#txamtn').val(e.service_tax_amt);
 					$('#totammtn').val(e.total_amt);
+					$('#txtremainamt').val(e.remain_amt);
 					//end
 					//call to display for evend places detail..
 					//its old//showeventplaces();
@@ -722,6 +723,7 @@
 					$('#txratn').val(e.service_tax_rate);
 					$('#txamtn').val(e.service_tax_amt);
 					$('#totammtn').val(e.total_amt);
+					$('#txtremainamt').val(e.remain_amt);
 					//end
 					//call to display for evend places detail..
 					//its old//showeventplaces();
@@ -769,6 +771,7 @@
 					$('#totammt').val(e.total_amt);
 					$('#disamt').val(e.remain_amt);
 					$('#st').val(e.service_tax_amt);
+					$('#txtremainamt').val(e.remain_amt);
 				}
 			});
 		}

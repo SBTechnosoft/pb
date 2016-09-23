@@ -865,6 +865,8 @@
 		$('#labelWT').hide();
 		$('#txtlength').hide();
 		$('#txtwidth').hide();
+		$('#totalFT').hide();
+		$('#txttotft').hide();
 		
 		function checkType()
 		{	
@@ -876,6 +878,8 @@
 				$('#labelWT').show();
 				$('#txtlength').show();
 				$('#txtwidth').show();
+				$('#totalFT').show();
+				$('#txttotft').show();
 			}
 			else
 			{
@@ -883,6 +887,8 @@
 				$('#labelWT').hide();
 				$('#txtlength').hide();
 				$('#txtwidth').hide();
+				$('#totalFT').hide();
+				$('#txttotft').hide();
 			}
 			
 			
@@ -890,6 +896,10 @@
 		
 		$("#txtlength").on("focusout", function(){
 			var txtlength    =   $('#txtlength').val();
+			var txtwidth    =   $('#txtwidth').val();
+			var sqfeet = parseInt(txtlength) * parseInt(txtwidth);
+			
+			$('#txttotft').val(sqfeet);
 			
 			// if(gettype == 2 && txtlength=="")
 			// {
@@ -915,8 +925,9 @@
 		
 		
 		$("#txtwidth").on("focusout", function(){
-			var txtlength    =   $('#txtlength').val();
+			var txtlength   =   $('#txtlength').val();
 			var txtwidth    =   $('#txtwidth').val();
+			
 			
 			// if(gettype == 2 && txtwidth=="")
 			// {
@@ -938,11 +949,12 @@
 			// }
 			
 			
-			var sqfeet = parseInt(txtlength) * parseInt(txtwidth)
+			var sqfeet = parseInt(txtlength) * parseInt(txtwidth);
 			
 			var rate = $('#txtrate').val();	
 			
 			var tot = parseInt(sqfeet) * parseInt(rate);
+			$('#txttotft').val(sqfeet);
 			$('#txthamt').val(tot);
 			$('#txtamt').val(tot);			
 		});
@@ -1044,6 +1056,7 @@
 				var txtdiscAmt = parseInt(txtcharge) - parseInt(txtdisc);			
 				$('#txtdiscAmt').val(txtdiscAmt);	
 				$('#txtfinalamt').val(txtdiscAmt);
+				$('#txtremainamt').val(txtdiscAmt);
 				$('#STax').val('0');
 			}
 			else
@@ -1054,6 +1067,7 @@
 				$('#txtdiscAmt').val(txtdiscAmt);
 				$('#STax').val(taxamt);
 				$('#txtfinalamt').val(txtfinalamt);
+				$('#txtremainamt').val(txtfinalamt);
 			}
 		});
 		
@@ -1083,6 +1097,7 @@
 				var txtdiscAmt = parseInt(txtcharge) - parseInt(txtdisc);			
 				$('#txtdiscAmt').val(txtdiscAmt);	
 				$('#txtfinalamt').val(txtdiscAmt);
+				$('#txtremainamt').val(txtdiscAmt);
 				$('#STax').val('0');
 			}
 			else
@@ -1093,7 +1108,15 @@
 				$('#txtdiscAmt').val(txtdiscAmt);
 				$('#STax').val(taxamt);
 				$('#txtfinalamt').val(txtfinalamt);
+				$('#txtremainamt').val(txtfinalamt);
 			}
+		});
+		
+		$("#txtremainamt").on("focusout", function(){
+			var txtfinalamt    =   $('#txtfinalamt').val();
+			var txtpaid    =   $('#txtpaid').val();
+			var txtremainamt = parseInt(txtfinalamt) - parseInt(txtpaid);	
+			$('#txtremainamt').val(txtremainamt);
 		});
 		
 		function total()
@@ -1339,8 +1362,9 @@
 			$('.drpnewvend').val('0');
 			$('.txtvprice').val('0');
 			$('.txtremark').val('');
-			$('.txtlength').val('');
-			$('.txtwidth').val('');
+			$('.txtlength').val('0');
+			$('.txtwidth').val('0');
+			$('.txttotft').val('0');
 			$('#labelLT').hide();
 			$('#labelWT').hide();
 			$('#txtlength').hide();
@@ -1349,6 +1373,7 @@
 			$('.txtvcharge').val(total_vamt);
 			$('.txtdiscAmt').val(total_amt);
 			$('.txtfinalamt').val(total_amt);
+			$('.txtremainamt').val(total_amt);
 			
 		});
 		$(document).on('click','.remove',function(){
@@ -1383,5 +1408,6 @@
 			$('.txtvcharge').val(total_vamt);
 			$('.txtdiscAmt').val(total_amt);
 			$('.txtfinalamt').val(total_amt);
+			$('.txtremainamt').val(total_amt);
 		});
 	});	

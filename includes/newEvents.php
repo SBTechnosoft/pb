@@ -468,7 +468,7 @@
 									
 									<input style="width:120px;" type="text" id="labelLT" name="labelLT"  value="Length(FT)" readonly />
 									<input style="width:120px;" type="text" id="labelWT" name="labelWT" value="Width(FT)" readonly />
-									
+									<input style="width:120px;" type="text" id="totalFT" name="totalFT" value="Total(FT)" readonly />
 									
 									
 								</div>
@@ -481,11 +481,12 @@
 									</select>
 									
 									
-									<input class="small m-wrap txtlength"  type="text"  id="txtlength" name="txtlength" value=""  />
-									<input class="small m-wrap txtwidth"  type="text"  id="txtwidth" name="txtwidth" value="" />
-									
+									<input class="small m-wrap txtlength"  type="text"  id="txtlength" name="txtlength" value="0"  />
+									<input class="small m-wrap txtwidth"  type="text"  id="txtwidth" name="txtwidth" value="0" />
+									<input class="small m-wrap txttotft"  type="text"  id="txttotft" name="txttotft" value="" readonly />
 								</div>
 								<div>
+									
 									<input style="width:120px;" type="text"  value="Rate" readonly />
 									
 									<input style="width:125px;" type="hidden"  value="Type" readonly />
@@ -509,14 +510,6 @@
 									
 									<input class="small m-wrap txttype"  type="hidden"  id="txttype" name="txttype" value="" readonly />
 									
-									<!--select name="drpqty" id="drpqty" class="small m-wrap drpqty">											
-										<?php  
-											// for($i=1;$i<=10;$i++)
-											// {
-												// echo '<option value="'.$i.'">'.$i.'</option>';
-											// }
-										?>											
-									</select-->
 									<input class="small m-wrap drpqty"  type="text"  id="drpqty" name="drpqty" value="1"  />
 									
 									<input class="small m-wrap txtamt" type="text"  id="txtamt" name="txtamt" value="" readonly />
@@ -534,7 +527,7 @@
 												
 								
 								
-								<div>
+								<div>									
 									<input  type="text"  value="Remark" readonly />
 								</div>
 								
@@ -695,7 +688,12 @@
 							</div>
 							<input type="number" id="txtpaid" name="txtpaid" class="large m-wrap sertax" />
 						</div>
-						
+						<div class="clearfix margin-bottom-10">
+							<div class="input-icon input-append">
+								<label for="txtremainamt">Remaining Amount : </label>
+							</div>
+							<input type="text" id="txtremainamt" name="txtremainamt" class="large m-wrap txtremainamt" readonly />
+						</div>
 						
 						
 						<div class="clearfix margin-bottom-10">							

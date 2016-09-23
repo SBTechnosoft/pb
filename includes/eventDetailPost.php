@@ -1545,7 +1545,7 @@
 	}
 	if(isset($_POST['edit']))
 	{		
-		$q = mysql_query("SELECT `event_id`,`event_name`,`event_ds`,`client_name`,`client_cmp`,`client_email`,`client_work_mob`,`client_home_mob`,`client_mob`,`status`,`payment_status`,`client_charges`,`client_paid_amt`,`client_discount_amt`,`from_date`,`total_amt`,`vendor_charges`,`vd_paid_amt`,`taxmode`,`service_tax_rate`,`service_tax_amt` FROM event_mst where `event_id` = '".$_POST['id']."' ");
+		$q = mysql_query("SELECT `event_id`,`event_name`,`event_ds`,`client_name`,`client_cmp`,`client_email`,`client_work_mob`,`client_home_mob`,`client_mob`,`status`,`payment_status`,`client_charges`,`client_paid_amt`,`client_discount_amt`,`from_date`,`total_amt`,`vendor_charges`,`vd_paid_amt`,`taxmode`,`service_tax_rate`,`service_tax_amt`,(total_amt - client_paid_amt) as remain_amt FROM event_mst where `event_id` = '".$_POST['id']."' ");
 		$row = mysql_fetch_array($q);
 		header("Content-type: text/x-json");
 		echo json_encode($row);
@@ -1554,7 +1554,7 @@
 	}
 	if(isset($_POST['showlast']))
 	{		
-		$q = mysql_query("SELECT `event_id`,`event_name`,`event_ds`,`client_name`,`client_cmp`,`client_email`,`client_work_mob`,`client_home_mob`,`client_mob`,`status`,`payment_status`,`client_charges`,`client_paid_amt`,`client_discount_amt`,`from_date`,`total_amt`,`vendor_charges`,`vd_paid_amt`,`taxmode`,`service_tax_rate`,`service_tax_amt` FROM event_mst where `event_id` = '".$_POST['id']."' ");
+		$q = mysql_query("SELECT `event_id`,`event_name`,`event_ds`,`client_name`,`client_cmp`,`client_email`,`client_work_mob`,`client_home_mob`,`client_mob`,`status`,`payment_status`,`client_charges`,`client_paid_amt`,`client_discount_amt`,`from_date`,`total_amt`,`vendor_charges`,`vd_paid_amt`,`taxmode`,`service_tax_rate`,`service_tax_amt`,(total_amt - client_paid_amt) as remain_amt FROM event_mst where `event_id` = '".$_POST['id']."' ");
 		$row = mysql_fetch_array($q);
 		header("Content-type: text/x-json");
 		echo json_encode($row);
@@ -1640,7 +1640,8 @@
 		
 		<div class="Heading">
 			<div class="Cell">Payment Date</div>
-			<div class="Cell">Event Id</div>
+			<div class="Cell">Event Name</div>
+			<div class="Cell">Client Name</div>
 			<div class="Cell">Amount</div>
 			<div class="Cell">Payment Mode</div>
 			<div class="Cell">Bank Name</div>
@@ -1655,12 +1656,13 @@
 			
 			<div class="Row" >			
 				<div class="Cell"><?php echo $paidtrn[$a]['payment_date'];?></div>
-				<div class="Cell"><?php echo $paidtrn[$a]['event_id'];?></div>
-				<div class="Cell"><?php if($paidtrn[$a]['client_paid_amt']== ''){echo "null";}else{echo $paidtrn[$a]['client_paid_amt']; } ?></div>
-				<div class="Cell"><?php if($paidtrn[$a]['payment_mode']== ''){echo "null";}else{echo $paidtrn[$a]['payment_mode']; } ?></div>
-				<div class="Cell"><?php if($paidtrn[$a]['cheque_no']== ''){echo "null";}else{echo $paidtrn[$a]['cheque_no']; } ?></div>
-				<div class="Cell"><?php  if($paidtrn[$a]['bank_name']== ''){echo "null";}else{echo $paidtrn[$a]['bank_name']; } ?></div>
-				<div class="Cell"><?php if($paidtrn[$a]['trn_type']== ''){echo "null";}else{echo $paidtrn[$a]['trn_type']; }  ?></div>
+				<div class="Cell"><?php echo $paidtrn[$a]['event_name'];?></div>
+				<div class="Cell"><?php echo $paidtrn[$a]['client_name'];?></div>
+				<div class="Cell"><?php if($paidtrn[$a]['client_paid_amt']== ''){echo "";}else{echo $paidtrn[$a]['client_paid_amt']; } ?></div>
+				<div class="Cell"><?php if($paidtrn[$a]['payment_mode']== ''){echo "";}else{echo $paidtrn[$a]['payment_mode']; } ?></div>
+				<div class="Cell"><?php if($paidtrn[$a]['cheque_no']== ''){echo "";}else{echo $paidtrn[$a]['cheque_no']; } ?></div>
+				<div class="Cell"><?php  if($paidtrn[$a]['bank_name']== ''){echo "";}else{echo $paidtrn[$a]['bank_name']; } ?></div>
+				<div class="Cell"><?php if($paidtrn[$a]['trn_type']== ''){echo "";}else{echo $paidtrn[$a]['trn_type']; }  ?></div>
 				
 			</div>
             

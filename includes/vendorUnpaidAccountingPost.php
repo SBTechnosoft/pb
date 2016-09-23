@@ -26,8 +26,8 @@
 						   <?php //echo $VdUnPaid[$i]['event_id'];?>	
 						   <input type="checkbox" id="mpay" name="mpay" class="mpay" value="<?php echo $VdUnPaid[$i]['event_vendor_id'];?>" /> 
 						</td>
-						<!--td><?php //echo $VdUnPaid[$i]['event_places_id'];?></td>
-						<td><?php //echo $VdUnPaid[$i]['vend_id'];?></td-->
+						<td><?php echo $VdUnPaid[$i]['event_name'];?></td>
+						<td><?php echo $VdUnPaid[$i]['client_name'];?></td>
 						<td>
 							<a href="<?php echo HTTP_SERVER ; ?>index.php?url=EVD&id=<?php echo $VdUnPaid[$i]['event_id'];?>" 
 							data-id="<?php echo $VdUnPaid[$i]['event_id']; ?>" class="edit" data-toggle="tooltip" title="">						
@@ -46,6 +46,8 @@
 						</td>
 					</tr>					
 					<tr>
+						<td></td>
+						<td></td>
 						<td></td>
 						<td></td>
 						<td><b>Grand Total </b></td>
@@ -70,8 +72,8 @@
 						   <?php //echo $VdUnPaid[$i]['event_id'];?>	
 						   <input type="checkbox" id="mpay" name="mpay" class="mpay" value="<?php echo $VdUnPaid[$i]['event_vendor_id'];?>" /> 
 						</td>
-						<!--td><?php //echo $VdUnPaid[$i]['event_places_id'];?></td>
-						<td><?php //echo $VdUnPaid[$i]['vend_id'];?></td-->
+						<td><?php echo $VdUnPaid[$i]['event_name'];?></td>
+						<td><?php echo $VdUnPaid[$i]['client_name'];?></td>
 						<td>
 							<a href="<?php echo HTTP_SERVER ; ?>index.php?url=EVD&id=<?php echo $VdUnPaid[$i]['event_id'];?>" 
 							data-id="<?php echo $VdUnPaid[$i]['event_id']; ?>" class="edit" data-toggle="tooltip" title="">						

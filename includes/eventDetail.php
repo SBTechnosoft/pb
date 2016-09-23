@@ -606,7 +606,19 @@
 													</td> 
 												</tr>
 											</div>
-										</div>										
+										</div>	
+										<div class="input-icon left">
+											<div class="controls">
+												<tr>
+													<td class="names"><label for="txtstf">Remaining Amount</label></td>
+													<td>
+														<input  id="txtremainamt" name="txtremainamt" type="text" readonly />
+														
+													</td> 
+												</tr>
+											</div>
+										</div>
+										
 									</table>
 									<br/>
 								</div>	

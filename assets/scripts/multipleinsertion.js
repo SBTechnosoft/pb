@@ -8,6 +8,31 @@ $(document).on('click','#add',function()
 	$(document).on('click','.event',function(){
 		var button_id = $(this).attr("id");
 		$("#dynamic_field"+button_id+"").remove();
+		
+		 var gtot = [];
+			$.each($('.txtiamt'), function(){            
+				gtot.push($(this).val());
+			});
+			
+			var total_amt = 0;
+			$.each(gtot,function() {
+				total_amt += parseInt(this);
+			});
+			
+			var vtot = [];
+			$.each($('.txtivendprice'), function(){          
+				vtot.push($(this).val());
+			});
+			var total_vamt = 0;
+			$.each(vtot,function() {
+				total_vamt += parseInt(this);
+			});
+			
+		$('.txtcharge').val(total_amt);
+		$('.txtvcharge').val(total_vamt);
+		$('.txtdiscAmt').val(total_amt);
+		$('.txtfinalamt').val(total_amt);
+		$('.txtremainamt').val(total_amt);
 	});
 	var i = 0;
 	function addnewdiv()
@@ -555,14 +580,16 @@ $(document).on('click','#add',function()
 		'		<i class="fa fa-info-circle" title="New" id="newinseqp'+i+'" data-toggle="tooltip" style="cursor:pointer;"> '+
 		'		</i>	'+		
 		'		<input style="width:120px;" type="text" id="labelLT'+i+'" name="labelLT'+i+'"  value="Length(FT)" readonly />'+
-		'		<input style="width:120px;" type="text" id="labelWT'+i+'" name="labelWT'+i+'" value="Width(FT)" readonly />'+								
+		'		<input style="width:120px;" type="text" id="labelWT'+i+'" name="labelWT'+i+'" value="Width(FT)" readonly />'+
+		'		<input style="width:120px;" type="text" id="totalFT'+i+'" name="totalFT'+i+'" value="Total(FT)" readonly />	'+	
 		'	</div>'+								
 		'	<div>	'+							
 		'		<select  name="drpneweqp'+i+'" id="drpneweqp'+i+'" class="medium m-wrap drpneweqp'+i+'">'+											
 		'		</select>'+		
 		
-		'		<input class="small m-wrap txtlength"  type="text"  id="txtlength'+i+'" name="txtlength'+i+'" value=""  />'+
-		'		<input class="small m-wrap txtwidth"  type="text"  id="txtwidth'+i+'" name="txtwidth'+i+'" value="" />'+									
+		'		<input class="small m-wrap txtlength"  type="text"  id="txtlength'+i+'" name="txtlength'+i+'" value="0"  />'+
+		'		<input class="small m-wrap txtwidth"  type="text"  id="txtwidth'+i+'" name="txtwidth'+i+'" value="0" />'+
+		'		<input class="small m-wrap txttotft"  type="text"  id="txttotft'+i+'" name="txttotft'+i+'" value="" readonly />'+
 		'	</div>'+
 		'	<div>'+
 		'		<input style="width:120px;" type="text"  value="Rate" readonly />'+									
@@ -722,6 +749,8 @@ $(document).on('click','#add',function()
 		'$(\'#labelWT'+i+'\').hide();'+
 		'$(\'#txtlength'+i+'\').hide();'+
 		'$(\'#txtwidth'+i+'\').hide();	'+
+		'$(\'#totalFT'+i+'\').hide();'+
+		'$(\'#txttotft'+i+'\').hide();'+
 		
 		'function checkType'+i+'()'+
 		'{	'+
@@ -733,6 +762,8 @@ $(document).on('click','#add',function()
 				'$(\'#labelWT'+i+'\').show();'+
 				'$(\'#txtlength'+i+'\').show();'+
 				'$(\'#txtwidth'+i+'\').show();'+
+				'$(\'#totalFT'+i+'\').show();'+
+				'$(\'#txttotft'+i+'\').show();'+
 			'}'+
 			'else'+
 			'{'+
@@ -740,13 +771,19 @@ $(document).on('click','#add',function()
 				'$(\'#labelWT'+i+'\').hide();'+
 				'$(\'#txtlength'+i+'\').hide();'+
 				'$(\'#txtwidth'+i+'\').hide();'+
+				'$(\'#totalFT'+i+'\').hide();'+
+				'$(\'#txttotft'+i+'\').hide();'+
 			'}'+			
 		'}'+
 		
 		
 		'$("#txtlength'+i+'").on("focusout", function()'+
 		'{'+
-			'var txtlength    =   $(\'#txtlength'+i+'\').val();'+							
+			'var txtlength    =   $(\'#txtlength'+i+'\').val();'+	
+			'var txtwidth    =   $(\'#txtwidth'+i+'\').val();'+
+			'var sqfeet = parseInt(txtlength) * parseInt(txtwidth);'+
+			
+			'$(\'#txttotft'+i+'\').val(sqfeet);'+
 		'});'+
 		
 		'$("#txtwidth'+i+'").on("focusout", function(){'+
@@ -757,6 +794,7 @@ $(document).on('click','#add',function()
 			'var rate = $(\'#txtrate'+i+'\').val();'+	
 			
 			'var tot = parseInt(sqfeet) * parseInt(rate);'+
+			'$(\'#txttotft'+i+'\').val(sqfeet);'+
 			'$(\'#txthamt'+i+'\').val(tot);'+
 			'$(\'#txtamt'+i+'\').val(tot);'+			
 		'});'+
@@ -1031,11 +1069,12 @@ $(document).on('click','#add',function()
 			'$(\'.drpqty'+i+'\').val(\'1\');'+
 			'$(\'.txtamt'+i+'\').val(\'\');'+
 			'$(\'.drpnewstf'+i+'\').val(\'\');'+
-			'$(\'.drpnewvend'+i+'\').val(\'\');'+
+			'$(\'.drpnewvend'+i+'\').val(\'0\');'+
 			'$(\'.txtvprice'+i+'\').val(\'0\');'+
 			'$(\'.txtremark'+i+'\').val(\'\');'+
-			'$(\'.txtlength'+i+'\').val(\'\');'+
-			'$(\'.txtwidth'+i+'\').val(\'\');'+
+			'$(\'.txtlength'+i+'\').val(\'0\');'+
+			'$(\'.txtwidth'+i+'\').val(\'0\');'+
+			'$(\'.txttotft'+i+'\').val(\'0\');'+
 			'$(\'#labelLT'+i+'\').hide();'+
 			'$(\'#labelWT'+i+'\').hide();'+
 			'$(\'#txtlength'+i+'\').hide();'+
@@ -1044,6 +1083,7 @@ $(document).on('click','#add',function()
 		   '$(\'.txtvcharge\').val(total_vamt);'+
 		   '$(\'.txtdiscAmt\').val(total_amt);'+
 			'$(\'.txtfinalamt\').val(total_amt);'+
+			'$(\'.txtremainamt\').val(total_amt);'+
 			
 		'});'+
 		'$(document).on(\'click\',\'.remove'+i+'\',function(){'+
@@ -1072,6 +1112,7 @@ $(document).on('click','#add',function()
 			'$(\'.txtvcharge\').val(total_vamt);'+
 			'$(\'.txtdiscAmt\').val(total_amt);'+
 			'$(\'.txtfinalamt\').val(total_amt);'+
+			'$(\'.txtremainamt\').val(total_amt);'+
 		'});'+
 		
 			 
