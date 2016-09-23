@@ -72,6 +72,36 @@
 			});	
 				
 		});
+		
+		$('#updtrgt').click(function(){
+			var txtmonyr    =   $('#txtmonyr').val();
+			var txttrgt    =   $('#txttrgt').val();
+					
+			$.ajax({
+				url : './includes/addOptionSettingsPost.php',
+				type : 'POST',
+				async : false,
+				data : {
+					'saveTarget'  : 1,
+					'txtmonyr'   : txtmonyr,
+					'txttrgt'   : txttrgt,
+				},
+				success : function(re)
+				{
+					if(re == 1)
+					 {
+						alert ("Inserted Data Successfully");
+								
+					 }
+					showdata();
+					$('#txttrgt').attr('readonly','txttrgt');
+					
+					$("#edittrgt").show();
+					$("#updtrgt").hide();
+				}				
+			});	
+				
+		});
 		function showdata()
 		{		
 			$.ajax({
@@ -87,6 +117,8 @@
 					$('#txtservicetax').val(r.service_tax);					
 					$('#txtservicetax1').val(r.service_tax);
 					$('#txtdays').val(r.upcoming_days);
+					$('#txtmonyr').val(r.month);
+					$('#txttrgt').val(r.target);
 				}
 				
 			});

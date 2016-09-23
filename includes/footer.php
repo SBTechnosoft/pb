@@ -2033,7 +2033,14 @@
 						
 						$("#updays").hide();
 						
+						$('#edittrgt').click(function()
+						{
+							$('#txttrgt').removeAttr('readonly');
+							$("#edittrgt").hide();
+							$("#updtrgt").show();
+						});
 						
+						$("#updtrgt").hide();
 					</script>
 					<!--script src="<?php echo HTTP_SERVER; ?>assets/scripts/showCmp.js"></script-->
 				<?php

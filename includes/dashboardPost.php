@@ -57,6 +57,21 @@
 			
 		}
 		
+	if(isset($_POST['showTarget']))
+		{	
+			$targetData = showTargetdata($conn);
+			$ProfitExpSum = showProfitExpSum($conn);
+			$OthrExp = showOtherExp($conn);
+			
+				
+			$percent = ceil((intval(($ProfitExpSum[0]['tot']-$ProfitExpSum[0]['exp'])-$OthrExp[0]['oexp']) * 100 ) / intval($targetData[0]['target']) );	
+			//echo $percent;
+	?>			
+		<span>+<?php echo $percent;?></span>%
+		
+	<?php
+		}
+		
 	?>
 	
 	

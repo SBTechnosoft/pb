@@ -85,8 +85,27 @@ function showUPCEventCnt()
 				
 			});
 		}
+function showTarget()
+		{		
+			$.ajax({
+				url : './includes/dashboardPost.php',
+				type : 'post',				
+				async : false,
+				data : {
+					'showTarget' : 1
+					
+				},
+				success : function(r)
+				{
+					
+					$('#trgtper').html(r);
+				}
+				
+			});
+		}
 		showUPCEventCnt();
-		showdataIncome();
-		showdataExpence();
-		showdataProfit();
-		showEventCnt();
+		//showdataIncome();
+		//showdataExpence();
+		//showdataProfit();
+		//showEventCnt();
+		showTarget();

@@ -107,7 +107,22 @@
 					<a id="savetax" name="savetax" class="btn btn-default"> Submit</a>
 				</div-->
  			</div>
-			
+			<div class="control-group">
+				<label class="control-label">Target</label>
+				
+				<div class="controls" id="updefault">
+					<select id="txtmonyr" name="txtmonyr" >
+						<option value="Month"> Month </option>
+						<option value="Year"> Year </option>
+					</select>						
+ 				</div>
+				<div class="controls" id="updefault">
+					<input id="txttrgt" class="m-wrap medium" readonly type="text" name="txttrgt" placeholder="Target ">					
+
+					<a id="edittrgt" name="edittrgt" class="btn btn-default"> Edit</a>	
+					<a id="updtrgt" name="updtrgt" class="btn btn-default"> Update</a>
+ 				</div>				
+ 			</div>
 			
            
         </div>

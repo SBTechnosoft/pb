@@ -270,7 +270,26 @@ function insOptionDays($conn,$updays)
 			$resultArray = $conn->insertQuery($sqlinsOption1);
 			echo 2;
 		}
-		
+function insOptionTarget($conn,$txttrgt)
+		{
+			
+			$sqlinsOption = "INSERT INTO `setting` (`id`,`target`) VALUES (1,'".$txttrgt."')ON DUPLICATE KEY UPDATE `target` = `target`"; 
+			$resultArray = $conn->insertQuery($sqlinsOption);
+			echo 1;
+			$sqlinsOption1 = "UPDATE `setting` SET `target` = '".$txttrgt."' WHERE `id` = 1"; 
+			$resultArray = $conn->insertQuery($sqlinsOption1);
+			echo 2;
+		}	
+function insOptionMonth	($conn,$txtmonyr)
+		{
+			
+			$sqlinsOption = "INSERT INTO `setting` (`id`,`month`) VALUES (1,'".$txtmonyr."')ON DUPLICATE KEY UPDATE `month` = `month`"; 
+			$resultArray = $conn->insertQuery($sqlinsOption);
+			echo 1;
+			$sqlinsOption1 = "UPDATE `setting` SET `month` = '".$txtmonyr."' WHERE `id` = 1"; 
+			$resultArray = $conn->insertQuery($sqlinsOption1);
+			echo 2;
+		}		
 function insNewEventPlac($conn,$event_id,$event_plc_id,$txtieqp,$txtirate,$txtiqty,$txtiamt,$txtistf,$txtivend,$txtivendprice,$txtiremark,$txtilength,$txtiwidth)
 		{
 			$sqlinsNewEventPlac = "INSERT INTO `new_event_places_dtl` (`event_id`,`event_places_id`,`eq_id`,`rate`,`qty`,`amount`,`staff_id`,`vend_id`,`vend_price`,`remark`,`length`,`width`) 

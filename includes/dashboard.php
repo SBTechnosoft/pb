@@ -36,7 +36,7 @@
 				<div id="dashboard">
 					<!-- BEGIN DASHBOARD STATS -->
 					<div class="row-fluid" id="dshupper">
-						<div class="span3 responsive" data-tablet="span6" data-desktop="span3">
+						<!--div class="span3 responsive" data-tablet="span6" data-desktop="span3">
 							<div class="dashboard-stat blue">
 								<div class="visual">
 									<i class="icon-globe"></i>
@@ -49,7 +49,7 @@
 										New Events
 									</div>
 								</div>
-								<a class="more" href="<?php echo HTTP_SERVER.'index.php?url=NEW';?>">
+								<a class="more" href="<?php //echo HTTP_SERVER.'index.php?url=NEW';?>">
 								View more <i class="m-icon-swapright m-icon-white"></i>
 								</a>                 
 							</div>
@@ -67,7 +67,7 @@
 								View more <i class="m-icon-swapright m-icon-white"></i>
 								</a>                 
 							</div>
-						</div>
+						</div-->
 						<div class="span3 responsive" data-tablet="span6  fix-offset" data-desktop="span3">
 							<div class="dashboard-stat purple">
 								<div class="visual">
@@ -88,8 +88,8 @@
 									<i class="icon-bullseye"></i>
 								</div>
 								<div class="details">
-									<div class="number">Target</div>
-									<div class="desc">Your File</div>
+									<div class="number" id="trgtper"> </div>
+									<div class="desc">Target</div>
 								</div>
 								<a class="more" href="#">
 								View more <i class="m-icon-swapright m-icon-white"></i>

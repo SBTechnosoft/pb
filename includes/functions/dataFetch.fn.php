@@ -666,7 +666,21 @@ function showInvoiceId($conn)
 							from invoice_config order by invoice_conf_id desc limit 1"; 
 		return $conn->getResultArray($sqlInvoiceId);		
 	}
-	
+function showTargetdata($conn)
+	{
+		$sqlTargetdata = "select `target`,`month` from setting "; 
+		return $conn->getResultArray($sqlTargetdata);		
+	}	
+function showProfitExpSum($conn)
+	{
+		$sqlProfitExpSum = "select sum(total_amt) as tot,sum(vendor_charges) as exp from `event_mst` "; 
+		return $conn->getResultArray($sqlProfitExpSum);		
+	}
+function showOtherExp($conn)
+	{
+		$sqlOtherExp = "select sum(amount) as oexp from `expence_dtl` "; 
+		return $conn->getResultArray($sqlOtherExp);		
+	}
 	/*
 	
 select vm.vendor_name,vm.vendor_cmp,vm.cat_id,evd.event_places_id
