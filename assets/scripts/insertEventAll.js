@@ -207,11 +207,11 @@
 					alert("Please Only Numeric characters For Charge! (Allowed input:0-9)")
 					return false;
 				}
-				if(txtcharge == 0)
-				{
-					alert("Can't GIve Charge 0");
-					return false;
-				}
+				// if(txtcharge == 0)
+				// {
+					// alert("Can't GIve Charge 0");
+					// return false;
+				// }
 			}
 			// if(paymentMode == "cheque")
 			// {
@@ -588,11 +588,11 @@
 					alert("Please Only Numeric characters For Charge! (Allowed input:0-9)")
 					return false;
 				}
-				if(txtcharge == 0)
-				{
-					alert("Can't GIve Charge 0");
-					return false;
-				}
+				// if(txtcharge == 0)
+				// {
+					// alert("Can't GIve Charge 0");
+					// return false;
+				// }
 			}
 			// if(paymentMode == "cheque")
 			// {
@@ -976,11 +976,11 @@
 					alert("Please Only Numeric in Rate!!! (Allowed input:0-9)")
 					return false;
 				}
-				if(rate == 0)
-				{
-					alert("Can't GIve rate 0");
-					return false;
-				}
+				// if(rate == 0)
+				// {
+					// alert("Can't GIve rate 0");
+					// return false;
+				// }
 			}
 			
 			if(gettype == 2)
@@ -1183,11 +1183,11 @@
 					alert("Please Only Numeric in rate!!! (Allowed input:0-9)")
 					return false;
 				}
-				if(rate == 0)
-				{
-					alert("Can't Give rate 0");
-					return false;
-				}
+				// if(rate == 0)
+				// {
+					// alert("Can't Give rate 0");
+					// return false;
+				// }
 			}
 			if(qty=='')
 			{
@@ -1227,11 +1227,11 @@
 					alert("Please Only Numeric in length!!! (Allowed input:0-9)")
 					return false;
 				}
-				if(length == 0)
-				{
-					alert("Can't GIve length 0");
-					return false;
-				}
+				// if(length == 0)
+				// {
+					// alert("Can't GIve length 0");
+					// return false;
+				// }
 			}
 			if(width != "")
 			{
@@ -1240,11 +1240,11 @@
 					alert("Please Only Numeric in width!!! (Allowed input:0-9)")
 					return false;
 				}
-				if(width == 0)
-				{
-					alert("Can't GIve width 0");
-					return false;
-				}
+				// if(width == 0)
+				// {
+					// alert("Can't GIve width 0");
+					// return false;
+				// }
 			}
 			
 			

@@ -1563,7 +1563,7 @@
 	}
 	if(isset($_POST['UpdateAcc']))
 	{		
-		$q = mysql_query("select `total_amt`,`client_charges`,`vendor_charges`,`service_tax_amt`,`client_discount_amt`,`client_paid_amt`,(client_charges-client_discount_amt) as remain_amt from `event_mst` where event_id='".$_POST['id']."'");
+		$q = mysql_query("select `total_amt`,`client_charges`,`vendor_charges`,`service_tax_amt`,`client_discount_amt`,`client_paid_amt`,(total_amt - client_paid_amt) as remain_amt from `event_mst` where event_id='".$_POST['id']."'");
 		$row = mysql_fetch_array($q);
 		header("Content-type: text/x-json");
 		echo json_encode($row);
