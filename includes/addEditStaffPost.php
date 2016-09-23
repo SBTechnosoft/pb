@@ -93,6 +93,9 @@
 						<a style="cursor:pointer; padding: 5px;" data-id="<?php echo $data[$i]['emp_id']; ?>" data-toggle="tooltip" title="Permission" class="newperadd" >
 							<i class="fa fa-lock" aria-hidden="true"></i>
 						</a>
+						<a style="cursor:pointer; padding: 5px;" data-id="<?php echo $data[$i]['staff_id']; ?>" data-toggle="tooltip" title="Delete" class="delete" >
+							<i class="fa fa-trash-o" aria-hidden="true"></i>
+						</a>
 					</form>
 					
 				</td>
@@ -111,6 +114,11 @@
 		header("Content-type: text/x-json");
 		echo json_encode($row);
 		
+	}
+	if(isset($_POST['delete']))
+	{		
+		//$date = date('Y-m-d H:i:s');
+		delStaff($conn,$_POST['id']);
 	}
 ?>
 				

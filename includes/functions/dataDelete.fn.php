@@ -16,6 +16,13 @@ function delevent($conn,$id,$date)
 			//echo 12;
 			exit;
 		}
+function delStaff($conn,$id)
+		{
+			$sqldelEvent = "Delete from `staff_mst` where  staff_id = '".$id."' ";
+			$resultArray = $conn->insertQuery($sqldelEvent);
+			//echo 12;
+			exit;
+		}
 function delCmpNew($conn,$id,$del_date)
 		{
 			$sqldelCmpNew = "Update `company_mst`  set `deleted_at` = '".$del_date."',`deleted_by` = '".$_SESSION['USER_ID']."' where `cmp_id` = '".$id."' "; 

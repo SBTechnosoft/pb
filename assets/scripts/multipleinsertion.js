@@ -588,7 +588,7 @@ $(document).on('click','#add',function()
 		'		<select name="drpnewvend'+i+'" id="drpnewvend'+i+'" class="medium m-wrap drpnewvend'+i+'">'+ 											
 		'		</select>'+
 		
-		'		<input class="small m-wrap txtvprice'+i+'" type="text"  id="txtvprice'+i+'" name="txtvprice'+i+'" value="" />	'+								
+		'		<input class="small m-wrap txtvprice'+i+'" type="text"  id="txtvprice'+i+'" name="txtvprice'+i+'" value="0" />	'+								
 		'	</div>	'+							
 		'	<div>'+
 		'		<input  type="text"  value="Remark" readonly />'+
@@ -1032,7 +1032,7 @@ $(document).on('click','#add',function()
 			'$(\'.txtamt'+i+'\').val(\'\');'+
 			'$(\'.drpnewstf'+i+'\').val(\'\');'+
 			'$(\'.drpnewvend'+i+'\').val(\'\');'+
-			'$(\'.txtvprice'+i+'\').val(\'\');'+
+			'$(\'.txtvprice'+i+'\').val(\'0\');'+
 			'$(\'.txtremark'+i+'\').val(\'\');'+
 			'$(\'.txtlength'+i+'\').val(\'\');'+
 			'$(\'.txtwidth'+i+'\').val(\'\');'+
@@ -1042,6 +1042,8 @@ $(document).on('click','#add',function()
 			'$(\'#txtwidth'+i+'\').hide();'+
 		   '$(\'.txtcharge\').val(total_amt);'+
 		   '$(\'.txtvcharge\').val(total_vamt);'+
+		   '$(\'.txtdiscAmt\').val(total_amt);'+
+			'$(\'.txtfinalamt\').val(total_amt);'+
 			
 		'});'+
 		'$(document).on(\'click\',\'.remove'+i+'\',function(){'+
@@ -1068,6 +1070,8 @@ $(document).on('click','#add',function()
 				
 			'$(\'.txtcharge\').val(total_amt);'+
 			'$(\'.txtvcharge\').val(total_vamt);'+
+			'$(\'.txtdiscAmt\').val(total_amt);'+
+			'$(\'.txtfinalamt\').val(total_amt);'+
 		'});'+
 		
 			 
