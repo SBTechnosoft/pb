@@ -360,12 +360,13 @@ function showvendpaidtrn($conn,$eveid)
 		$sqlShowEVend = "select vm.vendor_name,vm.vendor_cmp,vm.cat_id,evd.event_places_id,evd.vend_id,evd.vendor_charges,evd.vendor_paid_amt,evd.vendor_paid_status,evd.event_vendor_id 
 							from vendor_mst vm 
 							inner join event_vendor_dtl evd on vm.vend_id = evd.vend_id 
-							where evd.event_id = '".$eveid."' order by vm.vendor_name "; 
+							where evd.event_id = '".$eveid."' and evd.vend_id <> 0  order by vm.vendor_name "; 
 		return $conn->getResultArray($sqlShowEVend);		
 	}
 function showEventVendpaidtrn($conn,$txtevent_vend_id,$txtvend_evnt_id)
 	{
-		$sqlShowEVend = "select `vd_payment_id`,`event_id`,`event_vendor_id`,`payment_date`,`payment_mode`,`vend_bank_name`,`vend_cheque_no`,`paid_amt` from event_vend_payment_trn where `event_vendor_id` = '".$txtevent_vend_id."' and `event_id` = '".$txtvend_evnt_id."' "; 
+		$sqlShowEVend = "select `vd_payment_id`,`event_id`,`event_vendor_id`,`payment_date`,`payment_mode`,`vend_bank_name`,`vend_cheque_no`,`paid_amt` 
+		from event_vend_payment_trn where `event_vendor_id` = '".$txtevent_vend_id."' and `event_id` = '".$txtvend_evnt_id."' "; 
 		return $conn->getResultArray($sqlShowEVend);		
 	}
 	

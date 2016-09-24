@@ -750,7 +750,7 @@
 					
 					<input style="width:120px;" type="text" id="labelLT<?php echo $i; ?>" name="labelLT<?php echo $i; ?>"  value="Length(FT)" readonly />
 					<input style="width:120px;" type="text" id="labelWT<?php echo $i; ?>" name="labelWT<?php echo $i; ?>" value="Width(FT)" readonly />
-									
+					<input style="width:120px;" type="text" id="totalFT<?php echo $i; ?>" name="totalFT<?php echo $i; ?>" value="Total(FT)" readonly />				
 				</div>
 				
 				<div>	
@@ -759,9 +759,9 @@
 					</select>
 					
 					
-					<input class="small m-wrap txtlength<?php echo $i; ?>"  type="text"  id="txtlength<?php echo $i; ?>" name="txtlength<?php echo $i; ?>" value=""  />
-					<input class="small m-wrap txtwidth<?php echo $i; ?>"  type="text"  id="txtwidth<?php echo $i; ?>" name="txtwidth<?php echo $i; ?>" value="" />
-					
+					<input class="small m-wrap txtlength<?php echo $i; ?>"  type="text"  id="txtlength<?php echo $i; ?>" name="txtlength<?php echo $i; ?>" value="0"  />
+					<input class="small m-wrap txtwidth<?php echo $i; ?>"  type="text"  id="txtwidth<?php echo $i; ?>" name="txtwidth<?php echo $i; ?>" value="0" />
+					<input class="small m-wrap txttotft<?php echo $i; ?>"  type="text"  id="txttotft<?php echo $i; ?>" name="txttotft<?php echo $i; ?>" value="" readonly />
 				</div>
 				<div>
 					<input style="width:120px;" type="text"  value="Rate" readonly />
@@ -1014,6 +1014,8 @@
 						$('#labelWT<?php echo $i; ?>').show();
 						$('#txtlength<?php echo $i; ?>').show();
 						$('#txtwidth<?php echo $i; ?>').show();
+						$('#totalFT<?php echo $i; ?>').show();
+						$('#txttotft<?php echo $i; ?>').show();
 					}
 					else
 					{
@@ -1021,10 +1023,19 @@
 						$('#labelWT<?php echo $i; ?>').hide();
 						$('#txtlength<?php echo $i; ?>').hide();
 						$('#txtwidth<?php echo $i; ?>').hide();
+						$('#totalFT<?php echo $i; ?>').hide();
+						$('#txttotft<?php echo $i; ?>').hide();
 					}					
 					
 				}
-				
+				$("#txtlength<?php echo $i; ?>").on("focusout", function(){
+					var txtlength    =   $('#txtlength<?php echo $i; ?>').val();
+					var txtwidth    =   $('#txtwidth<?php echo $i; ?>').val();
+					var sqfeet = parseInt(txtlength) * parseInt(txtwidth);
+					
+					$('#txttotft<?php echo $i; ?>').val(sqfeet);
+						
+				});
 				$("#txtwidth<?php echo $i; ?>").on("focusout", function()
 				{
 					var txtlength    =   $('#txtlength<?php echo $i; ?>').val();
@@ -1034,6 +1045,7 @@
 					var rate = $('#txtrate<?php echo $i; ?>').val();	
 					
 					var tot = parseInt(sqfeet) * parseInt(rate);
+					$('#txttotft<?php echo $i; ?>').val(sqfeet);
 					$('#txthamt<?php echo $i; ?>').val(tot);
 					$('#txtamt<?php echo $i; ?>').val(tot);			
 				});
@@ -1189,11 +1201,11 @@
 							alert("Please Only Numeric in length!!! (Allowed input:0-9)");
 							return false;
 						}
-						if(length == 0)
-						{
-							alert("Can't GIve length 0");
-							return false;
-						}
+						// if(length == 0)
+						// {
+							// alert("Can't GIve length 0");
+							// return false;
+						// }
 					}
 					if(width != "")
 					{
@@ -1202,11 +1214,11 @@
 							alert("Please Only Numeric in width!!! (Allowed input:0-9)");
 							return false;
 						}
-						if(width == 0)
-						{
-							alert("Can't GIve width 0");
-							return false;
-						}
+						// if(width == 0)
+						// {
+							// alert("Can't GIve width 0");
+							// return false;
+						// }
 					}					
 					i++;
 					var div=
@@ -1616,11 +1628,11 @@
 			<div class="Row" >			
 				<div class="Cell"><?php echo $vendpaidtrn[$a]['event_id'];?></div>
 				<div class="Cell"><?php echo $vendpaidtrn[$a]['event_vendor_id'];?></div>
-				<div class="Cell"><?php if($vendpaidtrn[$a]['payment_date']== ''){echo "null";}else{echo $vendpaidtrn[$a]['payment_date']; } ?></div>
-				<div class="Cell"><?php if($vendpaidtrn[$a]['payment_mode']== ''){echo "null";}else{echo $vendpaidtrn[$a]['payment_mode']; } ?></div>
-				<div class="Cell"><?php if($vendpaidtrn[$a]['vend_bank_name']== ''){echo "null";}else{echo $vendpaidtrn[$a]['vend_bank_name']; } ?></div>
-				<div class="Cell"><?php if($vendpaidtrn[$a]['vend_cheque_no']== ''){echo "null";}else{echo $vendpaidtrn[$a]['vend_cheque_no']; } ?></div>
-				<div class="Cell"><?php  if($vendpaidtrn[$a]['paid_amt']== ''){echo "null";}else{echo $vendpaidtrn[$a]['paid_amt']; } ?></div>
+				<div class="Cell"><?php if($vendpaidtrn[$a]['payment_date']== ''){echo "";}else{echo $vendpaidtrn[$a]['payment_date']; } ?></div>
+				<div class="Cell"><?php if($vendpaidtrn[$a]['payment_mode']== ''){echo "";}else{echo $vendpaidtrn[$a]['payment_mode']; } ?></div>
+				<div class="Cell"><?php if($vendpaidtrn[$a]['vend_bank_name']== ''){echo "";}else{echo $vendpaidtrn[$a]['vend_bank_name']; } ?></div>
+				<div class="Cell"><?php if($vendpaidtrn[$a]['vend_cheque_no']== ''){echo "";}else{echo $vendpaidtrn[$a]['vend_cheque_no']; } ?></div>
+				<div class="Cell"><?php  if($vendpaidtrn[$a]['paid_amt']== ''){echo "";}else{echo $vendpaidtrn[$a]['paid_amt']; } ?></div>
 				
 				
 			</div>
