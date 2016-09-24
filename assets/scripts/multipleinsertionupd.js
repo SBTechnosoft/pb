@@ -12,7 +12,7 @@ $(document).on('click','#add',function()
 		var gtot = [];
 		$.each($('.txtiuamt'), function(){           
 			gtot.push($(this).val());
-	});	
+		});	
 
        var total_amt = 0;
 		$.each(gtot,function() {
@@ -588,13 +588,15 @@ $(document).on('click','#add',function()
 		'		</i>	'+		
 		'		<input style="width:120px;" type="text" id="labelLT'+i+'" name="labelLT'+i+'"  value="Length(FT)" readonly />'+
 		'		<input style="width:120px;" type="text" id="labelWT'+i+'" name="labelWT'+i+'" value="Width(FT)" readonly />'+								
+		'		<input style="width:120px;" type="text" id="totalFT'+i+'" name="totalFT'+i+'" value="Total(FT)" readonly />	'+
 		'	</div>'+								
 		'	<div>	'+							
 		'		<select  name="drpneweqp'+i+'" id="drpneweqp'+i+'" class="medium m-wrap drpneweqp'+i+'">'+											
 		'		</select>'+		
 		
-		'		<input class="small m-wrap txtlength"  type="text"  id="txtlength'+i+'" name="txtlength'+i+'" value=""  />'+
-		'		<input class="small m-wrap txtwidth"  type="text"  id="txtwidth'+i+'" name="txtwidth'+i+'" value="" />'+									
+		'		<input class="small m-wrap txtlength"  type="text"  id="txtlength'+i+'" name="txtlength'+i+'" value="0"  />'+
+		'		<input class="small m-wrap txtwidth"  type="text"  id="txtwidth'+i+'" name="txtwidth'+i+'" value="0" />'+									
+		'		<input class="small m-wrap txttotft"  type="text"  id="txttotft'+i+'" name="txttotft'+i+'" value="" readonly />'+
 		'	</div>'+
 		'	<div>'+
 		'		<input style="width:120px;" type="text"  value="Rate" readonly />'+									
@@ -620,7 +622,7 @@ $(document).on('click','#add',function()
 		'		<select name="drpnewvend'+i+'" id="drpnewvend'+i+'" class="medium m-wrap drpnewvend'+i+'">'+ 											
 		'		</select>'+
 		
-		'		<input class="small m-wrap txtvprice'+i+'" type="text"  id="txtvprice'+i+'" name="txtvprice'+i+'" value="" />	'+								
+		'		<input class="small m-wrap txtvprice'+i+'" type="text"  id="txtvprice'+i+'" name="txtvprice'+i+'" value="0" />	'+								
 		'	</div>	'+							
 		'	<div>'+
 		'		<input  type="text"  value="Remark" readonly />'+
@@ -754,6 +756,8 @@ $(document).on('click','#add',function()
 		'$(\'#labelWT'+i+'\').hide();'+
 		'$(\'#txtlength'+i+'\').hide();'+
 		'$(\'#txtwidth'+i+'\').hide();	'+
+		'$(\'#totalFT'+i+'\').hide();'+
+		'$(\'#txttotft'+i+'\').hide();'+
 		
 		'function checkType'+i+'()'+
 		'{	'+
@@ -765,6 +769,8 @@ $(document).on('click','#add',function()
 				'$(\'#labelWT'+i+'\').show();'+
 				'$(\'#txtlength'+i+'\').show();'+
 				'$(\'#txtwidth'+i+'\').show();'+
+				'$(\'#totalFT'+i+'\').show();'+
+				'$(\'#txttotft'+i+'\').show();'+
 			'}'+
 			'else'+
 			'{'+
@@ -772,6 +778,8 @@ $(document).on('click','#add',function()
 				'$(\'#labelWT'+i+'\').hide();'+
 				'$(\'#txtlength'+i+'\').hide();'+
 				'$(\'#txtwidth'+i+'\').hide();'+
+				'$(\'#totalFT'+i+'\').hide();'+
+				'$(\'#txttotft'+i+'\').hide();'+
 			'}'+			
 		'}'+
 		
@@ -779,6 +787,10 @@ $(document).on('click','#add',function()
 		'$("#txtlength'+i+'").on("focusout", function()'+
 		'{'+
 			'var txtlength    =   $(\'#txtlength'+i+'\').val();'+							
+			'var txtwidth    =   $(\'#txtwidth'+i+'\').val();'+
+			'var sqfeet = parseInt(txtlength) * parseInt(txtwidth);'+
+			
+			'$(\'#txttotft'+i+'\').val(sqfeet);'+
 		'});'+
 		
 		'$("#txtwidth'+i+'").on("focusout", function(){'+
@@ -789,6 +801,7 @@ $(document).on('click','#add',function()
 			'var rate = $(\'#txtrate'+i+'\').val();'+	
 			
 			'var tot = parseInt(sqfeet) * parseInt(rate);'+
+			'$(\'#txttotft'+i+'\').val(sqfeet);'+
 			'$(\'#txthamt'+i+'\').val(tot);'+
 			'$(\'#txtamt'+i+'\').val(tot);'+			
 		'});'+

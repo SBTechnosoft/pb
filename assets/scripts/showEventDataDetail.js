@@ -769,7 +769,7 @@
 					$('#vdcharge').val(e.vendor_charges);
 					$('#txamt').val(e.service_tax_amt);
 					$('#totammt').val(e.total_amt);
-					$('#disamt').val(e.remain_amt);
+					$('#disamt').val(e.remaindisc);
 					$('#st').val(e.service_tax_amt);
 					$('#txtremainamt').val(e.remain_amt);
 				}

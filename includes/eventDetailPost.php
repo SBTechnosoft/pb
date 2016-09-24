@@ -1455,7 +1455,8 @@
 				$('#labelWT<?php echo $i; ?>').hide();
 				$('#txtlength<?php echo $i; ?>').hide();
 				$('#txtwidth<?php echo $i; ?>').hide();
-				
+				$('#totalFT<?php echo $i; ?>').hide();
+				$('#txttotft<?php echo $i; ?>').hide();
 				
 			</script>
 			<?php
@@ -1575,7 +1576,7 @@
 	}
 	if(isset($_POST['UpdateAcc']))
 	{		
-		$q = mysql_query("select `total_amt`,`client_charges`,`vendor_charges`,`service_tax_amt`,`client_discount_amt`,`client_paid_amt`,(total_amt - client_paid_amt) as remain_amt from `event_mst` where event_id='".$_POST['id']."'");
+		$q = mysql_query("select `total_amt`,`client_charges`,`vendor_charges`,`service_tax_amt`,`client_discount_amt`,`client_paid_amt`,(total_amt - client_paid_amt) as remain_amt,(client_charges-client_discount_amt) as remaindisc from `event_mst` where event_id='".$_POST['id']."'");
 		$row = mysql_fetch_array($q);
 		header("Content-type: text/x-json");
 		echo json_encode($row);
