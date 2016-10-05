@@ -156,7 +156,8 @@
             <ul class="nav nav-tabs">
                 <li class="<?php if(!isset($_GET['id'])&& empty($_GET['id'])){ echo 'active'; }?>"><a data-toggle="tab" href="#tab_2_5">Details </a></li>
                 <li class="<?php if(isset($_GET['id'])&& !empty($_GET['id'])){ echo 'active'; }?>"><a data-toggle="tab" href="#tab_1_2" >Places</a></li>
-                <li><a data-toggle="tab" href="#tab_2_2" > Accounting </a></li>
+                <li><a data-toggle="tab" href="#tab_2_6" > Images </a></li>
+				<li><a data-toggle="tab" href="#tab_2_2" > Accounting </a></li>
 				<!-- id is removed here first given the ajax call o the id now no need on this click default fn call-->
 				<!--li><a data-toggle="tab" href="#tab_1_2" id="event_places_dtl">Places</a></li>
                 <li><a data-toggle="tab" href="#tab_2_2" id="event_eqp_stf_dtl"> Accounting </a></li-->
@@ -400,6 +401,38 @@
 					</div>
                 </div>
                 <!--end tab-pane-->
+				<div id="tab_2_6" class="tab-pane">					
+					<div class="row-fluid search-images" id="evnt_img">
+						<!--ul class="thumbnails">
+							<li class="span3">
+								<a class="fancybox-button" data-rel="fancybox-button" href="assets/img/gallery/image1.jpg">
+								<img src="assets/img/gallery/image1.jpg" alt="">
+								<span><em> BBG Chennai Event </em></span>
+								</a>
+							</li>
+							<li class="span3">
+								<a class="fancybox-button" data-rel="fancybox-button"  href="assets/img/gallery/image2.jpg">
+								<img src="assets/img/gallery/image2.jpg" alt="">
+								<span><em> BBG Chennai Event </em></span>
+								</a>
+							</li>
+							<li class="span3">
+								<a class="fancybox-button" data-rel="fancybox-button"  href="assets/img/gallery/image1.jpg">
+								<img src="assets/img/gallery/image1.jpg" alt="">
+								<span><em> BBG Chennai Event </em></span>
+								</a>
+							</li>
+							<li class="span3">
+								<a class="fancybox-button" data-rel="fancybox-button"  href="assets/img/gallery/image5.jpg">
+								<img src="assets/img/gallery/image5.jpg" alt="">
+								<span><em> BBG Chennai Event </em></span>
+								</a>
+							</li>
+						</ul-->						
+					</div>
+					<div class="spac40"></div>
+					
+				</div>
                 <div id="tab_2_2" class="tab-pane">
 					<div class="row-fluid search-forms search-default">
 						<form class="form-search" action="#">

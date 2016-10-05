@@ -28,6 +28,10 @@
 									<i class="icon-angle-down"></i>
 								</div-->
 							</li>
+							<li class="pull-right no-text-shadow">
+								<span style="margin-right:20px;"> <?php echo date("d-M-Y"); ?></span>
+							</li>
+							
 						</ul>
 						<!-- END PAGE TITLE & BREADCRUMB-->
 					</div>

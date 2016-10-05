@@ -375,6 +375,42 @@
 		}
 		
 	}
+	if(isset($_POST['showImage']))
+	{	
+		$data = showImage($conn,$_POST['eid']);
+		$li = count($data);
+		$ul = ceil($li/4);
+		//echo $data[0]['inv_file_name'];
+		?>
+		
+		<?php
+		$cnt=0;
+		for($i=0;$i<$ul;$i++)
+		{
+			?>											
+			<ul class="thumbnails">
+			<?php
+				for($j=0; $j<4; $j++)
+				{
+					
+			?>
+				<?php if($cnt>=$li){ break;}?>
+				<li class="span3">
+					<a class="fancybox-button" data-rel="fancybox-button"  href="<?php echo DIR_IMAGES.'event_upload/'.$data[$cnt]['img_name'] ;?>">
+					<img src="<?php echo DIR_IMAGES.'event_upload/'.$data[$cnt]['img_name'] ;?>" alt="">
+					<span><em> </em></span>
+					</a>
+				</li>																						
+			
+			<?php
+				$cnt++;	
+				}
+			?>
+			</ul>	
+			
+		<?php
+		}	
+	}
 	if(isset($_POST['showfullPdf']))
 	{	
 		$data = showfullPdf ($conn,$_POST['eid']);

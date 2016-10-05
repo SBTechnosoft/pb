@@ -18,6 +18,13 @@ function insCatg($conn,$txtcatgnm,$txtcatgdes,$cur_date)
 			echo 0;
 			exit;
 		}
+function insImgUplod($conn,$eventlast_id,$fileName)
+		{
+			$sqlImgUplod = "INSERT INTO `event_image_dtl` (`event_id`,`img_name`) VALUES ('".$eventlast_id."','".$fileName."')"; 
+			$resultArray = $conn->insertQuery($sqlImgUplod);
+			echo 0;
+			//exit;
+		}
 function insAcs($conn,$txtcatid,$txtacsnm,$txtacsremk,$cur_date)
 		{
 			$sqlInsAcs = "INSERT INTO `eq_accessories` (`eq_id`,`as_name`,`remark`,`created_at`,`deleted_at`,`updated_at`) VALUES ('".$txtcatid."','".$txtacsnm."','".$txtacsremk."','".$cur_date."','','')"; 

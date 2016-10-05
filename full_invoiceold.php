@@ -37,15 +37,15 @@
 					<td class="tg-vi9z" style="background-color: #9a9a9a; padding: 5px 10px; font-family: Calibri; font-size: 12px; vertical-align: bottom; color: #e1e1e1;" colspan="9">Equipment</td>
 				</tr>
 				<tr class="trhw">
-					<td class="tg-vi9z" style="background-color: #d9d9d9; padding: 5px 10px; font-family: Calibri; font-size: 12px; vertical-align: bottom; color: #4e4e4e;" colspan="1">Equipment</td>
-					<td class="tg-vi9z" style="background-color: #d9d9d9; padding: 5px 10px; font-family: Calibri;font-size: 12px; vertical-align: bottom; color: #4e4e4e;" colspan="1">Accessories</td>
-					<td class="tg-vi9z" style="background-color: #d9d9d9; padding: 5px 10px; font-family: Calibri; font-size: 12px; vertical-align: bottom; color: #4e4e4e;" colspan="1">Rate</td>
+					<td class="tg-vi9z" style="background-color: #d9d9d9; padding: 5px 10px; font-family: Calibri; font-size: 12px; vertical-align: bottom; color: #4e4e4e;" colspan="2">Equipment</td>
+					
+					
 					<td class="tg-vi9z" style="background-color: #d9d9d9; padding: 5px 10px; font-family: Calibri;font-size: 12px; vertical-align: bottom; color: #4e4e4e;" colspan="1">Qty</td>
-					<td class="tg-vi9z" style="background-color: #d9d9d9; padding: 5px 10px; font-family: Calibri; font-size: 12px; vertical-align: bottom; color: #4e4e4e;" colspan="1">Amount</td>
+					
 					<td class="tg-vi9z" style="background-color: #d9d9d9; padding: 5px 10px; font-family: Calibri;font-size: 12px; vertical-align: bottom; color: #4e4e4e;" colspan="1">Staff</td>
 					<td class="tg-vi9z" style="background-color: #d9d9d9; padding: 5px 10px; font-family: Calibri;font-size: 12px; vertical-align: bottom; color: #4e4e4e;" colspan="1">Vendor</td>
-					<td class="tg-vi9z" style="background-color: #d9d9d9; padding: 5px 10px; font-family: Calibri;font-size: 12px; vertical-align: bottom; color: #4e4e4e;" colspan="1">Price</td>
-					<td class="tg-vi9z" style="background-color: #d9d9d9; padding: 5px 10px; font-family: Calibri; font-size: 12px; vertical-align: bottom; color: #4e4e4e;" colspan="1">Remark</td>
+					
+					<td class="tg-vi9z" style="background-color: #d9d9d9; padding: 5px 10px; font-family: Calibri; font-size: 12px; vertical-align: bottom; color: #4e4e4e;" colspan="4">Remark</td>
 				 
 				</tr>';
 				 
@@ -91,39 +91,28 @@
 								 
 								 
 								  <tr class="trhw">
-									<td class="tg-vi9z" style="background-color: #d9d9d9; padding: 5px 10px; font-family: Calibri; font-size: 12px; vertical-align: bottom; color: #4e4e4e;" colspan="1">'.$vndtl[$p]['eq_name'].'</td>
-									<td class="tg-vi9z" style="background-color: #d9d9d9; padding: 5px 10px; font-family: Calibri;font-size: 12px; vertical-align: bottom; color: #4e4e4e;" colspan="1">'.$vndtl[$p]['eq_name'].'</td>
-									<td class="tg-vi9z" style="background-color: #d9d9d9; padding: 5px 10px; font-family: Calibri; font-size: 12px; vertical-align: bottom; color: #4e4e4e;" colspan="1">-</td>
+									<td class="tg-vi9z" style="background-color: #d9d9d9; padding: 5px 10px; font-family: Calibri; font-size: 12px; vertical-align: bottom; color: #4e4e4e;" colspan="2">'.$vndtl[$p]['eq_name'].'</td>
+									
+									
 									<td class="tg-vi9z" style="background-color: #d9d9d9; padding: 5px 10px; font-family: Calibri;font-size: 12px; vertical-align: bottom; color: #4e4e4e;" colspan="1">'.$vndtl[$p]['qty'].'</td>
-									<td class="tg-vi9z" style="background-color: #d9d9d9; padding: 5px 10px; font-family: Calibri; font-size: 12px; vertical-align: bottom; color: #4e4e4e;" colspan="1">-</td>
+									
 									<td class="tg-vi9z" style="background-color: #d9d9d9; padding: 5px 10px; font-family: Calibri;font-size: 12px; vertical-align: bottom; color: #4e4e4e;" colspan="1">'.$vndtl[$p]['first_name'].'</td>
 									<td class="tg-vi9z" style="background-color: #d9d9d9; padding: 5px 10px; font-family: Calibri;font-size: 12px; vertical-align: bottom; color: #4e4e4e;" colspan="1">'.$vndtl[$p]['vendor_name'].'</td>
-									<td class="tg-vi9z" style="background-color: #d9d9d9; padding: 5px 10px; font-family: Calibri;font-size: 12px; vertical-align: bottom; color: #4e4e4e;" colspan="1">-</td>
-									<td class="tg-vi9z" style="background-color: #d9d9d9; padding: 5px 10px; font-family: Calibri; font-size: 12px; vertical-align: bottom; color: #4e4e4e;" colspan="1">'.$vndtl[$p]['remark'].'</td>
+									
+									<td class="tg-vi9z" style="background-color: #d9d9d9; padding: 5px 10px; font-family: Calibri; font-size: 12px; vertical-align: bottom; color: #4e4e4e;" colspan="4">'.$vndtl[$p]['remark'].'</td>
 								 
 								 </tr>
 							
 							';							
 					}
-				
 	}
-	// $outputD .=	'
-				// <tr class="trhw">
-					// <td>
-						// <img width="510" height="320" src="'.DIR_IMAGES.'/event_upload/1.jpg'.'"  />
-					// </td>
-					// <td>
-						// <img width="510" height="320" src="'.DIR_IMAGES.'/event_upload/2.jpg'.'"  />
-					// </td>
-					
-				// </tr>
-				// ';
+	
 	
 	$bnrimg = showBannerImg($conn,$_POST['txtfpdfeid']);
 	$cntimg = count($bnrimg);
 	for($t=0;$t<$cntimg;$t++)
 	{					
-		$BnrImg .= '<img width="1020" height="320" src=" '.DIR_IMAGES.$bnrimg[$t]['Banner_Img'].' "  />';				
+		$BnrImg .= '<img width="1080" height="320" src=" '.DIR_IMAGES.$bnrimg[$t]['Banner_Img'].' "  />';				
 		
 	}
 	$output =array(	
@@ -149,7 +138,8 @@
 		$htmlData = str_replace('['.$key.']', $value, $htmlData);
 		
 	}
-	
+	// print_r($htmlData);
+	// exit;
 	$html = str_get_html($htmlData);
 	
 	$html = $htmlData;	

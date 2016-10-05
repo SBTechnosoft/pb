@@ -70,7 +70,7 @@
 					{
 						if($a%2==0)
 						{
-							if($dEqp[$a]['length']!='' && $dEqp[$a]['length']!='undefined')
+							if($dEqp[$a]['length']!='' && $dEqp[$a]['length']!='undefined' && $dEqp[$a]['length']!='0')
 							{				
 							
 							$outputD .= '
@@ -99,7 +99,7 @@
 						}
 						else
 						{
-							if($dEqp[$a]['length']!='' && $dEqp[$a]['length']!='undefined')
+							if($dEqp[$a]['length']!='' && $dEqp[$a]['length']!='undefined' && $dEqp[$a]['length']!='0')
 							{				
 							
 							$outputD .= '
@@ -285,7 +285,7 @@
 					{
 						if($a%2==0)
 						{
-							if($dEqp[$a]['length']!='' && $dEqp[$a]['length']!='undefined')
+							if($dEqp[$a]['length']!='' && $dEqp[$a]['length']!='undefined' && $dEqp[$a]['length']!='0')
 							{				
 							
 							$outputD .= '
@@ -314,7 +314,7 @@
 						}
 						else
 						{
-							if($dEqp[$a]['length']!='' && $dEqp[$a]['length']!='undefined')
+							if($dEqp[$a]['length']!='' && $dEqp[$a]['length']!='undefined' && $dEqp[$a]['length']!='0')
 							{				
 							
 							$outputD .= '

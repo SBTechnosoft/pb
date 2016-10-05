@@ -104,8 +104,8 @@ function showTarget()
 			});
 		}
 		showUPCEventCnt();
-		//showdataIncome();
-		//showdataExpence();
-		//showdataProfit();
-		//showEventCnt();
+		showdataIncome();
+		showdataExpence();
+		showdataProfit();
+		showEventCnt();
 		showTarget();

@@ -477,8 +477,9 @@ function showPerm($conn)
 function showEqpRsDtl($conn,$event_id)
 	{
 		$sqlshowEqpRsDtl = "select em.eq_name,nepd.qty,nepd.rate,nepd.amount,nepd.length,nepd.width 
-						from `new_event_places_dtl` nepd  inner join `equipment_mst` em 
-						on nepd.eq_id = em.eq_id where nepd.event_id = '".$event_id."' order by em.eq_name "; 
+						from `new_event_places_dtl` nepd  
+                        inner join `equipment_mst` em on nepd.eq_id = em.eq_id 
+                         where nepd.event_id = '".$event_id."' order by em.eq_name "; 
 		return $conn->getResultArray($sqlshowEqpRsDtl);	
 	}
 function showClientInv($conn)
@@ -682,6 +683,11 @@ function showOtherExp($conn)
 		$sqlOtherExp = "select sum(amount) as oexp from `expence_dtl` "; 
 		return $conn->getResultArray($sqlOtherExp);		
 	}
+function showImage($conn,$event_id)
+{
+	$sqlshowImage = "select event_id,img_name from event_image_dtl where event_id = '".$event_id."'"; 
+	return $conn->getResultArray($sqlshowImage);		
+}
 	/*
 	
 select vm.vendor_name,vm.vendor_cmp,vm.cat_id,evd.event_places_id

@@ -261,6 +261,28 @@ if(isset($_POST['showtax']))
 		  }
 		  
 		}
+		foreach($_FILES['upload_img']['tmp_name'] as $key => $tmp_name )
+		{
+			//Uploaded image details
+			$fileName = date('d-m-Y')."_".rand(10000,10000000)."_".$_FILES['upload_img']['name'][$key];
+			$type = $_FILES["upload_img"]["type"][$key];
+			$size = $_FILES["upload_img"]["size"][$key];
+			$fileContent = $_FILES["upload_img"]["tmp_name"][$key];
+			$error = $_FILES["upload_img"]["error"][$key];
+			//$file_ext=strtolower(end(explode('.',$_FILES['upload_image']['name'][$key])));
+			
+			/* if(in_array($file_ext,$extensions)=== false)
+			{
+				echo "extension not allowed, please choose a JPEG or PNG file.";
+				break;
+			} */
+			
+			 move_uploaded_file($fileContent,'../images/event_upload/'.$fileName);
+			  
+			
+			 //mysql_query("insert into image values(null,'".$fileName."','".$id."')");
+			 insImgUplod($conn,$eventlast_id,$fileName);
+		}
 		
 		$client_charge = $_POST['txtcharge'];
 		$cur_date = date('Ymd');

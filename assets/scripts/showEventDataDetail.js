@@ -503,6 +503,7 @@
 					//call to display for evend places detail..
 					//its old//showeventplaces();
 					newshoweventplaces();
+					showImage();
 					//call of function which show the popup data that get the paid amt detail from event payment trn table					
 					showeventpaid();
 					$('#txtpeid').val(e.event_id);
@@ -728,7 +729,7 @@
 					//call to display for evend places detail..
 					//its old//showeventplaces();
 					newshoweventplaces();
-					
+					showImage();
 					//call of function which show the popup data that get the paid amt detail from event payment trn table					
 					showeventpaid();
 					$('#txtpeid').val(e.event_id);
@@ -743,9 +744,34 @@
 		}
 		
 		last_event();
-		
-		
-		
+		//show of images on particlur event
+		function showImage()
+		{
+			var eid    =   $('#eid').val();
+			
+			//alert(eid);
+			$.ajax({
+				url : 'includes/eventDetailPost.php',
+				type : 'POST',
+				async : false,
+				data : {
+					'showImage'  : 1,
+					'eid'   : eid,				
+					
+				},
+				success : function(rd1)
+				{										
+					 $('#evnt_img').html(rd1);
+					 
+						// showdataeqp();
+						// showdatastf();
+						// showdatavend();
+						// showdatavendsel();										
+				}				
+			});	
+					
+		}
+		//end of show images
 		//end of the default show data
 	   function UpdateAcc()
 		{

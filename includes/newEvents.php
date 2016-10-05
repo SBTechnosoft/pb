@@ -40,7 +40,7 @@
 				<div class="span12 booking-search">
 					<h4>Event Details </h4><hr/>
 					
-					<form name="f1" action="./includes/newEventsPost.php" method="post" id="f1">
+					<form name="f1" action="./includes/newEventsPost.php" method="post" id="f1" enctype="multipart/form-data">
 						<div class="clearfix margin-bottom-10">
 							
 							<div class="pull-left margin-right-20">
@@ -566,7 +566,11 @@
 										</table>
 									</div>
 								</div>
-								
+								<div class="clearfix margin-bottom-10">							
+									<div class="input-icon left">	
+										<input type="file" name="upload_img[]" id="upload_img" multiple="mutiple" /> 
+									</div>
+								</div>
 								<!--div id="eqprec">
 								
 								</div-->
