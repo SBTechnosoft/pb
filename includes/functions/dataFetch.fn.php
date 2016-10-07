@@ -688,6 +688,13 @@ function showImage($conn,$event_id)
 	$sqlshowImage = "select event_id,img_name from event_image_dtl where event_id = '".$event_id."'"; 
 	return $conn->getResultArray($sqlshowImage);		
 }
+function showEventImg($conn,$eid)
+	{
+		$sqlshowEventImg = "select img_name
+		from  `event_image_dtl`		
+		where event_id = '".$eid."' "; 
+		return $conn->getResultArray($sqlshowEventImg);	
+	}
 	/*
 	
 select vm.vendor_name,vm.vendor_cmp,vm.cat_id,evd.event_places_id

@@ -150,6 +150,56 @@
 		
 	}
 	
+	//for new page which contain the images to relvant event
+	
+	
+	
+	$html1 .= '
+			<html>
+			<head>
+			<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+			
+			</head>
+
+				<body> ';
+				
+					$Eventimg = showEventImg($conn,$_POST['txtfpdfeid']);
+					$li = count($Eventimg);					
+					$ul = ceil($li/2);					
+				
+					$cnt=0;
+					for($i=0;$i<$ul;$i++)
+					{
+																
+						$html1 .= '<div style="width:750px; background-color:white; height:120px;">
+										<div style="width:900px;">';
+						
+							for($j=0; $j<2; $j++)
+							{
+								
+								if($cnt>=$li){ break;}															
+								
+								$html1 .= '<img style=" float:left; display:inline;padding-left:30px;margin-top:25px;"  src=" '.DIR_IMAGES.'event_upload/'. $Eventimg[$cnt]['img_name'].'" width="310" height="270"  />';																				
+								//$BnrImg .= '<img width="1020" height="320" src=" '.DIR_IMAGES.$bnrimg[$t]['Banner_Img'].' "  />';
+								//style=" float:left; display:inline;padding-left:30px;margin-top:25px;"
+							$cnt++;	
+							}
+						$html1 .= '
+						 </div>
+					 </div>	';
+						
+					
+					}
+					
+				
+					
+	$html1 .= '
+					
+				</body>
+			</html>
+	
+	';
+	//end
 	$html = str_get_html($htmlData);
 	
 	$html = $htmlData;	
@@ -161,7 +211,10 @@
 	$mpdf->list_indent_first_level = 0;  // 1 or 0 - whether to indent the first level of a list
 	 
 	$mpdf->WriteHTML($html);
-			 
+	
+	$mpdf -> AddPage();
+				
+	$mpdf->WriteHTML($html1);		 
 	
 	
 	//header('location : D:\xampp\htdocs\mpdf\invoice\meu-pdf.pdf');
