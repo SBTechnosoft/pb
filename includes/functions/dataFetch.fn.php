@@ -593,7 +593,7 @@ function showNewEv_Pl_Dtl($conn,$eid)
 function showVennueDtl($conn,$eid)
 	{
 		$sqlshowVennueDtl = " 
-		select nepd.event_places_id,epd.event_vennue,epd.event_hall,epd.event_ld_mark,DATE_FORMAT(epd.event_date, '%D %M %Y') as 'event_date',DATE_FORMAT(epd.event_to_date, '%D %M %Y') as 'event_to_date',sum(nepd.amount)as 'Amount'
+		select nepd.event_places_id,epd.event_vennue,epd.event_hall,epd.event_ld_mark,DATE_FORMAT(epd.event_date, '%D %b %Y %h:%i %p') as 'event_date',DATE_FORMAT(epd.event_to_date, '%D %b %Y %h:%i %p') as 'event_to_date',sum(nepd.amount)as 'Amount'
 		from new_event_places_dtl nepd
 		right join event_places_dtl epd on epd.event_places_id = nepd.event_places_id
 		where nepd.event_id='".$eid."' group by nepd.event_places_id "; 
